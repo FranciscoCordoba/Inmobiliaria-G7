@@ -7,14 +7,14 @@ import javax.swing.JOptionPane;
 
 public class Conexion {
 
-    private String url = "jdbc:mysql://localhost/nombre-base-de-datos";
+    private String url = "jdbc:mysql://localhost/inmobiliariag7";
     private String usuario = "root";
     private String password = "";
-    private Connection conexion; //Importante
+    private Connection conexion;
 
     public Conexion() {
         try {
-            Class.forName("org.mariadb.jdbc.Driver"); //Importante si usamos el driver de mariadb
+            Class.forName("org.mariadb.jdbc.Driver");
         } catch (ClassNotFoundException ex) {
             JOptionPane.showMessageDialog(null, "Error al cargar drivers de conexion");
         }

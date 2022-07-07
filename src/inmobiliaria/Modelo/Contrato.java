@@ -2,7 +2,7 @@ package inmobiliaria.Modelo;
 
 import java.time.LocalDate;
 
-public class ContratoAlquiler {
+public class Contrato {
     
     private int idContrato;
     private LocalDate fechaInicio;
@@ -11,12 +11,12 @@ public class ContratoAlquiler {
     private double monto;
     private Inquilino inquilinoContrato;
     private Propietario propietarioContrato;
-    private PropiedadInmueble propiedadContrato;
+    private Inmueble propiedadContrato;
 
-    public ContratoAlquiler() {
+    public Contrato() {
     }
 
-    public ContratoAlquiler(int idContrato, LocalDate fechaInicio, LocalDate fechaFin, boolean activo, double monto, Inquilino inquilinoContrato, Propietario propietarioContrato, PropiedadInmueble propiedadContrato) {
+    public Contrato(int idContrato, LocalDate fechaInicio, LocalDate fechaFin, boolean activo, double monto, Inquilino inquilinoContrato, Propietario propietarioContrato, Inmueble propiedadContrato) {
 	this.idContrato = idContrato;
 	this.fechaInicio = fechaInicio;
 	this.fechaFin = fechaFin;
@@ -27,7 +27,7 @@ public class ContratoAlquiler {
 	this.propiedadContrato = propiedadContrato;
     }
 
-    public ContratoAlquiler(LocalDate fechaInicio, LocalDate fechaFin, boolean activo, double monto, Inquilino inquilinoContrato, Propietario propietarioContrato, PropiedadInmueble propiedadContrato) {
+    public Contrato(LocalDate fechaInicio, LocalDate fechaFin, boolean activo, double monto, Inquilino inquilinoContrato, Propietario propietarioContrato, Inmueble propiedadContrato) {
 	this.fechaInicio = fechaInicio;
 	this.fechaFin = fechaFin;
 	this.activo = activo;
@@ -65,7 +65,7 @@ public class ContratoAlquiler {
 	return propietarioContrato;
     }
 
-    public PropiedadInmueble getPropiedadContrato() {
+    public Inmueble getPropiedadContrato() {
 	return propiedadContrato;
     }
 
@@ -89,8 +89,40 @@ public class ContratoAlquiler {
 	this.propietarioContrato = propietarioContrato;
     }
 
-    public void setPropiedadContrato(PropiedadInmueble propiedadContrato) {
+    public void setPropiedadContrato(Inmueble propiedadContrato) {
 	this.propiedadContrato = propiedadContrato;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 79 * hash + this.idContrato;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Contrato other = (Contrato) obj;
+        if (this.idContrato != other.idContrato) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Contrato{" + "idContrato=" + idContrato + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", activo=" + activo + ", monto=" + monto + ", inquilinoContrato=" + inquilinoContrato + ", propietarioContrato=" + propietarioContrato + ", propiedadContrato=" + propiedadContrato + '}';
+    }
+    
+    
               
 }

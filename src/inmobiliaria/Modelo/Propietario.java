@@ -2,13 +2,12 @@ package inmobiliaria.Modelo;
 
 public class Propietario {
     //A
-    private int id;
+    private int idPropietario;
     private String nombre;
     private String apellido;
     private int dni;
     private String domicilio;
     private int telefono;
-    private int propiedades;
     
     //C
     public Propietario() {
@@ -20,22 +19,20 @@ public class Propietario {
         this.dni = dni;
         this.domicilio = domicilio;
         this.telefono = telefono;
-        this.propiedades = propiedades;
     }
 
-    public Propietario(int id, String nombre, String apellido, int dni, String domicilio, int telefono, int propiedades) {
-        this.id = id;
+    public Propietario(int idPropietario, String nombre, String apellido, int dni, String domicilio, int telefono, int propiedades) {
+        this.idPropietario = idPropietario;
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
         this.domicilio = domicilio;
         this.telefono = telefono;
-        this.propiedades = propiedades;
     }
     
     //M
     public int getId() {
-        return id;
+        return idPropietario;
     }
 
     public String getNombre() {
@@ -78,18 +75,12 @@ public class Propietario {
         this.telefono = telefono;
     }
 
-    public int getPropiedades() {
-        return propiedades;
-    }
 
-    public void setPropiedades(int propiedades) {
-        this.propiedades = propiedades;
-    }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 47 * hash + this.id;
+        hash = 47 * hash + this.idPropietario;
         return hash;
     }
 
@@ -105,7 +96,7 @@ public class Propietario {
             return false;
         }
         final Propietario other = (Propietario) obj;
-        if (this.id != other.id) {
+        if (this.idPropietario != other.idPropietario) {
             return false;
         }
         return true;
@@ -115,7 +106,7 @@ public class Propietario {
 
     @Override
     public String toString() {
-        return "Propietario{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + ", domicilio=" + domicilio + ", telefono=" + telefono + ", propiedades=" + propiedades + '}';
+        return "Propietario{" + "id=" + idPropietario + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + ", domicilio=" + domicilio + ", telefono=" + telefono + '}';
     }
     
 }

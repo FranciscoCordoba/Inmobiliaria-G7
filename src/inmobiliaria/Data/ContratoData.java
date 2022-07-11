@@ -1,6 +1,6 @@
 package inmobiliaria.Data;
 
-public class ContratoAlquilerData {
+public class ContratoData {
     
     
     

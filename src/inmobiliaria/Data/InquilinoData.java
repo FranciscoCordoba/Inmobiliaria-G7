@@ -57,67 +57,99 @@ public class InquilinoData {
         }
         return insert;
     }
-    
+
     public List<Inquilino> obtenerInquilinos() {
 
-	ArrayList<Inquilino> inquilinos = new ArrayList<>();
+        ArrayList<Inquilino> inquilinos = new ArrayList<>();
 
-	try {
+        try {
 
-	    String sql = "SELECT * FROM inquilino";
-	    PreparedStatement ps = conexion.prepareStatement(sql);
+            String sql = "SELECT * FROM inquilino";
+            PreparedStatement ps = conexion.prepareStatement(sql);
 
-	    ResultSet resultSet = ps.executeQuery();
-            
-	    Inquilino inquilino;
-            
-	    while (resultSet.next()) {
-		inquilino = new Inquilino();
-		inquilino.setIdInquilino(resultSet.getInt("idInquilino"));
-		inquilino.setApellido(resultSet.getString("apellido"));
-		inquilino.setNombre(resultSet.getString("nombre"));
-		inquilino.setDni(resultSet.getLong("dni"));
-		inquilino.setCuit(resultSet.getLong("cuit"));
-		inquilino.setLugarTrabajo(resultSet.getString("lugarTrabajo"));
+            ResultSet resultSet = ps.executeQuery();
+
+            Inquilino inquilino;
+
+            while (resultSet.next()) {
+                inquilino = new Inquilino();
+                inquilino.setIdInquilino(resultSet.getInt("idInquilino"));
+                inquilino.setApellido(resultSet.getString("apellido"));
+                inquilino.setNombre(resultSet.getString("nombre"));
+                inquilino.setDni(resultSet.getLong("dni"));
+                inquilino.setCuit(resultSet.getLong("cuit"));
+                inquilino.setLugarTrabajo(resultSet.getString("lugarTrabajo"));
                 inquilino.setNombreGarante(resultSet.getString("nombreGarante"));
                 inquilino.setDniGarante(resultSet.getLong("dniGarante"));
 
-		inquilinos.add(inquilino);
-	    }
+                inquilinos.add(inquilino);
+            }
 
-	    ps.close();
+            ps.close();
 
-	} catch (SQLException ex) {
-	    JOptionPane.showMessageDialog(null, "Error al obtener inquilinos");
-	}
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al obtener inquilinos");
+        }
 
-	return inquilinos;
+        return inquilinos;
 
     }
-    
-        public boolean modificarInquilino(Inquilino inquilino) {
 
-	String sql = "UPDATE inquilino SET nombre = ?, apellido = ?, dni = ?, cuit = ?, lugarTrabajo = ?, nombreGarante = ?, dniGarante = ?";
-	boolean modificado = false;
-	try {
-	    PreparedStatement ps = conexion.prepareStatement(sql);
-	    ps.setString(1, inquilino.getNombre());
-	    ps.setString(2, inquilino.getApellido());
-	    ps.setLong(3, inquilino.getDni());
-	    ps.setLong(4, inquilino.getCuit());
+    public Inquilino obtenerInquilinoXId(int id) {
+
+        Inquilino inquilino = new Inquilino();;
+
+        try {
+
+            String sql = "SELECT * FROM inquilino WHERE idInquilino = ?";
+
+            PreparedStatement ps = conexion.prepareStatement(sql);
+            ps.setInt(1, id);
+
+            ResultSet resultSet = ps.executeQuery();
+
+            inquilino.setIdInquilino(resultSet.getInt("idInquilino"));
+            inquilino.setApellido(resultSet.getString("apellido"));
+            inquilino.setNombre(resultSet.getString("nombre"));
+            inquilino.setDni(resultSet.getLong("dni"));
+            inquilino.setCuit(resultSet.getLong("cuit"));
+            inquilino.setLugarTrabajo(resultSet.getString("lugarTrabajo"));
+            inquilino.setNombreGarante(resultSet.getString("nombreGarante"));
+            inquilino.setDniGarante(resultSet.getLong("dniGarante"));
+
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al obtener inquilino");
+        }
+
+        return inquilino;
+
+    }
+
+    public boolean modificarInquilino(Inquilino inquilino) {
+
+        String sql = "UPDATE inquilino SET nombre = ?, apellido = ?, dni = ?, cuit = ?, lugarTrabajo = ?, nombreGarante = ?, dniGarante = ?";
+        boolean modificado = false;
+        try {
+            PreparedStatement ps = conexion.prepareStatement(sql);
+            ps.setString(1, inquilino.getNombre());
+            ps.setString(2, inquilino.getApellido());
+            ps.setLong(3, inquilino.getDni());
+            ps.setLong(4, inquilino.getCuit());
             ps.setString(5, inquilino.getLugarTrabajo());
-	    ps.setString(6, inquilino.getNombreGarante());
+            ps.setString(6, inquilino.getNombreGarante());
             ps.setLong(7, inquilino.getDniGarante());
 
-	    if (ps.executeUpdate() != 0) {
-		modificado = true;
-	    }
+            if (ps.executeUpdate() != 0) {
+                modificado = true;
+            }
 
-	    ps.close();
+            ps.close();
 
-	} catch (SQLException ex) {
-	    JOptionPane.showMessageDialog(null, "Error de sintaxis ");
-	}
-	return modificado;
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error de sintaxis ");
+        }
+        return modificado;
     }
 }

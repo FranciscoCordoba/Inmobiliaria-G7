@@ -5,15 +5,15 @@ public class Propietario {
     private int idPropietario;
     private String nombre;
     private String apellido;
-    private int dni;
+    private long dni;
     private String domicilio;
-    private int telefono;
+    private long telefono;
     
     //C
     public Propietario() {
     }
 
-    public Propietario(String nombre, String apellido, int dni, String domicilio, int telefono, int propiedades) {
+    public Propietario(String nombre, String apellido, long dni, String domicilio, long telefono, int propiedades) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
@@ -21,7 +21,7 @@ public class Propietario {
         this.telefono = telefono;
     }
 
-    public Propietario(int idPropietario, String nombre, String apellido, int dni, String domicilio, int telefono, int propiedades) {
+    public Propietario(int idPropietario, String nombre, String apellido, long dni, String domicilio, long telefono, int propiedades) {
         this.idPropietario = idPropietario;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -31,6 +31,11 @@ public class Propietario {
     }
     
     //M
+    
+    public void setIdPropietario(int idPropietario) {
+        this.idPropietario = idPropietario;
+    }
+
     public int getId() {
         return idPropietario;
     }
@@ -51,11 +56,11 @@ public class Propietario {
         this.apellido = apellido;
     }
 
-    public int getDni() {
+    public long getDni() {
         return dni;
     }
 
-    public void setDni(int dni) {
+    public void setDni(long dni) {
         this.dni = dni;
     }
 
@@ -67,11 +72,11 @@ public class Propietario {
         this.domicilio = domicilio;
     }
 
-    public int getTelefono() {
+    public long getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(long telefono) {
         this.telefono = telefono;
     }
 

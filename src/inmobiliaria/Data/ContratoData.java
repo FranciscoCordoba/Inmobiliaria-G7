@@ -19,6 +19,7 @@ public class ContratoData {
     private Contrato contrato;
     private PropietarioData propietario;
     private InquilinoData inquilino;
+    private PropiedadData propiedad;
     Connection con = null;
 
     public ContratoData(Conexion conexion) {
@@ -26,7 +27,7 @@ public class ContratoData {
         this.con = conexion.getConexion();
         this.propietario = new PropietarioData(conexion);
         this.inquilino = new InquilinoData(conexion);
-
+        this.propiedad = new PropiedadData(conexion);
     }
 
     public boolean guardarContrato(Contrato contrato) {

@@ -12,11 +12,11 @@ import javax.swing.JOptionPane;
 
 public class PropietarioData {
     //A
-    private Connection con=null;
+    private Connection conexion=null;
 
     //C
     public PropietarioData(Conexion conexion) {
-        con=conexion.getConexion();
+        this.conexion  =conexion.getConexion();
     }
     
     //M
@@ -27,42 +27,43 @@ public class PropietarioData {
      * @return boolean
      */
     
-    public boolean altaPropietario(Propietario propietario){ 
-        boolean agregado=false;
-        try{
-            String sql="INSERT INTO propietario(nombre, apellido, dni, domicilio, telefono)"
-                    + " VALUES (?,?,?,?,?)";
-            PreparedStatement ps= con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
-            ps.setString(1,propietario.getNombre());
-            ps.setString(2,propietario.getApellido());
-            ps.setLong(3,propietario.getDni());
-            ps.setString(4,propietario.getDomicilio());
-            ps.setLong(5,propietario.getTelefono());
+    public boolean altaPropietario(Propietario propietario) {
+        boolean agregado = false;
+        try {
+            String sql = "INSERT INTO propietario(nombre, apellido, dni, domicilio, telefono, activo)"
+                    + " VALUES (?,?,?,?,?,?)";
+            PreparedStatement ps = conexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, propietario.getNombre());
+            ps.setString(2, propietario.getApellido());
+            ps.setLong(3, propietario.getDni());
+            ps.setString(4, propietario.getDomicilio());
+            ps.setLong(5, propietario.getTelefono());
+            ps.setBoolean(6, propietario.isActivo());
 
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
-            if(rs.next()){
+            if (rs.next()) {
                 propietario.setIdPropietario(rs.getInt(1));
                 agregado = true;
-                JOptionPane.showMessageDialog(null,"Propietario agregado con exito" );
+                JOptionPane.showMessageDialog(null, "Propietario agregado con exito");
             }
             ps.close();
-        }catch(Exception ex){
-                JOptionPane.showMessageDialog(null,"Error al agregar propietario"+ex);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error al agregar propietario" + ex);
         }
-        
+
         return agregado;
     }
     
-    public List<Propietario> listarPropietarios(){
+    public List<Propietario> listarPropietarios() {
         ArrayList<Propietario> propietarios = new ArrayList();
-        
-        try{
-            String sql="SELECT * FROM propietario ";
-            PreparedStatement ps=con.prepareStatement(sql);
+
+        try {
+            String sql = "SELECT * FROM propietario WHERE activo = 1";
+            PreparedStatement ps = conexion.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             Propietario propietario;
-            while(rs.next()){
+            while (rs.next()) {
                 propietario = new Propietario();
                 propietario.setIdPropietario(rs.getInt("idPropietario"));
                 propietario.setNombre(rs.getString("nombre"));
@@ -73,22 +74,21 @@ public class PropietarioData {
                 propietarios.add(propietario);
             }
             ps.close();
-        }catch(Exception ex){
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Error al listar propietarios");
         }
         return propietarios;
     }
     
-    public Propietario obtenerPropietarioPorId(int id){
-        Propietario propietario= null;
-        try{
-            String sql="SELECT * FROM propietario WHERE idPropietario";
-            PreparedStatement ps=con.prepareStatement(sql);
+    public Propietario obtenerPropietarioPorId(int id) {
+        Propietario propietario = null;
+        try {
+            String sql = "SELECT * FROM propietario WHERE idPropietario and activo = 1";
+            PreparedStatement ps = conexion.prepareStatement(sql);
             ps.setInt(1, id);
-            ResultSet rs=ps.executeQuery();
-            while(rs.next()){
-                propietario=new Propietario();
-                
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                propietario = new Propietario();
                 propietario.setIdPropietario(rs.getInt("idPropietario"));
                 propietario.setNombre(rs.getString("nombre"));
                 propietario.setApellido(rs.getString("apellido"));
@@ -97,21 +97,21 @@ public class PropietarioData {
                 propietario.setTelefono(rs.getLong("telefono"));
             }
             ps.close();
-        }catch(Exception ex){
-            JOptionPane.showMessageDialog(null, "Error al obtener propietario"+ex);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error al obtener propietario" + ex);
         }
         return propietario;
     }
     
-    public Propietario obtenerPropietarioPorDni(long dni){
-        Propietario propietario=null;
-        try{
-            String sql="SELECT * FROM propietario WHERE dni=?";
-            PreparedStatement ps=con.prepareStatement(sql);
+    public Propietario obtenerPropietarioPorDni(long dni) {
+        Propietario propietario = null;
+        try {
+            String sql = "SELECT * FROM propietario WHERE dni=? and activo = 1";
+            PreparedStatement ps = conexion.prepareStatement(sql);
             ps.setLong(1, dni);
-            ResultSet rs= ps.executeQuery();
-            while(rs.next()){
-                propietario=new Propietario();
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                propietario = new Propietario();
                 propietario.setIdPropietario(rs.getInt("idPropietario"));
                 propietario.setNombre(rs.getString("nombre"));
                 propietario.setApellido(rs.getString("apellido"));
@@ -120,49 +120,50 @@ public class PropietarioData {
                 propietario.setTelefono(rs.getLong("telefono"));
             }
             ps.close();
-        }catch(Exception ex){
-            JOptionPane.showMessageDialog(null,"Error al obtener propietario"+ex);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error al obtener propietario" + ex);
         }
         return propietario;
     }
     
-    public boolean actualizarPropietario(Propietario propietario){
-        boolean actua=false;
-        try{
-            String sql="UPDATE propietario SET nombre=?, apellido=?,dni=?,domicilio=?,"
-                    + "telefono=? WHERE idPropietario=?";
-            PreparedStatement ps=con.prepareStatement(sql);
+    public boolean actualizarPropietario(Propietario propietario) {
+        boolean actua = false;
+        try {
+            String sql = "UPDATE propietario SET apellido=?, nombre=?,dni=?,domicilio=?,"
+                    + "telefono=? WHERE idPropietario=? and activo = 1";
+            PreparedStatement ps = conexion.prepareStatement(sql);
             ps.setString(1, propietario.getApellido());
             ps.setString(2, propietario.getNombre());
             ps.setLong(3, propietario.getDni());
             ps.setString(4, propietario.getDomicilio());
             ps.setLong(5, propietario.getTelefono());
             ps.setInt(6, propietario.getId());
-            int rs=ps.executeUpdate();
-            if(rs!=0){
-                actua=true;
+            ps.setBoolean(7, propietario.isActivo());
+            
+            if (ps.executeUpdate() != 0) {
+                actua = true;
                 JOptionPane.showMessageDialog(null, "El propietario fue actualizado con exito");
             }
-           ps.close();
-        }catch(Exception ex){
-            JOptionPane.showMessageDialog(null,"Error al actualizar el propietario"+ ex);
+            ps.close();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error al actualizar el propietario" + ex);
         }
         return actua;
     }
     
-    public boolean bajaPropietario(int id){
-        boolean baja=false;
-        try{
-            String sql="DELETE propietario WHERE idPropietario=?";
-            PreparedStatement ps=con.prepareStatement(sql);
+    public boolean bajaPropietario(int id) {
+        boolean baja = false;
+        try {
+            String sql = "UPADATE propietario SET activo = 0 WHERE idPropietario = ?";
+            PreparedStatement ps = conexion.prepareStatement(sql);
             ps.setInt(1, id);
-            if(ps.executeUpdate()!=0){
-                baja=true;
+            if (ps.executeUpdate() != 0) {
+                baja = true;
                 JOptionPane.showMessageDialog(null, "Se ha dado de baja el propietario con exito");
             }
             ps.close();
-        }catch(Exception ex){
-            JOptionPane.showMessageDialog(null,"Error al dar de baja el propietario "+ ex);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error al dar de baja el propietario " + ex);
         }
         return baja;
     }

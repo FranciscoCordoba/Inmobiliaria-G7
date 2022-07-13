@@ -8,29 +8,41 @@ public class Propietario {
     private long dni;
     private String domicilio;
     private long telefono;
+    private boolean activo;
     
     //C
     public Propietario() {
     }
 
-    public Propietario(String nombre, String apellido, long dni, String domicilio, long telefono, int propiedades) {
+    public Propietario(String nombre, String apellido, long dni, String domicilio, long telefono, boolean activo) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
         this.domicilio = domicilio;
         this.telefono = telefono;
+        this.activo = activo;
     }
 
-    public Propietario(int idPropietario, String nombre, String apellido, long dni, String domicilio, long telefono, int propiedades) {
+    public Propietario(int idPropietario, String nombre, String apellido, long dni, String domicilio, long telefono, boolean activo) {
         this.idPropietario = idPropietario;
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
         this.domicilio = domicilio;
         this.telefono = telefono;
+        this.activo = activo;
     }
     
     //M
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
+    
     
     public void setIdPropietario(int idPropietario) {
         this.idPropietario = idPropietario;

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package inmobiliaria.vistas;
+package inmobiliaria.vistas.vistasPropietario;
 
 import inmobiliaria.Data.Conexion;
 import inmobiliaria.Data.PropietarioData;
@@ -162,7 +162,6 @@ public class PropietarioVista extends javax.swing.JInternalFrame {
                         .addGap(87, 87, 87))))
         );
 
-        jLabel1.getAccessibleContext().setAccessibleParent(null);
         jLabel2.getAccessibleContext().setAccessibleName("");
         jLabel2.getAccessibleContext().setAccessibleParent(this);
         jtfApellido.getAccessibleContext().setAccessibleName("");

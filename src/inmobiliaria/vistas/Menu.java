@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package inmobiliaria.vistas;
+import inmobiliaria.vistas.vistasInquilino.InquilinoMenu;
+import inmobiliaria.vistas.vistasPropietario.PropietarioMenu;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 
@@ -29,7 +31,9 @@ public class Menu extends javax.swing.JFrame {
 	Inicio principal = new Inicio();
 	principal.setSize(530, 410);
 	
-	principal.setLocation(0, 0);
+	principal.setLocation(0, 0);	
+	
+	jTitulo.setText("Inicio");
 	
 	mainPanel.add(principal);
 	mainPanel.revalidate();
@@ -61,6 +65,7 @@ public class Menu extends javax.swing.JFrame {
         jpSuperior = new javax.swing.JPanel();
         jpExitBtn = new javax.swing.JPanel();
         jlbExit = new javax.swing.JLabel();
+        jTitulo = new javax.swing.JLabel();
         mainPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -156,6 +161,9 @@ public class Menu extends javax.swing.JFrame {
         jpSideInquilinos.setBackground(new java.awt.Color(24, 32, 38));
         jpSideInquilinos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jpSideInquilinos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jpSideInquilinosMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jpSideInquilinosMouseEntered(evt);
             }
@@ -343,19 +351,28 @@ public class Menu extends javax.swing.JFrame {
             .addComponent(jlbExit, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
         );
 
+        jTitulo.setFont(new java.awt.Font("Lato", 1, 18)); // NOI18N
+        jTitulo.setForeground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout jpSuperiorLayout = new javax.swing.GroupLayout(jpSuperior);
         jpSuperior.setLayout(jpSuperiorLayout);
         jpSuperiorLayout.setHorizontalGroup(
             jpSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpSuperiorLayout.createSequentialGroup()
-                .addContainerGap(670, Short.MAX_VALUE)
+                .addGap(217, 217, 217)
+                .addComponent(jTitulo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 453, Short.MAX_VALUE)
                 .addComponent(jpExitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jpSuperiorLayout.setVerticalGroup(
             jpSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpSuperiorLayout.createSequentialGroup()
-                .addComponent(jpExitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(64, 64, 64))
+                .addGroup(jpSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jpExitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jpSuperiorLayout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(jTitulo)))
+                .addGap(54, 54, 54))
         );
 
         getContentPane().add(jpSuperior, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 70));
@@ -454,6 +471,8 @@ public class Menu extends javax.swing.JFrame {
 	nuevoPropiMenu.setSize(530, 410);
 	nuevoPropiMenu.setLocation(0, 0);
 	
+	jTitulo.setText("Propietarios");
+	
 	mainPanel.add(nuevoPropiMenu);
 	mainPanel.revalidate();
 	
@@ -476,10 +495,26 @@ public class Menu extends javax.swing.JFrame {
 	
 	nuevoIni.setLocation(0, 0);
 	
+	jTitulo.setText("Inicio");
+	
 	mainPanel.add(nuevoIni);
 	mainPanel.revalidate();
 	
     }//GEN-LAST:event_jpSideInicioMouseClicked
+
+    private void jpSideInquilinosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpSideInquilinosMouseClicked
+        // TODO add your handling code here:
+	mainPanel.removeAll();
+	
+	InquilinoMenu nuevoInquiMenu = new InquilinoMenu();
+	nuevoInquiMenu.setSize(530, 410);
+	nuevoInquiMenu.setLocation(0, 0);
+	
+	jTitulo.setText("Inquilinos");
+	
+	mainPanel.add(nuevoInquiMenu);
+	mainPanel.revalidate();
+    }//GEN-LAST:event_jpSideInquilinosMouseClicked
     
     /**
      * @param args the command line arguments
@@ -526,6 +561,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jTitulo;
     private javax.swing.JLabel jlbExit;
     private javax.swing.JLabel jlbLogo;
     private javax.swing.JPanel jpExitBtn;

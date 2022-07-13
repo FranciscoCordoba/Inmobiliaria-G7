@@ -26,7 +26,7 @@ public class Inicio extends javax.swing.JPanel {
     
     public Inicio() {
 	initComponents();
-	jlbFotoMain.setIcon(background);
+	jlbFotoMain.setIcon(background);	
     }
 
     /**

@@ -56,7 +56,7 @@ public class PropiedadData {
 
                 propiedades.add(inmueble);
             }
-            
+
             ps.close();
 
         } catch (SQLException e) {
@@ -66,7 +66,7 @@ public class PropiedadData {
         return propiedades;
     }
 
-   /* public ArrayList<Inmueble> buscarInmueblesDeXInquilino(int idInquilino) { //Sin atributo ocupante, este metodo es obsoleto
+    /* public ArrayList<Inmueble> buscarInmueblesDeXInquilino(int idInquilino) { //Sin atributo ocupante, este metodo es obsoleto
 
         ArrayList<Inmueble> propiedades = new ArrayList<>();
 
@@ -110,12 +110,10 @@ public class PropiedadData {
 
         return propiedades;
     }*/
-
     public Inmueble buscarInmuebleXId(int id) {
 
-        
         Inmueble inmueble = new Inmueble();
-        
+
         try {
 
             String sql = "SELECT * FROM inmueble WHERE idInmueble = ?;";
@@ -124,7 +122,7 @@ public class PropiedadData {
             ps.setInt(1, id);
 
             ResultSet resultSet = ps.executeQuery();
-            
+
             inmueble.setDireccion(resultSet.getString("direccion"));
             inmueble.setAltura(resultSet.getInt("altura"));
             inmueble.setDisponibilidad((resultSet.getBoolean("disponibilidad")));
@@ -139,7 +137,7 @@ public class PropiedadData {
 
             Propietario p = propData.obtenerPropietarioPorId(resultSet.getInt("propietarioInmueble"));
             inmueble.setPropietarioInmueble(p);
-            
+
             ps.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al conseguir la propiedad");
@@ -147,28 +145,28 @@ public class PropiedadData {
 
         return inmueble;
     }
-    
-    public boolean borrarInmuebleXId(int id){
-        boolean inm= false;
+
+    public boolean borrarInmuebleXId(int id) {
+        boolean inm = false;
         try {
-            String sql = "DELETE FROM inscripcion WHERE idInmueble = ?;";
+            String sql = "UPDATE FROM inmueble WHERE idInmueble = ?;";
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1,id);
-           
-             if (ps.executeUpdate() != 0) {
-		inm = true;
-	    }
+            ps.setInt(1, id);
+
+            if (ps.executeUpdate() != 0) {
+                inm = true;
+            }
             ps.close();
 
         } catch (SQLException ex) {
-            
-            JOptionPane.showMessageDialog(null, "No se pudo borrar la inscripcion " + ex.getMessage());
+
+            JOptionPane.showMessageDialog(null, "No se pudo borrar el inmueble " + ex.getMessage());
         }
         return inm;
     }
-    
-    public boolean guardarInmueble(Inmueble inmueble){
-        boolean inm=false;
+
+    public boolean guardarInmueble(Inmueble inmueble) {
+        boolean inm = false;
         try {
             String sql = "INSERT INTO inmueble (direccion,altura,disponibilidad,tipoDeInmueble,zona,superficie,precioBase,ocupante,propietarioInmueble, cantAmbientes) VALUES ( ? , ?, ? , ? , ? , ? , ? , ? , ? , ? );";
 
@@ -188,7 +186,7 @@ public class PropiedadData {
 
             if (rs.next()) {
                 inmueble.setIdInmueble(rs.getInt("idInmueble"));
-                inm=true;
+                inm = true;
             } else {
                 JOptionPane.showMessageDialog(null, "No se pudo guardar el inmueble");
             }
@@ -199,8 +197,39 @@ public class PropiedadData {
         }
         return inm;
     }
-    
+
+    public ArrayList<Inmueble> listarInmuebles() {
+
+        ArrayList<Inmueble> inmuebles = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM inmueble WHERE activo = 1;";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            Inmueble inmueble;
+            while (rs.next()) {
+                inmueble = new Inmueble();
+                inmueble.setDireccion(rs.getString("direccion"));
+                inmueble.setAltura(rs.getInt("altura"));
+                inmueble.setDisponibilidad(rs.getBoolean("disponibilidad"));
+                inmueble.setTipoDeInmueble(rs.getString("tipoDeInmueble"));
+                inmueble.setCantAmbientes(rs.getInt("cantAmbientes"));
+                inmueble.setZona(rs.getString("zona"));
+                inmueble.setSuperficie(rs.getDouble("superficie"));
+                inmueble.setPrecioBase(rs.getDouble("precioBase"));
+                inmueble.setIdInmueble(rs.getInt("idInmueble"));
+                Propietario prop = propData.obtenerPropietarioPorId(rs.getInt("propietarioInmueble"));
+                inmueble.setPropietarioInmueble(prop);
+                inmuebles.add(inmueble);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al listar los Inmuebles ");
+        }
+
+        return inmuebles;
+    }
+
     //Se necesita modificar algo?
-    //Se tiene que hacer DELETE de la propiedad o modificar un campo?
-    //Se tiene que cambiar un cambio, es decir, falta metodo de borrado logico
+    //Se agrego borrado logico
+    //Se agrego lista de todos los inmuebles
 }

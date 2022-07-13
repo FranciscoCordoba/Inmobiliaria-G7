@@ -83,7 +83,7 @@ public class PropietarioData {
     public Propietario obtenerPropietarioPorId(int id) {
         Propietario propietario = null;
         try {
-            String sql = "SELECT * FROM propietario WHERE idPropietario and activo = 1";
+            String sql = "SELECT * FROM propietario WHERE idPropietario = ? and activo = 1";
             PreparedStatement ps = conexion.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
@@ -129,16 +129,15 @@ public class PropietarioData {
     public boolean actualizarPropietario(Propietario propietario) {
         boolean actua = false;
         try {
-            String sql = "UPDATE propietario SET apellido=?, nombre=?,dni=?,domicilio=?,"
-                    + "telefono=? WHERE idPropietario=? and activo = 1";
+            String sql = "UPDATE propietario SET apellido=?, nombre=?,dni=?,domicilio=?,telefono=?, activo = ? WHERE idPropietario=?";
             PreparedStatement ps = conexion.prepareStatement(sql);
             ps.setString(1, propietario.getApellido());
             ps.setString(2, propietario.getNombre());
             ps.setLong(3, propietario.getDni());
             ps.setString(4, propietario.getDomicilio());
             ps.setLong(5, propietario.getTelefono());
-            ps.setInt(6, propietario.getId());
-            ps.setBoolean(7, propietario.isActivo());
+            ps.setInt(7, propietario.getId());
+            ps.setBoolean(6, propietario.isActivo());
             
             if (ps.executeUpdate() != 0) {
                 actua = true;
@@ -154,7 +153,7 @@ public class PropietarioData {
     public boolean bajaPropietario(int id) {
         boolean baja = false;
         try {
-            String sql = "UPADATE propietario SET activo = 0 WHERE idPropietario = ?";
+            String sql = "UPDATE propietario SET activo = 0 WHERE idPropietario = ?";
             PreparedStatement ps = conexion.prepareStatement(sql);
             ps.setInt(1, id);
             if (ps.executeUpdate() != 0) {

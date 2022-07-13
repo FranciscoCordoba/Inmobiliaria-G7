@@ -206,4 +206,5 @@ public class PropiedadData {
     
     //Se necesita modificar algo?
     //Se tiene que hacer DELETE de la propiedad o modificar un campo?
+    //Se tiene que cambiar un cambio, es decir, falta metodo de borrado logico
 }

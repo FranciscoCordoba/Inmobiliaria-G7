@@ -3,7 +3,9 @@ package inmobiliaria;
 import inmobiliaria.Data.Conexion;
 import inmobiliaria.Data.InquilinoData;
 import inmobiliaria.Data.PropiedadData;
+import inmobiliaria.Data.PropietarioData;
 import inmobiliaria.Modelo.Inquilino;
+import inmobiliaria.Modelo.Propietario;
 import java.util.ArrayList;
 
 public class InmobiliariaG7 {
@@ -13,6 +15,9 @@ public class InmobiliariaG7 {
          Conexion con = new Conexion();
          
          InquilinoData iD = new InquilinoData(con);
+         
+/*------------------------------Revision de Metodos InquilinoData------------------------------------------------------------*/         
+/*---------------------------------------------------------------------------------------------------------------------------*/         
         
         
         /*Inquilino inquilino = new Inquilino("Roberto", "Orozco", 14657483, 214648323,"Contador", "Gustavo", 8965325, true);
@@ -42,7 +47,42 @@ public class InmobiliariaG7 {
         /* iD.bajaInquilo(1);
         System.out.println(iD.obtenerInquilinoXId(1)); */
         
-/*-----------------------------------------------------------------------------------------------------------------------------------*/        
+/*-----------------------------------------------------------------------------------------------------------------------------------*/   
+
+        PropietarioData pD = new PropietarioData(con);
+
+/*------------------------------Revision de Metodos PropietarioData------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------------------------------------------------------------*/
+
+        /* Propietario propietario = new Propietario("Juan", "Soto", 45654432, "San Juan 543", 254768908, true);
+        pD.altaPropietario(propietario);
+        System.out.println(propietario); */
+        
+/*------------------------------------------------------------------------------------------------------------------------------------*/   
+
+       /* System.out.println(pD.listarPropietarios()); */
+       
+/*-------------------------------------------------------------------------------------------------------------------------------------*/
+
+      /*  System.out.println(pD.obtenerPropietarioPorId(2)); */
+      
+/*-----------------------------------------------------------------------------------------------------------------------------------*/
+
+      /*  System.out.println(pD.obtenerPropietarioPorDni(45654432)); */
+      
+/*----------------------------------------------------------------------------------------------------------------------------------*/
+
+      /*  Propietario propietarioModificado = new Propietario(1, "Nicolas", "Toledo", 36584795, "Tucuman 54", 236569685, true);
+        pD.actualizarPropietario(propietarioModificado);  */
+        
+/*-----------------------------------------------------------------------------------------------------------------------------------*/
+
+      /*  pD.bajaPropietario(1); */
+      
+/*-------------------------------------------------------------------------------------------------------------------------------------*/      
+
+
+        
         
     
         

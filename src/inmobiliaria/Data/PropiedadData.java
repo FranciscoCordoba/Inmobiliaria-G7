@@ -50,7 +50,6 @@ public class PropiedadData {
                 inmueble.setCantAmbientes(resultSet.getInt("cantAmbientes"));
 
                 Inquilino i = inquiData.obtenerInquilinoXId(resultSet.getInt("idInquilino"));
-                inmueble.setOcupante(i);
 
                 Propietario p = propData.obtenerPropietarioPorId(idPropietario);
                 inmueble.setPropietarioInmueble(p);
@@ -67,7 +66,7 @@ public class PropiedadData {
         return propiedades;
     }
 
-    public ArrayList<Inmueble> buscarInmueblesDeXInquilino(int idInquilino) {
+   /* public ArrayList<Inmueble> buscarInmueblesDeXInquilino(int idInquilino) { //Sin atributo ocupante, este metodo es obsoleto
 
         ArrayList<Inmueble> propiedades = new ArrayList<>();
 
@@ -96,7 +95,6 @@ public class PropiedadData {
                 inmueble.setCantAmbientes(resultSet.getInt("cantAmbientes"));
 
                 Inquilino i = inquiData.obtenerInquilinoXId(idInquilino);
-                inmueble.setOcupante(i);
 
                 Propietario p = propData.obtenerPropietarioPorId(resultSet.getInt("propietarioInmueble"));
                 inmueble.setPropietarioInmueble(p);
@@ -111,7 +109,7 @@ public class PropiedadData {
         }
 
         return propiedades;
-    }
+    }*/
 
     public Inmueble buscarInmuebleXId(int id) {
 
@@ -138,7 +136,6 @@ public class PropiedadData {
             inmueble.setCantAmbientes(resultSet.getInt("cantAmbientes"));
 
             Inquilino i = inquiData.obtenerInquilinoXId(resultSet.getInt("idInquilino"));
-            inmueble.setOcupante(i);
 
             Propietario p = propData.obtenerPropietarioPorId(resultSet.getInt("propietarioInmueble"));
             inmueble.setPropietarioInmueble(p);
@@ -183,7 +180,6 @@ public class PropiedadData {
             ps.setString(5, inmueble.getZona());
             ps.setDouble(6, inmueble.getSuperficie());
             ps.setDouble(7, inmueble.getPrecioBase());
-            ps.setInt(8, inmueble.getOcupante().getIdInquilino());
             ps.setInt(9, inmueble.getPropietarioInmueble().getId());
             ps.setInt(10, inmueble.getCantAmbientes());
 

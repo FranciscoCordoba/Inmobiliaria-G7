@@ -4,6 +4,7 @@ import inmobiliaria.Data.Conexion;
 import inmobiliaria.Data.InquilinoData;
 import inmobiliaria.Data.PropiedadData;
 import inmobiliaria.Data.PropietarioData;
+import inmobiliaria.Modelo.Inmueble;
 import inmobiliaria.Modelo.Inquilino;
 import inmobiliaria.Modelo.Propietario;
 import java.util.ArrayList;
@@ -79,7 +80,13 @@ public class InmobiliariaG7 {
 
       /*  pD.bajaPropietario(1); */
       
-/*-------------------------------------------------------------------------------------------------------------------------------------*/      
+/*-------------------------------------------------------------------------------------------------------------------------------------*/
+
+        PropiedadData InmData = new PropiedadData(con);
+        
+/*-----------------------------------------Revision de Metodos PropiedadData-------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------------------------------------------------------------*/
+
 
 
         

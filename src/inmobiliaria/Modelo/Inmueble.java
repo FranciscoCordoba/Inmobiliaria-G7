@@ -11,13 +11,12 @@ public class Inmueble {
     private double superficie;
     private double precioBase;
     private int idInmueble;
-    private Inquilino ocupante;
     private Propietario propietarioInmueble;
 
     public Inmueble() {
     }
 
-    public Inmueble(String direccion, int altura, boolean disponibilidad, String tipoDeInmueble, int cantAmbientes, String zona, double superficie, double precioBase, Inquilino ocupante, Propietario propietarioInmueble) {
+    public Inmueble(String direccion, int altura, boolean disponibilidad, String tipoDeInmueble, int cantAmbientes, String zona, double superficie, double precioBase, Propietario propietarioInmueble) {
         this.direccion = direccion;
         this.altura = altura;
         this.disponibilidad = disponibilidad;
@@ -25,12 +24,12 @@ public class Inmueble {
         this.zona = zona;
         this.superficie = superficie;
         this.precioBase = precioBase;
-        this.ocupante = ocupante;
+
         this.propietarioInmueble = propietarioInmueble;
         this.cantAmbientes = cantAmbientes;
     }
 
-    public Inmueble(String direccion, int altura, int cantAmbientes, boolean disponibilidad, String tipoDeInmueble, String zona, double superficie, double precioBase, int idInmueble, Inquilino ocupante, Propietario propietarioInmueble) {
+    public Inmueble(String direccion, int altura, int cantAmbientes, boolean disponibilidad, String tipoDeInmueble, String zona, double superficie, double precioBase, int idInmueble, Propietario propietarioInmueble) {
         this.direccion = direccion;
         this.altura = altura;
         this.disponibilidad = disponibilidad;
@@ -39,7 +38,6 @@ public class Inmueble {
         this.superficie = superficie;
         this.precioBase = precioBase;
         this.idInmueble = idInmueble;
-        this.ocupante = ocupante;
         this.propietarioInmueble = propietarioInmueble;
         this.cantAmbientes = cantAmbientes;
     }
@@ -118,13 +116,7 @@ public class Inmueble {
         this.idInmueble = idInmueble;
     }
 
-    public Inquilino getOcupante() {
-        return ocupante;
-    }
 
-    public void setOcupante(Inquilino ocupante) {
-        this.ocupante = ocupante;
-    }
 
     public Propietario getPropietarioInmueble() {
         return propietarioInmueble;
@@ -161,7 +153,7 @@ public class Inmueble {
 
     @Override
     public String toString() {
-        return "Inmueble{" + "direccion=" + direccion + ", altura=" + altura + ", disponibilidad=" + disponibilidad + ", tipoDeInmueble=" + tipoDeInmueble + ", zona=" + zona + ", superficie=" + superficie + ", precioBase=" + precioBase + ", idInmueble=" + idInmueble + ", ocupante=" + ocupante + ", propietarioInmueble=" + propietarioInmueble + '}';
+        return "Inmueble{" + "direccion=" + direccion + ", altura=" + altura + ", disponibilidad=" + disponibilidad + ", tipoDeInmueble=" + tipoDeInmueble + ", zona=" + zona + ", superficie=" + superficie + ", precioBase=" + precioBase + ", idInmueble=" + idInmueble + ", propietarioInmueble=" + propietarioInmueble + '}';
     }
     
     

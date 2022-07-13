@@ -498,6 +498,9 @@ public class Menu extends javax.swing.JFrame {
 
     private void jpSideInicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpSideInicioMouseClicked
         // TODO add your handling code here:
+	
+	mainPanel.removeAll();
+	
 	Inicio nuevoIni = new Inicio();
 	nuevoIni.setSize(530, 410);
 	

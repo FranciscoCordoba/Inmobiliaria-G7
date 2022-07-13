@@ -20,7 +20,7 @@ public class InquilinoData {
 
     }
 
-    public boolean agregarInquilino(Inquilino inquilino) { //Probado en Main, no funciona Conexion ???
+    public boolean agregarInquilino(Inquilino inquilino) { //Probado en Main, funciona
 
         boolean insert = true;
 
@@ -59,7 +59,7 @@ public class InquilinoData {
         return insert;
     }
 
-    public List<Inquilino> obtenerInquilinos() {
+    public List<Inquilino> obtenerInquilinos() {  //Probado en Main, Funcion
 
         ArrayList<Inquilino> inquilinos = new ArrayList<>();
 
@@ -97,9 +97,9 @@ public class InquilinoData {
 
     }
 
-    public Inquilino obtenerInquilinoXId(int id) {
+    public Inquilino obtenerInquilinoXId(int id) {  //No funciona, falta el while.----Areglado
 
-        Inquilino inquilino = new Inquilino();;
+        Inquilino inquilino = new Inquilino();
 
         try {
 
@@ -110,16 +110,19 @@ public class InquilinoData {
 
             ResultSet resultSet = ps.executeQuery();
 
-            inquilino.setIdInquilino(resultSet.getInt("idInquilino"));
-            inquilino.setApellido(resultSet.getString("apellido"));
-            inquilino.setNombre(resultSet.getString("nombre"));
-            inquilino.setDni(resultSet.getLong("dni"));
-            inquilino.setCuit(resultSet.getLong("cuit"));
-            inquilino.setLugarTrabajo(resultSet.getString("lugarTrabajo"));
-            inquilino.setNombreGarante(resultSet.getString("nombreGarante"));
-            inquilino.setDniGarante(resultSet.getLong("dniGarante"));
-            inquilino.setActivo(resultSet.getBoolean("activo"));
+            while (resultSet.next()) {
 
+                inquilino.setIdInquilino(resultSet.getInt("idInquilino"));
+                inquilino.setApellido(resultSet.getString("apellido"));
+                inquilino.setNombre(resultSet.getString("nombre"));
+                inquilino.setDni(resultSet.getLong("dni"));
+                inquilino.setCuit(resultSet.getLong("cuit"));
+                inquilino.setLugarTrabajo(resultSet.getString("lugarTrabajo"));
+                inquilino.setNombreGarante(resultSet.getString("nombreGarante"));
+                inquilino.setDniGarante(resultSet.getLong("dniGarante"));
+                inquilino.setActivo(resultSet.getBoolean("activo"));
+
+            }
             ps.close();
 
         } catch (SQLException ex) {
@@ -130,9 +133,11 @@ public class InquilinoData {
 
     }
 
-    public boolean modificarInquilino(Inquilino inquilino) {
+    public boolean modificarInquilino(Inquilino inquilino) { //Probado en Main, funciona
 
-        String sql = "UPDATE inquilino SET nombre = ?, apellido = ?, dni = ?, cuit = ?, lugarTrabajo = ?, nombreGarante = ?, dniGarante = ?, activo = ?";
+        String sql = "UPDATE inquilino SET nombre = ?, apellido = ?, dni = ?, cuit = ?, lugarTrabajo = ?, nombreGarante = ?, dniGarante = ?, activo = ? WHERE idInquilino = ?";
+        
+        
         boolean modificado = false;
         try {
             PreparedStatement ps = conexion.prepareStatement(sql);
@@ -144,6 +149,7 @@ public class InquilinoData {
             ps.setString(6, inquilino.getNombreGarante());
             ps.setLong(7, inquilino.getDniGarante());
             ps.setBoolean(8, inquilino.isActivo());
+            ps.setInt(9, inquilino.getIdInquilino());
 
             if (ps.executeUpdate() != 0) {
                 modificado = true;
@@ -156,22 +162,21 @@ public class InquilinoData {
         }
         return modificado;
     }
-    
-    
-     public boolean bajaInquilo(int id){
-        boolean baja=false;
-        try{
-            String sql="UPADATE inquilino SET activo = 0 WHERE idInquilino = ?";
-            PreparedStatement ps=conexion.prepareStatement(sql);
+
+    public boolean bajaInquilo(int id) { //Probado en Main, funciona
+        boolean baja = false;
+        try {
+            String sql = "UPDATE inquilino SET activo = 0 WHERE idInquilino = ?";
+            PreparedStatement ps = conexion.prepareStatement(sql);
             ps.setInt(1, id);
-            if(ps.executeUpdate()!=0){
-                baja=true;
+            if (ps.executeUpdate() != 0) {
+                baja = true;
                 JOptionPane.showMessageDialog(null, "Se ha dado de baja el inquilino con exito");
             }
             ps.close();
-        }catch(Exception ex){
-            JOptionPane.showMessageDialog(null,"Error al dar de baja el inquilino "+ ex);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error al dar de baja el inquilino " + ex);
         }
         return baja;
-     }
+    }
 }

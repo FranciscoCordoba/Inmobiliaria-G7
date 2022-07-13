@@ -30,31 +30,31 @@ public class InquilinoMenu extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jpInquilinosMenu = new javax.swing.JPanel();
-        jpEliminarPropi = new javax.swing.JPanel();
+        jpInquilinoMenu = new javax.swing.JPanel();
+        jpEliminarInquilino = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jpAgregarPropi = new javax.swing.JPanel();
+        jpAgregarInquilino = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jpBuscarPropi = new javax.swing.JPanel();
+        jpBuscarInquilino = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jpEditarPropi = new javax.swing.JPanel();
+        jpEditarInquilino = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
 
-        jpEliminarPropi.setBackground(new java.awt.Color(54, 135, 195));
-        jpEliminarPropi.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jpEliminarPropi.addMouseListener(new java.awt.event.MouseAdapter() {
+        jpEliminarInquilino.setBackground(new java.awt.Color(54, 135, 195));
+        jpEliminarInquilino.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jpEliminarInquilino.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jpEliminarPropiMouseClicked(evt);
+                jpEliminarInquilinoMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jpEliminarPropiMouseEntered(evt);
+                jpEliminarInquilinoMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jpEliminarPropiMouseExited(evt);
+                jpEliminarInquilinoMouseExited(evt);
             }
         });
 
@@ -66,20 +66,20 @@ public class InquilinoMenu extends javax.swing.JPanel {
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Inquilino");
 
-        javax.swing.GroupLayout jpEliminarPropiLayout = new javax.swing.GroupLayout(jpEliminarPropi);
-        jpEliminarPropi.setLayout(jpEliminarPropiLayout);
-        jpEliminarPropiLayout.setHorizontalGroup(
-            jpEliminarPropiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpEliminarPropiLayout.createSequentialGroup()
+        javax.swing.GroupLayout jpEliminarInquilinoLayout = new javax.swing.GroupLayout(jpEliminarInquilino);
+        jpEliminarInquilino.setLayout(jpEliminarInquilinoLayout);
+        jpEliminarInquilinoLayout.setHorizontalGroup(
+            jpEliminarInquilinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpEliminarInquilinoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jpEliminarPropiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpEliminarInquilinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
                     .addComponent(jLabel8))
                 .addContainerGap(98, Short.MAX_VALUE))
         );
-        jpEliminarPropiLayout.setVerticalGroup(
-            jpEliminarPropiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpEliminarPropiLayout.createSequentialGroup()
+        jpEliminarInquilinoLayout.setVerticalGroup(
+            jpEliminarInquilinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpEliminarInquilinoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -87,17 +87,17 @@ public class InquilinoMenu extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jpAgregarPropi.setBackground(new java.awt.Color(54, 135, 195));
-        jpAgregarPropi.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jpAgregarPropi.addMouseListener(new java.awt.event.MouseAdapter() {
+        jpAgregarInquilino.setBackground(new java.awt.Color(54, 135, 195));
+        jpAgregarInquilino.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jpAgregarInquilino.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jpAgregarPropiMouseClicked(evt);
+                jpAgregarInquilinoMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jpAgregarPropiMouseEntered(evt);
+                jpAgregarInquilinoMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jpAgregarPropiMouseExited(evt);
+                jpAgregarInquilinoMouseExited(evt);
             }
         });
 
@@ -109,20 +109,20 @@ public class InquilinoMenu extends javax.swing.JPanel {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Inquilino");
 
-        javax.swing.GroupLayout jpAgregarPropiLayout = new javax.swing.GroupLayout(jpAgregarPropi);
-        jpAgregarPropi.setLayout(jpAgregarPropiLayout);
-        jpAgregarPropiLayout.setHorizontalGroup(
-            jpAgregarPropiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpAgregarPropiLayout.createSequentialGroup()
+        javax.swing.GroupLayout jpAgregarInquilinoLayout = new javax.swing.GroupLayout(jpAgregarInquilino);
+        jpAgregarInquilino.setLayout(jpAgregarInquilinoLayout);
+        jpAgregarInquilinoLayout.setHorizontalGroup(
+            jpAgregarInquilinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpAgregarInquilinoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jpAgregarPropiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpAgregarInquilinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
                 .addContainerGap(98, Short.MAX_VALUE))
         );
-        jpAgregarPropiLayout.setVerticalGroup(
-            jpAgregarPropiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpAgregarPropiLayout.createSequentialGroup()
+        jpAgregarInquilinoLayout.setVerticalGroup(
+            jpAgregarInquilinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpAgregarInquilinoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -130,17 +130,17 @@ public class InquilinoMenu extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jpBuscarPropi.setBackground(new java.awt.Color(54, 135, 195));
-        jpBuscarPropi.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jpBuscarPropi.addMouseListener(new java.awt.event.MouseAdapter() {
+        jpBuscarInquilino.setBackground(new java.awt.Color(54, 135, 195));
+        jpBuscarInquilino.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jpBuscarInquilino.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jpBuscarPropiMouseClicked(evt);
+                jpBuscarInquilinoMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jpBuscarPropiMouseEntered(evt);
+                jpBuscarInquilinoMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jpBuscarPropiMouseExited(evt);
+                jpBuscarInquilinoMouseExited(evt);
             }
         });
 
@@ -152,20 +152,20 @@ public class InquilinoMenu extends javax.swing.JPanel {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Inquilino");
 
-        javax.swing.GroupLayout jpBuscarPropiLayout = new javax.swing.GroupLayout(jpBuscarPropi);
-        jpBuscarPropi.setLayout(jpBuscarPropiLayout);
-        jpBuscarPropiLayout.setHorizontalGroup(
-            jpBuscarPropiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpBuscarPropiLayout.createSequentialGroup()
+        javax.swing.GroupLayout jpBuscarInquilinoLayout = new javax.swing.GroupLayout(jpBuscarInquilino);
+        jpBuscarInquilino.setLayout(jpBuscarInquilinoLayout);
+        jpBuscarInquilinoLayout.setHorizontalGroup(
+            jpBuscarInquilinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpBuscarInquilinoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jpBuscarPropiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpBuscarInquilinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4))
                 .addContainerGap(98, Short.MAX_VALUE))
         );
-        jpBuscarPropiLayout.setVerticalGroup(
-            jpBuscarPropiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpBuscarPropiLayout.createSequentialGroup()
+        jpBuscarInquilinoLayout.setVerticalGroup(
+            jpBuscarInquilinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpBuscarInquilinoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -173,17 +173,17 @@ public class InquilinoMenu extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jpEditarPropi.setBackground(new java.awt.Color(54, 135, 195));
-        jpEditarPropi.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jpEditarPropi.addMouseListener(new java.awt.event.MouseAdapter() {
+        jpEditarInquilino.setBackground(new java.awt.Color(54, 135, 195));
+        jpEditarInquilino.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jpEditarInquilino.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jpEditarPropiMouseClicked(evt);
+                jpEditarInquilinoMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jpEditarPropiMouseEntered(evt);
+                jpEditarInquilinoMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jpEditarPropiMouseExited(evt);
+                jpEditarInquilinoMouseExited(evt);
             }
         });
 
@@ -195,20 +195,20 @@ public class InquilinoMenu extends javax.swing.JPanel {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Inquilino");
 
-        javax.swing.GroupLayout jpEditarPropiLayout = new javax.swing.GroupLayout(jpEditarPropi);
-        jpEditarPropi.setLayout(jpEditarPropiLayout);
-        jpEditarPropiLayout.setHorizontalGroup(
-            jpEditarPropiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpEditarPropiLayout.createSequentialGroup()
+        javax.swing.GroupLayout jpEditarInquilinoLayout = new javax.swing.GroupLayout(jpEditarInquilino);
+        jpEditarInquilino.setLayout(jpEditarInquilinoLayout);
+        jpEditarInquilinoLayout.setHorizontalGroup(
+            jpEditarInquilinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpEditarInquilinoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jpEditarPropiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpEditarInquilinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(jLabel6))
                 .addContainerGap(98, Short.MAX_VALUE))
         );
-        jpEditarPropiLayout.setVerticalGroup(
-            jpEditarPropiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpEditarPropiLayout.createSequentialGroup()
+        jpEditarInquilinoLayout.setVerticalGroup(
+            jpEditarInquilinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpEditarInquilinoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -216,32 +216,32 @@ public class InquilinoMenu extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout jpInquilinosMenuLayout = new javax.swing.GroupLayout(jpInquilinosMenu);
-        jpInquilinosMenu.setLayout(jpInquilinosMenuLayout);
-        jpInquilinosMenuLayout.setHorizontalGroup(
-            jpInquilinosMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpInquilinosMenuLayout.createSequentialGroup()
+        javax.swing.GroupLayout jpInquilinoMenuLayout = new javax.swing.GroupLayout(jpInquilinoMenu);
+        jpInquilinoMenu.setLayout(jpInquilinoMenuLayout);
+        jpInquilinoMenuLayout.setHorizontalGroup(
+            jpInquilinoMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpInquilinoMenuLayout.createSequentialGroup()
                 .addContainerGap(96, Short.MAX_VALUE)
-                .addGroup(jpInquilinosMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jpAgregarPropi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jpBuscarPropi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jpInquilinoMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jpAgregarInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jpBuscarInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(47, 47, 47)
-                .addGroup(jpInquilinosMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jpEditarPropi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jpEliminarPropi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jpInquilinoMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jpEditarInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jpEliminarInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(85, 85, 85))
         );
-        jpInquilinosMenuLayout.setVerticalGroup(
-            jpInquilinosMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpInquilinosMenuLayout.createSequentialGroup()
+        jpInquilinoMenuLayout.setVerticalGroup(
+            jpInquilinoMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpInquilinoMenuLayout.createSequentialGroup()
                 .addGap(118, 118, 118)
-                .addGroup(jpInquilinosMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jpAgregarPropi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jpEditarPropi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jpInquilinoMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jpAgregarInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jpEditarInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(57, 57, 57)
-                .addGroup(jpInquilinosMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jpBuscarPropi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jpEliminarPropi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jpInquilinoMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jpBuscarInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jpEliminarInquilino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(139, Short.MAX_VALUE))
         );
 
@@ -249,102 +249,102 @@ public class InquilinoMenu extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpInquilinosMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jpInquilinoMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpInquilinosMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jpInquilinoMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jpEliminarPropiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpEliminarPropiMouseClicked
+    private void jpEliminarInquilinoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpEliminarInquilinoMouseClicked
         // TODO add your handling code here:
-        jpInquilinosMenu.removeAll();
+        jpInquilinoMenu.removeAll();
 
         EliminarInquilino eliminarInquiMenu = new EliminarInquilino();
         eliminarInquiMenu.setSize(530, 410);
         eliminarInquiMenu.setLocation(0, 0);
 
-        jpInquilinosMenu.add(eliminarInquiMenu);
-        jpInquilinosMenu.revalidate();
-    }//GEN-LAST:event_jpEliminarPropiMouseClicked
+        jpInquilinoMenu.add(eliminarInquiMenu);
+        jpInquilinoMenu.revalidate();
+    }//GEN-LAST:event_jpEliminarInquilinoMouseClicked
 
-    private void jpEliminarPropiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpEliminarPropiMouseEntered
+    private void jpEliminarInquilinoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpEliminarInquilinoMouseEntered
         // TODO add your handling code here:
-        jpEliminarPropi.setBackground(blue);
-    }//GEN-LAST:event_jpEliminarPropiMouseEntered
+        jpEliminarInquilino.setBackground(blue);
+    }//GEN-LAST:event_jpEliminarInquilinoMouseEntered
 
-    private void jpEliminarPropiMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpEliminarPropiMouseExited
+    private void jpEliminarInquilinoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpEliminarInquilinoMouseExited
         // TODO add your handling code here:
-        jpEliminarPropi.setBackground(lightblue);
-    }//GEN-LAST:event_jpEliminarPropiMouseExited
+        jpEliminarInquilino.setBackground(lightblue);
+    }//GEN-LAST:event_jpEliminarInquilinoMouseExited
 
-    private void jpAgregarPropiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpAgregarPropiMouseClicked
+    private void jpAgregarInquilinoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpAgregarInquilinoMouseClicked
         // TODO add your handling code here:
-        jpInquilinosMenu.removeAll();
+        jpInquilinoMenu.removeAll();
 
         AgregarInquilino nuevoInquiMenu = new AgregarInquilino();
         nuevoInquiMenu.setSize(530, 410);
         nuevoInquiMenu.setLocation(0, 0);
 
-        jpInquilinosMenu.add(nuevoInquiMenu);
-        jpInquilinosMenu.revalidate();
+        jpInquilinoMenu.add(nuevoInquiMenu);
+        jpInquilinoMenu.revalidate();
 
-    }//GEN-LAST:event_jpAgregarPropiMouseClicked
+    }//GEN-LAST:event_jpAgregarInquilinoMouseClicked
 
-    private void jpAgregarPropiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpAgregarPropiMouseEntered
+    private void jpAgregarInquilinoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpAgregarInquilinoMouseEntered
         // TODO add your handling code here:
-        jpAgregarPropi.setBackground(blue);
-    }//GEN-LAST:event_jpAgregarPropiMouseEntered
+        jpAgregarInquilino.setBackground(blue);
+    }//GEN-LAST:event_jpAgregarInquilinoMouseEntered
 
-    private void jpAgregarPropiMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpAgregarPropiMouseExited
+    private void jpAgregarInquilinoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpAgregarInquilinoMouseExited
         // TODO add your handling code here:
-        jpAgregarPropi.setBackground(lightblue);
-    }//GEN-LAST:event_jpAgregarPropiMouseExited
+        jpAgregarInquilino.setBackground(lightblue);
+    }//GEN-LAST:event_jpAgregarInquilinoMouseExited
 
-    private void jpBuscarPropiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpBuscarPropiMouseClicked
+    private void jpBuscarInquilinoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpBuscarInquilinoMouseClicked
         // TODO add your handling code here:
-        jpInquilinosMenu.removeAll();
+        jpInquilinoMenu.removeAll();
 
         BuscarInquilino buscarInquiMenu = new BuscarInquilino();
         buscarInquiMenu.setSize(530, 410);
         buscarInquiMenu.setLocation(0, 0);
 
-        jpInquilinosMenu.add(buscarInquiMenu);
-        jpInquilinosMenu.revalidate();
-    }//GEN-LAST:event_jpBuscarPropiMouseClicked
+        jpInquilinoMenu.add(buscarInquiMenu);
+        jpInquilinoMenu.revalidate();
+    }//GEN-LAST:event_jpBuscarInquilinoMouseClicked
 
-    private void jpBuscarPropiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpBuscarPropiMouseEntered
+    private void jpBuscarInquilinoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpBuscarInquilinoMouseEntered
         // TODO add your handling code here:
-        jpBuscarPropi.setBackground(blue);
-    }//GEN-LAST:event_jpBuscarPropiMouseEntered
+        jpBuscarInquilino.setBackground(blue);
+    }//GEN-LAST:event_jpBuscarInquilinoMouseEntered
 
-    private void jpBuscarPropiMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpBuscarPropiMouseExited
+    private void jpBuscarInquilinoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpBuscarInquilinoMouseExited
         // TODO add your handling code here:
-        jpBuscarPropi.setBackground(lightblue);
-    }//GEN-LAST:event_jpBuscarPropiMouseExited
+        jpBuscarInquilino.setBackground(lightblue);
+    }//GEN-LAST:event_jpBuscarInquilinoMouseExited
 
-    private void jpEditarPropiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpEditarPropiMouseClicked
+    private void jpEditarInquilinoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpEditarInquilinoMouseClicked
         // TODO add your handling code here:
-        jpInquilinosMenu.removeAll();
+        jpInquilinoMenu.removeAll();
 
         EditarInquilino editInquiMenu = new EditarInquilino();
         editInquiMenu.setSize(530, 410);
         editInquiMenu.setLocation(0, 0);
 
-        jpInquilinosMenu.add(editInquiMenu);
-        jpInquilinosMenu.revalidate();
-    }//GEN-LAST:event_jpEditarPropiMouseClicked
+        jpInquilinoMenu.add(editInquiMenu);
+        jpInquilinoMenu.revalidate();
+    }//GEN-LAST:event_jpEditarInquilinoMouseClicked
 
-    private void jpEditarPropiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpEditarPropiMouseEntered
+    private void jpEditarInquilinoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpEditarInquilinoMouseEntered
         // TODO add your handling code here:
-        jpEditarPropi.setBackground(blue);
-    }//GEN-LAST:event_jpEditarPropiMouseEntered
+        jpEditarInquilino.setBackground(blue);
+    }//GEN-LAST:event_jpEditarInquilinoMouseEntered
 
-    private void jpEditarPropiMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpEditarPropiMouseExited
+    private void jpEditarInquilinoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpEditarInquilinoMouseExited
         // TODO add your handling code here:
-        jpEditarPropi.setBackground(lightblue);
-    }//GEN-LAST:event_jpEditarPropiMouseExited
+        jpEditarInquilino.setBackground(lightblue);
+    }//GEN-LAST:event_jpEditarInquilinoMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -356,10 +356,10 @@ public class InquilinoMenu extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JPanel jpAgregarPropi;
-    private javax.swing.JPanel jpBuscarPropi;
-    private javax.swing.JPanel jpEditarPropi;
-    private javax.swing.JPanel jpEliminarPropi;
-    private javax.swing.JPanel jpInquilinosMenu;
+    private javax.swing.JPanel jpAgregarInquilino;
+    private javax.swing.JPanel jpBuscarInquilino;
+    private javax.swing.JPanel jpEditarInquilino;
+    private javax.swing.JPanel jpEliminarInquilino;
+    private javax.swing.JPanel jpInquilinoMenu;
     // End of variables declaration//GEN-END:variables
 }

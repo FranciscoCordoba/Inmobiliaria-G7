@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 package inmobiliaria.vistas;
+import inmobiliaria.vistas.vistasContrato.ContratoMenu;
 import inmobiliaria.vistas.vistasInquilino.InquilinoMenu;
+import inmobiliaria.vistas.vistasPropiedades.PropiedadesMenu;
 import inmobiliaria.vistas.vistasPropietario.PropietarioMenu;
 import java.awt.Color;
 import javax.swing.ImageIcon;
@@ -197,6 +199,9 @@ public class Menu extends javax.swing.JFrame {
         jpSidePropiedades.setBackground(new java.awt.Color(24, 32, 38));
         jpSidePropiedades.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jpSidePropiedades.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jpSidePropiedadesMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jpSidePropiedadesMouseEntered(evt);
             }
@@ -230,6 +235,9 @@ public class Menu extends javax.swing.JFrame {
         jpSideContratos.setBackground(new java.awt.Color(24, 32, 38));
         jpSideContratos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jpSideContratos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jpSideContratosMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jpSideContratosMouseEntered(evt);
             }
@@ -515,6 +523,34 @@ public class Menu extends javax.swing.JFrame {
 	mainPanel.add(nuevoInquiMenu);
 	mainPanel.revalidate();
     }//GEN-LAST:event_jpSideInquilinosMouseClicked
+
+    private void jpSidePropiedadesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpSidePropiedadesMouseClicked
+        // TODO add your handling code here:
+	mainPanel.removeAll();
+	
+	PropiedadesMenu nuevaPropiedadMenu = new PropiedadesMenu();
+	nuevaPropiedadMenu.setSize(530, 410);
+	nuevaPropiedadMenu.setLocation(0, 0);
+	
+	jTitulo.setText("Propiedades");
+	
+	mainPanel.add(nuevaPropiedadMenu);
+	mainPanel.revalidate();	
+    }//GEN-LAST:event_jpSidePropiedadesMouseClicked
+
+    private void jpSideContratosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpSideContratosMouseClicked
+        // TODO add your handling code here:
+	mainPanel.removeAll();
+	
+	ContratoMenu nuevoContratoMenu = new ContratoMenu();
+	nuevoContratoMenu.setSize(530, 410);
+	nuevoContratoMenu.setLocation(0, 0);
+	
+	jTitulo.setText("Contratos");
+	
+	mainPanel.add(nuevoContratoMenu);
+	mainPanel.revalidate();	
+    }//GEN-LAST:event_jpSideContratosMouseClicked
     
     /**
      * @param args the command line arguments

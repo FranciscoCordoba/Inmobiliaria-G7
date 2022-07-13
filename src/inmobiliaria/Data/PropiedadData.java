@@ -149,7 +149,7 @@ public class PropiedadData {
     public boolean borrarInmuebleXId(int id) {
         boolean inm = false;
         try {
-            String sql = "UPDATE FROM inmueble WHERE idInmueble = ?;";
+            String sql = "UPDATE FROM inmueble SET disponibilidad = 0 WHERE idInmueble = ?;";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
 
@@ -168,7 +168,7 @@ public class PropiedadData {
     public boolean guardarInmueble(Inmueble inmueble) {
         boolean inm = false;
         try {
-            String sql = "INSERT INTO inmueble (direccion,altura,disponibilidad,tipoDeInmueble,zona,superficie,precioBase,ocupante,propietarioInmueble, cantAmbientes) VALUES ( ? , ?, ? , ? , ? , ? , ? , ? , ? , ? );";
+            String sql = "INSERT INTO inmueble (direccion,altura,disponibilidad,tipoDeInmueble,zona,superficie,precioBase,propietarioInmueble,cantAmbientes) VALUES ( ? , ?, ? , ? , ? , ? , ? , ? , ? );";
 
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, inmueble.getDireccion());
@@ -178,8 +178,8 @@ public class PropiedadData {
             ps.setString(5, inmueble.getZona());
             ps.setDouble(6, inmueble.getSuperficie());
             ps.setDouble(7, inmueble.getPrecioBase());
-            ps.setInt(9, inmueble.getPropietarioInmueble().getId());
-            ps.setInt(10, inmueble.getCantAmbientes());
+            ps.setInt(8, inmueble.getPropietarioInmueble().getId());
+            ps.setInt(9, inmueble.getCantAmbientes());
 
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
@@ -202,7 +202,7 @@ public class PropiedadData {
 
         ArrayList<Inmueble> inmuebles = new ArrayList<>();
         try {
-            String sql = "SELECT * FROM inmueble WHERE activo = 1;";
+            String sql = "SELECT * FROM inmueble WHERE disponibilidad = 1;";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             Inmueble inmueble;

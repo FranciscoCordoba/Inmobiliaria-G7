@@ -55,9 +55,9 @@ public class InmobiliariaG7 {
 /*------------------------------Revision de Metodos PropietarioData------------------------------------------------------------------*/
 /*-----------------------------------------------------------------------------------------------------------------------------------*/
 
-        /* Propietario propietario = new Propietario("Juan", "Soto", 45654432, "San Juan 543", 254768908, true);
+         Propietario propietario = new Propietario("Juan", "Soto", 45654432, "San Juan 543", 254768908, true);
         pD.altaPropietario(propietario);
-        System.out.println(propietario); */
+        System.out.println(propietario); 
         
 /*------------------------------------------------------------------------------------------------------------------------------------*/   
 
@@ -87,7 +87,8 @@ public class InmobiliariaG7 {
 /*-----------------------------------------Revision de Metodos PropiedadData-------------------------------------------------------------*/
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
 
-
+        Inmueble inmueble = new Inmueble("Tucuman", 54, true, "Casa", 3, "Norte", 45.4 , 54000, propietario);
+        InmData.guardarInmueble(inmueble);
 
         
         

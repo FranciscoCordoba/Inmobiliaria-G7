@@ -10,14 +10,14 @@ public class Inquilino {
     private String lugarTrabajo;
     private String nombreGarante;
     private long dniGarante;
-    private Inmueble propiedades;
+    private boolean activo;
     
     
 //Constructor vacio
     public Inquilino() {
     }
 //Constructor sin Id
-    public Inquilino(String nombre, String apellido, long dni, long cuit, String lugarTrabajo, String nombreGarante, long dniGarante, Inmueble propiedades) {
+    public Inquilino(String nombre, String apellido, long dni, long cuit, String lugarTrabajo, String nombreGarante , long dniGarante , boolean activo) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
@@ -25,10 +25,10 @@ public class Inquilino {
         this.lugarTrabajo = lugarTrabajo;
         this.nombreGarante = nombreGarante;
         this.dniGarante = dniGarante;
-        this.propiedades = propiedades;
+        this.activo = activo;
     }
 //Constructor con Id
-    public Inquilino(int idInquilino, String nombre, String apellido, long dni, long cuit, String lugarTrabajo, String nombreGarante, long dniGarante, Inmueble propiedades) {
+    public Inquilino(int idInquilino, String nombre, String apellido, long dni, long cuit, String lugarTrabajo, String nombreGarante, long dniGarante, boolean activo) {
         this.idInquilino = idInquilino;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -37,7 +37,7 @@ public class Inquilino {
         this.lugarTrabajo = lugarTrabajo;
         this.nombreGarante = nombreGarante;
         this.dniGarante = dniGarante;
-        this.propiedades = propiedades;
+        this.activo = activo;
     }
 //Setters and Getters
     public int getIdInquilino() {
@@ -104,13 +104,17 @@ public class Inquilino {
         this.dniGarante = dniGarante;
     }
 
-    public Inmueble getPropiedades() {
-        return propiedades;
+    public boolean isActivo() {
+        return activo;
     }
 
-    public void setPropiedades(Inmueble propiedades) {
-        this.propiedades = propiedades;
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
+    
+    
+
+
 
     //hashCode y equals de Id
     @Override
@@ -142,7 +146,7 @@ public class Inquilino {
 
     @Override
     public String toString() {
-        return "Inquilino{" + "idInquilino=" + idInquilino + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + ", cuit=" + cuit + ", lugarTrabajo=" + lugarTrabajo + ", nombreGarante=" + nombreGarante + ", dniGarante=" + dniGarante + ", propiedades=" + propiedades + '}';
+        return "Inquilino{" + "idInquilino=" + idInquilino + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + ", cuit=" + cuit + ", lugarTrabajo=" + lugarTrabajo + ", nombreGarante=" + nombreGarante + ", dniGarante=" + dniGarante+ '}';
     }
     
     

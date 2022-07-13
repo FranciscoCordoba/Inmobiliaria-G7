@@ -20,11 +20,11 @@ public class InquilinoData {
 
     }
 
-    public boolean agregarInquilino(Inquilino inquilino) {
+    public boolean agregarInquilino(Inquilino inquilino) { //Probado en Main, no funciona Conexion ???
 
         boolean insert = true;
 
-        String sql = "INSERTO INTO inquilino (nombre, apellido, dni, cuit, lugarTrabajo, nombreGarante, dniGarante) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO inquilino (nombre, apellido, dni, cuit, lugarTrabajo, nombreGarante, dniGarante, activo) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
 
@@ -37,6 +37,7 @@ public class InquilinoData {
             ps.setString(5, inquilino.getLugarTrabajo());
             ps.setString(6, inquilino.getNombreGarante());
             ps.setLong(7, inquilino.getDniGarante());
+            ps.setBoolean(8, inquilino.isActivo());
 
             ps.executeUpdate();
 
@@ -81,6 +82,7 @@ public class InquilinoData {
                 inquilino.setLugarTrabajo(resultSet.getString("lugarTrabajo"));
                 inquilino.setNombreGarante(resultSet.getString("nombreGarante"));
                 inquilino.setDniGarante(resultSet.getLong("dniGarante"));
+                inquilino.setActivo(resultSet.getBoolean("activo"));
 
                 inquilinos.add(inquilino);
             }
@@ -116,6 +118,7 @@ public class InquilinoData {
             inquilino.setLugarTrabajo(resultSet.getString("lugarTrabajo"));
             inquilino.setNombreGarante(resultSet.getString("nombreGarante"));
             inquilino.setDniGarante(resultSet.getLong("dniGarante"));
+            inquilino.setActivo(resultSet.getBoolean("activo"));
 
             ps.close();
 
@@ -129,7 +132,7 @@ public class InquilinoData {
 
     public boolean modificarInquilino(Inquilino inquilino) {
 
-        String sql = "UPDATE inquilino SET nombre = ?, apellido = ?, dni = ?, cuit = ?, lugarTrabajo = ?, nombreGarante = ?, dniGarante = ?";
+        String sql = "UPDATE inquilino SET nombre = ?, apellido = ?, dni = ?, cuit = ?, lugarTrabajo = ?, nombreGarante = ?, dniGarante = ?, activo = ?";
         boolean modificado = false;
         try {
             PreparedStatement ps = conexion.prepareStatement(sql);
@@ -140,6 +143,7 @@ public class InquilinoData {
             ps.setString(5, inquilino.getLugarTrabajo());
             ps.setString(6, inquilino.getNombreGarante());
             ps.setLong(7, inquilino.getDniGarante());
+            ps.setBoolean(8, inquilino.isActivo());
 
             if (ps.executeUpdate() != 0) {
                 modificado = true;

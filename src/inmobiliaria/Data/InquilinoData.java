@@ -152,4 +152,22 @@ public class InquilinoData {
         }
         return modificado;
     }
+    
+    
+     public boolean bajaInquilo(int id){
+        boolean baja=false;
+        try{
+            String sql="UPADATE inquilino SET activo = 0 WHERE idInquilino = ?";
+            PreparedStatement ps=conexion.prepareStatement(sql);
+            ps.setInt(1, id);
+            if(ps.executeUpdate()!=0){
+                baja=true;
+                JOptionPane.showMessageDialog(null, "Se ha dado de baja el inquilino con exito");
+            }
+            ps.close();
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null,"Error al dar de baja el inquilino "+ ex);
+        }
+        return baja;
+     }
 }

@@ -47,6 +47,7 @@ public class PropiedadData {
                 inmueble.setSuperficie((resultSet.getDouble("superficie")));
                 inmueble.setPrecioBase((resultSet.getDouble("precioBase")));
                 inmueble.setIdInmueble((resultSet.getInt("idInmueble")));
+                inmueble.setCantAmbientes(resultSet.getInt("cantAmbientes"));
 
                 Inquilino i = inquiData.obtenerInquilinoXId(resultSet.getInt("idInquilino"));
                 inmueble.setOcupante(i);
@@ -92,6 +93,7 @@ public class PropiedadData {
                 inmueble.setSuperficie((resultSet.getDouble("superficie")));
                 inmueble.setPrecioBase((resultSet.getDouble("precioBase")));
                 inmueble.setIdInmueble((resultSet.getInt("idInmueble")));
+                inmueble.setCantAmbientes(resultSet.getInt("cantAmbientes"));
 
                 Inquilino i = inquiData.obtenerInquilinoXId(idInquilino);
                 inmueble.setOcupante(i);
@@ -133,6 +135,7 @@ public class PropiedadData {
             inmueble.setSuperficie((resultSet.getDouble("superficie")));
             inmueble.setPrecioBase((resultSet.getDouble("precioBase")));
             inmueble.setIdInmueble((resultSet.getInt("idInmueble")));
+            inmueble.setCantAmbientes(resultSet.getInt("cantAmbientes"));
 
             Inquilino i = inquiData.obtenerInquilinoXId(resultSet.getInt("idInquilino"));
             inmueble.setOcupante(i);
@@ -170,7 +173,7 @@ public class PropiedadData {
     public boolean guardarInmueble(Inmueble inmueble){
         boolean inm=false;
         try {
-            String sql = "INSERT INTO inmueble (direccion,altura,disponibilidad,tipoDeInmueble,zona,superficie,precioBase,ocupante,propietarioInmueble) VALUES ( ? , ? , ? , ? , ? , ? , ? , ? , ? );";
+            String sql = "INSERT INTO inmueble (direccion,altura,disponibilidad,tipoDeInmueble,zona,superficie,precioBase,ocupante,propietarioInmueble, cantAmbientes) VALUES ( ? , ?, ? , ? , ? , ? , ? , ? , ? , ? );";
 
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, inmueble.getDireccion());
@@ -182,6 +185,7 @@ public class PropiedadData {
             ps.setDouble(7, inmueble.getPrecioBase());
             ps.setInt(8, inmueble.getOcupante().getIdInquilino());
             ps.setInt(9, inmueble.getPropietarioInmueble().getId());
+            ps.setInt(10, inmueble.getCantAmbientes());
 
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();

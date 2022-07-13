@@ -37,10 +37,21 @@ public class Contrato {
 	this.propiedadContrato = propiedadContrato;
     }
 
+    public void setInquilinoContrato(Inquilino inquilinoContrato) {
+        this.inquilinoContrato = inquilinoContrato;
+    }
+    
+    
+
     public int getIdContrato() {
 	return idContrato;
     }
 
+    public void setIdContrato(int idContrato) {
+        this.idContrato = idContrato;
+    }
+    
+    
     public LocalDate getFechaInicio() {
 	return fechaInicio;
     }
@@ -48,6 +59,7 @@ public class Contrato {
     public LocalDate getFechaFin() {
 	return fechaFin;
     }
+    
 
     public boolean isActivo() {
 	return activo;

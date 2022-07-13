@@ -6,6 +6,7 @@ public class Inmueble {
     private int altura;
     private boolean disponibilidad;
     private String tipoDeInmueble;
+    private int cantAmbientes;
     private String zona;
     private double superficie;
     private double precioBase;
@@ -16,7 +17,7 @@ public class Inmueble {
     public Inmueble() {
     }
 
-    public Inmueble(String direccion, int altura, boolean disponibilidad, String tipoDeInmueble, String zona, double superficie, double precioBase, Inquilino ocupante, Propietario propietarioInmueble) {
+    public Inmueble(String direccion, int altura, boolean disponibilidad, String tipoDeInmueble, int cantAmbientes, String zona, double superficie, double precioBase, Inquilino ocupante, Propietario propietarioInmueble) {
         this.direccion = direccion;
         this.altura = altura;
         this.disponibilidad = disponibilidad;
@@ -26,9 +27,10 @@ public class Inmueble {
         this.precioBase = precioBase;
         this.ocupante = ocupante;
         this.propietarioInmueble = propietarioInmueble;
+        this.cantAmbientes = cantAmbientes;
     }
 
-    public Inmueble(String direccion, int altura, boolean disponibilidad, String tipoDeInmueble, String zona, double superficie, double precioBase, int idInmueble, Inquilino ocupante, Propietario propietarioInmueble) {
+    public Inmueble(String direccion, int altura, int cantAmbientes, boolean disponibilidad, String tipoDeInmueble, String zona, double superficie, double precioBase, int idInmueble, Inquilino ocupante, Propietario propietarioInmueble) {
         this.direccion = direccion;
         this.altura = altura;
         this.disponibilidad = disponibilidad;
@@ -39,7 +41,18 @@ public class Inmueble {
         this.idInmueble = idInmueble;
         this.ocupante = ocupante;
         this.propietarioInmueble = propietarioInmueble;
+        this.cantAmbientes = cantAmbientes;
     }
+
+    public int getCantAmbientes() {
+        return cantAmbientes;
+    }
+
+    public void setCantAmbientes(int cantAmbientes) {
+        this.cantAmbientes = cantAmbientes;
+    }
+    
+    
 
     public String getDireccion() {
         return direccion;

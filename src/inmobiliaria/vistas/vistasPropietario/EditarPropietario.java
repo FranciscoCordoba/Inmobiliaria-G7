@@ -34,6 +34,7 @@ public class EditarPropietario extends javax.swing.JPanel {
         jtfDomicilio = new javax.swing.JTextField();
         jcbActivo = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
+        jbBuscar = new javax.swing.JButton();
 
         jLabel2.setFont(new java.awt.Font("Roboto Light", 0, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
@@ -52,6 +53,7 @@ public class EditarPropietario extends javax.swing.JPanel {
         jLabel5.setText("Domicilio");
 
         jtfNombre.setBackground(new java.awt.Color(217, 217, 217));
+        jtfNombre.setEnabled(false);
         jtfNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtfNombreActionPerformed(evt);
@@ -60,6 +62,7 @@ public class EditarPropietario extends javax.swing.JPanel {
 
         jbtnLimpiar.setBackground(new java.awt.Color(0, 63, 121));
         jbtnLimpiar.setText("Limpiar");
+        jbtnLimpiar.setEnabled(false);
         jbtnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnLimpiarActionPerformed(evt);
@@ -67,9 +70,11 @@ public class EditarPropietario extends javax.swing.JPanel {
         });
 
         jtfApellido.setBackground(new java.awt.Color(217, 217, 217));
+        jtfApellido.setEnabled(false);
 
         jbtnGuarda.setBackground(new java.awt.Color(0, 63, 121));
         jbtnGuarda.setText("Guardar");
+        jbtnGuarda.setEnabled(false);
         jbtnGuarda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnGuardaActionPerformed(evt);
@@ -79,16 +84,27 @@ public class EditarPropietario extends javax.swing.JPanel {
         jtfDni.setBackground(new java.awt.Color(217, 217, 217));
 
         jtfTelefono.setBackground(new java.awt.Color(217, 217, 217));
+        jtfTelefono.setEnabled(false);
 
         jtfDomicilio.setBackground(new java.awt.Color(217, 217, 217));
+        jtfDomicilio.setEnabled(false);
 
         jcbActivo.setFont(new java.awt.Font("Roboto Light", 0, 12)); // NOI18N
         jcbActivo.setForeground(new java.awt.Color(51, 51, 51));
         jcbActivo.setText("Activo");
+        jcbActivo.setEnabled(false);
 
         jLabel1.setFont(new java.awt.Font("Roboto Light", 0, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
         jLabel1.setText("Nombre");
+
+        jbBuscar.setBackground(new java.awt.Color(0, 63, 121));
+        jbBuscar.setText("Buscar");
+        jbBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbBuscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -98,36 +114,40 @@ public class EditarPropietario extends javax.swing.JPanel {
                 .addGap(106, 106, 106)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jtfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel1))
-                                .addGap(54, 54, 54)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jtfApellido)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(19, 19, 19)
+                        .addComponent(jbBuscar)
+                        .addGap(37, 37, 37)
+                        .addComponent(jbtnLimpiar)
+                        .addGap(34, 34, 34)
+                        .addComponent(jbtnGuarda)
+                        .addGap(114, 114, 114))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel5)
+                            .addContainerGap())
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jcbActivo)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jtfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel1))
                                     .addGap(54, 54, 54)
-                                    .addComponent(jbtnLimpiar)
-                                    .addGap(44, 44, 44)
-                                    .addComponent(jbtnGuarda))
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jtfDomicilio)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jtfDni, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel3))
-                                        .addGap(54, 54, 54)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel4)
-                                            .addComponent(jtfTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                        .addGap(94, 94, 94))))
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel2)
+                                        .addComponent(jtfApellido)))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jcbActivo)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jtfDomicilio)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jtfDni, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jLabel3))
+                                            .addGap(54, 54, 54)
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel4)
+                                                .addComponent(jtfTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                            .addGap(94, 94, 94)))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,11 +173,13 @@ public class EditarPropietario extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jtfDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(jcbActivo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jcbActivo)
                     .addComponent(jbtnLimpiar)
-                    .addComponent(jbtnGuarda))
-                .addContainerGap(115, Short.MAX_VALUE))
+                    .addComponent(jbtnGuarda)
+                    .addComponent(jbBuscar))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -192,6 +214,24 @@ public class EditarPropietario extends javax.swing.JPanel {
         propietarioData.actualizarPropietario(propietario);
     }//GEN-LAST:event_jbtnGuardaActionPerformed
 
+    private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
+        Propietario p = propietarioData.obtenerPropietarioPorDni(Long.parseLong(jtfDni.getText()));
+        if(p != null){
+            jtfNombre.setEnabled(true);
+            jtfNombre.setText(p.getNombre());
+            jtfApellido.setEnabled(true);
+            jtfApellido.setText(p.getApellido());
+            jtfTelefono.setEnabled(true);
+            jtfTelefono.setText(p.getTelefono() + "");
+            jtfDomicilio.setEnabled(true);
+            jtfDomicilio.setText(p.getDomicilio());
+            jbtnLimpiar.setEnabled(true);
+            jbtnGuarda.setEnabled(true);
+            jcbActivo.setEnabled(true);
+            jcbActivo.setSelected(true);
+        }
+    }//GEN-LAST:event_jbBuscarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -200,6 +240,7 @@ public class EditarPropietario extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton jbBuscar;
     private javax.swing.JButton jbtnGuarda;
     private javax.swing.JButton jbtnLimpiar;
     private javax.swing.JCheckBox jcbActivo;
@@ -217,7 +258,12 @@ public class EditarPropietario extends javax.swing.JPanel {
         jtfDomicilio.setText("");
         jtfDni.setText("");
         jcbActivo.setSelected(false);
+        jtfNombre.setEnabled(false);
+        jtfApellido.setEnabled(false);
+        jtfTelefono.setEnabled(false);
+        jtfDomicilio.setEnabled(false);
+        jbtnLimpiar.setEnabled(false);
+        jbtnGuarda.setEnabled(false);
+        jcbActivo.setEnabled(false);
     }
-
-
 }

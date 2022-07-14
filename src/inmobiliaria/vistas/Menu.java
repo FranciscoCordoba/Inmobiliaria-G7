@@ -113,10 +113,10 @@ public class Menu extends javax.swing.JFrame {
         jpSideInicio.setLayout(jpSideInicioLayout);
         jpSideInicioLayout.setHorizontalGroup(
             jpSideInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpSideInicioLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jpSideInicioLayout.createSequentialGroup()
+                .addGap(84, 84, 84)
                 .addComponent(jLabel6)
-                .addGap(78, 78, 78))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
         jpSideInicioLayout.setVerticalGroup(
             jpSideInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,7 +127,7 @@ public class Menu extends javax.swing.JFrame {
         );
 
         jpSidePropietarios.setBackground(new java.awt.Color(24, 32, 38));
-        jpSidePropietarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jpSidePropietarios.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jpSidePropietarios.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jpSidePropietariosMouseClicked(evt);
@@ -150,9 +150,9 @@ public class Menu extends javax.swing.JFrame {
         jpSidePropietariosLayout.setHorizontalGroup(
             jpSidePropietariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpSidePropietariosLayout.createSequentialGroup()
-                .addGap(67, 67, 67)
+                .addGap(62, 62, 62)
                 .addComponent(jLabel5)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
         jpSidePropietariosLayout.setVerticalGroup(
             jpSidePropietariosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,7 +163,7 @@ public class Menu extends javax.swing.JFrame {
         );
 
         jpSideInquilinos.setBackground(new java.awt.Color(24, 32, 38));
-        jpSideInquilinos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jpSideInquilinos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jpSideInquilinos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jpSideInquilinosMouseClicked(evt);
@@ -186,9 +186,9 @@ public class Menu extends javax.swing.JFrame {
         jpSideInquilinosLayout.setHorizontalGroup(
             jpSideInquilinosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpSideInquilinosLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(71, Short.MAX_VALUE)
                 .addComponent(jLabel7)
-                .addGap(71, 71, 71))
+                .addGap(70, 70, 70))
         );
         jpSideInquilinosLayout.setVerticalGroup(
             jpSideInquilinosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -199,7 +199,7 @@ public class Menu extends javax.swing.JFrame {
         );
 
         jpSidePropiedades.setBackground(new java.awt.Color(24, 32, 38));
-        jpSidePropiedades.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jpSidePropiedades.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jpSidePropiedades.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jpSidePropiedadesMouseClicked(evt);
@@ -222,9 +222,9 @@ public class Menu extends javax.swing.JFrame {
         jpSidePropiedadesLayout.setHorizontalGroup(
             jpSidePropiedadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpSidePropiedadesLayout.createSequentialGroup()
-                .addGap(64, 64, 64)
+                .addGap(60, 60, 60)
                 .addComponent(jLabel8)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
         jpSidePropiedadesLayout.setVerticalGroup(
             jpSidePropiedadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -235,7 +235,7 @@ public class Menu extends javax.swing.JFrame {
         );
 
         jpSideContratos.setBackground(new java.awt.Color(24, 32, 38));
-        jpSideContratos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jpSideContratos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jpSideContratos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jpSideContratosMouseClicked(evt);
@@ -258,9 +258,9 @@ public class Menu extends javax.swing.JFrame {
         jpSideContratosLayout.setHorizontalGroup(
             jpSideContratosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpSideContratosLayout.createSequentialGroup()
-                .addGap(70, 70, 70)
+                .addGap(69, 69, 69)
                 .addComponent(jLabel9)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
         jpSideContratosLayout.setVerticalGroup(
             jpSideContratosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -285,7 +285,7 @@ public class Menu extends javax.swing.JFrame {
                 .addGroup(jpIzquierdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
             .addComponent(jpSideInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jpIzquierdaLayout.setVerticalGroup(
@@ -333,7 +333,7 @@ public class Menu extends javax.swing.JFrame {
         jlbExit.setFont(new java.awt.Font("Lato", 1, 14)); // NOI18N
         jlbExit.setForeground(new java.awt.Color(255, 255, 255));
         jlbExit.setText("X");
-        jlbExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jlbExit.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jlbExit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jlbExit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

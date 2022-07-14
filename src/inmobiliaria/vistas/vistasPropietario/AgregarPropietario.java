@@ -17,6 +17,7 @@ public class AgregarPropietario extends javax.swing.JPanel {
         
         conexion = new Conexion();
         propietarioData = new PropietarioData(conexion);
+        
     }
 
 
@@ -94,7 +95,7 @@ public class AgregarPropietario extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(106, 106, 106)
+                .addGap(100, 100, 100)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel5)
@@ -119,11 +120,11 @@ public class AgregarPropietario extends javax.swing.JPanel {
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel4)
                                         .addComponent(jtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(94, 94, 94))))
+                        .addGap(99, 99, 99))))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(162, 162, 162)
+                .addGap(155, 155, 155)
                 .addComponent(jbLimpiar)
-                .addGap(44, 44, 44)
+                .addGap(71, 71, 71)
                 .addComponent(jbGuardar)
                 .addGap(0, 0, Short.MAX_VALUE))
         );

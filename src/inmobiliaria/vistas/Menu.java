@@ -15,7 +15,7 @@ import javax.swing.ImageIcon;
  *
  * @author 54266
  */
-public class Menu extends javax.swing.JFrame {
+public class Menu extends javax.swing.JFrame { //comentario
 
     ImageIcon logo = new ImageIcon("Assets/logoG7Mini.png");
     ImageIcon background = new ImageIcon("Assets/fotoMainMenu.png");

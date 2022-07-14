@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package inmobiliaria.vistas.vistasPropietario;
 
 import inmobiliaria.Data.Conexion;
@@ -10,10 +6,7 @@ import inmobiliaria.Data.PropietarioData;
 import inmobiliaria.Modelo.Propietario;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author nican
- */
+
 public class AgregarPropietario extends javax.swing.JPanel {
 
     private Conexion conexion;
@@ -177,11 +170,11 @@ public class AgregarPropietario extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtNombreActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_jtNombreActionPerformed
 
     private void jtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtTelefonoActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jtTelefonoActionPerformed
 
     private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed
@@ -197,8 +190,8 @@ public class AgregarPropietario extends javax.swing.JPanel {
         long telefono = Long.parseLong(jtTelefono.getText());
         String domicilio = jtDomicilio.getText();
         
-        Propietario propietario = new Propietario(nombre, apellido, dni, domicilio, telefono, true);
-        propietarioData.altaPropietario(propietario);
+        Propietario propietario1 = new Propietario(nombre, apellido, dni, domicilio, telefono, true);
+        propietarioData.altaPropietario(propietario1);
         
     }//GEN-LAST:event_jbGuardarActionPerformed
 
@@ -220,7 +213,6 @@ public class AgregarPropietario extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void limpiarCampos() {
-        
         jtApellido.setText("");
         jtNombre.setText("");
         jtTelefono.setText("");

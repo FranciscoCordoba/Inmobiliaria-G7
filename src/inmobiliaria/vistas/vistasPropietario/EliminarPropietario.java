@@ -1,21 +1,25 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package inmobiliaria.vistas.vistasPropietario;
 
-/**
- *
- * @author nican
- */
+import inmobiliaria.Data.Conexion;
+import inmobiliaria.Data.PropietarioData;
+import inmobiliaria.Modelo.Propietario;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
+
 public class EliminarPropietario extends javax.swing.JPanel {
 
-    /**
-     * Creates new form EliminarPropietario
-     */
+    private Conexion conexion;
+    private PropietarioData propietarioData;
+    private DefaultTableModel modelo;
+    
     public EliminarPropietario() {
 	initComponents();
+        conexion = new Conexion();
+        propietarioData = new PropietarioData(conexion);
+        modelo = new DefaultTableModel();
+        armarCabeceraTabla();
     }
 
     /**
@@ -26,16 +30,18 @@ public class EliminarPropietario extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        jtfDni = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        Guardar = new javax.swing.JButton();
+        jbtnEliminar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jtPropietarioLista = new javax.swing.JTable();
+        jbtnBuscar = new javax.swing.JButton();
+        jbLimpiar = new javax.swing.JButton();
 
-        jTextField1.setBackground(new java.awt.Color(217, 217, 217));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jtfDni.setBackground(new java.awt.Color(217, 217, 217));
+        jtfDni.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                jtfDniActionPerformed(evt);
             }
         });
 
@@ -43,15 +49,15 @@ public class EliminarPropietario extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
         jLabel1.setText("DNI");
 
-        Guardar.setBackground(new java.awt.Color(0, 63, 121));
-        Guardar.setText("Eliminar");
-        Guardar.addActionListener(new java.awt.event.ActionListener() {
+        jbtnEliminar.setBackground(new java.awt.Color(0, 63, 121));
+        jbtnEliminar.setText("Eliminar");
+        jbtnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GuardarActionPerformed(evt);
+                jbtnEliminarActionPerformed(evt);
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtPropietarioLista.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -62,7 +68,23 @@ public class EliminarPropietario extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jtPropietarioLista);
+
+        jbtnBuscar.setBackground(new java.awt.Color(0, 63, 121));
+        jbtnBuscar.setText("Buscar");
+        jbtnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnBuscarActionPerformed(evt);
+            }
+        });
+
+        jbLimpiar.setBackground(new java.awt.Color(0, 63, 121));
+        jbLimpiar.setText("Limpiar");
+        jbLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbLimpiarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -77,22 +99,32 @@ public class EliminarPropietario extends javax.swing.JPanel {
                         .addGap(142, 142, 142)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Guardar)))
+                        .addComponent(jtfDni, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jbtnBuscar)))
                 .addContainerGap(38, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(119, 119, 119)
+                .addComponent(jbLimpiar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jbtnEliminar)
+                .addGap(140, 140, 140))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(117, 117, 117)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
-                    .addComponent(Guardar))
+                    .addComponent(jbtnBuscar))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(130, Short.MAX_VALUE))
+                .addGap(37, 37, 37)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbtnEliminar)
+                    .addComponent(jbLimpiar))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -107,21 +139,67 @@ public class EliminarPropietario extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void jtfDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfDniActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_jtfDniActionPerformed
 
-    private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_GuardarActionPerformed
+    private void jbtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnEliminarActionPerformed
+        int filaSeleccionada = jtPropietarioLista.getSelectedRow();
+        
+        if (filaSeleccionada != -1) {
+            long idPropietario = (Long)modelo.getValueAt(filaSeleccionada,2);
+            Propietario propie = propietarioData.obtenerPropietarioPorDni(idPropietario);
+            propietarioData.bajaPropietario(propie.getId());
+        }
+        
+    }//GEN-LAST:event_jbtnEliminarActionPerformed
+
+    private void jbtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnBuscarActionPerformed
+        long dni = Long.parseLong(jtfDni.getText());
+        Propietario propietario = propietarioData.obtenerPropietarioPorDni(dni);
+        modelo.addRow(new Object[]{propietario.getApellido(),propietario.getNombre(), propietario.getDni(), propietario.getDomicilio() , propietario.getTelefono()});
+
+    }//GEN-LAST:event_jbtnBuscarActionPerformed
+
+    private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed
+        limpiarCampos();
+    }//GEN-LAST:event_jbLimpiarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Guardar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton jbLimpiar;
+    private javax.swing.JButton jbtnBuscar;
+    private javax.swing.JButton jbtnEliminar;
+    private javax.swing.JTable jtPropietarioLista;
+    private javax.swing.JTextField jtfDni;
     // End of variables declaration//GEN-END:variables
+
+    private void armarCabeceraTabla() {
+        ArrayList<Object> columnas = new ArrayList<Object>();
+        columnas.add("Apellido");
+        columnas.add("Nombre");
+        columnas.add("Dni");
+        columnas.add("Domicilio");
+        columnas.add("Telefono");
+        
+        for (Object it : columnas) {
+            modelo.addColumn(it);
+        }
+        jtPropietarioLista.setModel(modelo);
+    }
+    
+    private void limpiarCampos() {
+        jtfDni.setText("");
+        
+        if (modelo != null) {
+
+            int a = modelo.getRowCount() - 1;
+            for (int i = a; i >= 0; i--) {
+                modelo.removeRow(i);
+            }
+        }
+    }
 }

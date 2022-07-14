@@ -91,7 +91,7 @@ public class InmobiliariaG7 {
         InmData.guardarInmueble(inmueble);  */
 /*-------------------------------------------------------------------------------------------------------------------------------------------*/
 
-      /*  System.out.println(InmData.buscarInmueblesDeXPropietario(3)); */  //NO ANDA
+       System.out.println(InmData.buscarInmueblesDeXPropietario(3)); 
       
 /*--------------------------------------------------------------------------------------------------------------------------------------------------*/
 
@@ -99,7 +99,7 @@ public class InmobiliariaG7 {
       
 /*-------------------------------------------------------------------------------------------------------------------------------------------------*/
 
-        System.out.println(InmData.listarInmuebles());  
+      /*  System.out.println(InmData.listarInmuebles());   */
        
         
     }

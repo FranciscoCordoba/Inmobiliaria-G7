@@ -23,7 +23,7 @@ public class PropiedadData {
         propData = new PropietarioData(conexion);
     }
 
-    public ArrayList<Inmueble> buscarInmueblesDeXPropietario(int idPropietario) { //No anda
+    public ArrayList<Inmueble> buscarInmueblesDeXPropietario(int idPropietario) {
 
         ArrayList<Inmueble> propiedades = new ArrayList<>();
 
@@ -51,9 +51,9 @@ public class PropiedadData {
                 inmueble.setIdInmueble((resultSet.getInt("idInmueble")));
                 inmueble.setCantAmbientes(resultSet.getInt("cantAmbientes"));
 
-                Propietario p = propData.obtenerPropietarioPorId(idPropietario); 
+                Propietario p = propData.obtenerPropietarioPorId(idPropietario);
 
-                inmueble.setPropietarioInmueble(p); 
+                inmueble.setPropietarioInmueble(p);
 
                 propiedades.add(inmueble);
             }
@@ -92,7 +92,7 @@ public class PropiedadData {
                 inmueble.setCantAmbientes(resultSet.getInt("cantAmbientes"));
 
                 Propietario p = propData.obtenerPropietarioPorId(resultSet.getInt("propietarioInmueble"));
-                inmueble.setPropietarioInmueble(p); 
+                inmueble.setPropietarioInmueble(p);
             }
 
             ps.close();
@@ -184,5 +184,125 @@ public class PropiedadData {
         }
 
         return inmuebles;
+    }
+
+    public ArrayList<Inmueble> listarInmueblesXZona(ArrayList<Inmueble> lista) {
+
+        ArrayList<Inmueble> inmueblesZona = new ArrayList<>();
+        Inmueble inmueble = new Inmueble();
+
+        String sql = "SELECT * inmueble WHERE zona = ?";
+
+        try {
+
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, inmueble.getZona());
+            
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()) {
+
+                inmueble.setDireccion(rs.getString("direccion"));
+                inmueble.setAltura(rs.getInt("altura"));
+                inmueble.setDisponibilidad(rs.getBoolean("disponibilidad"));
+                inmueble.setTipoDeInmueble(rs.getString("tipoDeInmueble"));
+                inmueble.setCantAmbientes(rs.getInt("cantAmbientes"));
+                inmueble.setZona(rs.getString("zona"));
+                inmueble.setSuperficie(rs.getDouble("superficie"));
+                inmueble.setPrecioBase(rs.getDouble("precioBase"));
+                inmueble.setIdInmueble(rs.getInt("idInmueble"));
+                Propietario prop = propData.obtenerPropietarioPorId(rs.getInt("propietarioInmueble"));
+                inmueble.setPropietarioInmueble(prop);
+                inmueblesZona.add(inmueble);
+                
+            }
+
+        } catch (SQLException ex) {
+            
+            JOptionPane.showMessageDialog(null, "Error al listar por Zona" + ex);
+        }
+
+        return inmueblesZona;
+    }
+    
+    public ArrayList<Inmueble> listarInmueblesXTipo (ArrayList<Inmueble> lista){
+        
+        ArrayList<Inmueble> inmueblesTipo = new ArrayList<>();
+        Inmueble inmueble = new Inmueble();
+
+        String sql = "SELECT * inmueble WHERE tipo = ?";
+
+        try {
+
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, inmueble.getTipoDeInmueble());
+            
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()) {
+
+                inmueble.setDireccion(rs.getString("direccion"));
+                inmueble.setAltura(rs.getInt("altura"));
+                inmueble.setDisponibilidad(rs.getBoolean("disponibilidad"));
+                inmueble.setTipoDeInmueble(rs.getString("tipoDeInmueble"));
+                inmueble.setCantAmbientes(rs.getInt("cantAmbientes"));
+                inmueble.setZona(rs.getString("zona"));
+                inmueble.setSuperficie(rs.getDouble("superficie"));
+                inmueble.setPrecioBase(rs.getDouble("precioBase"));
+                inmueble.setIdInmueble(rs.getInt("idInmueble"));
+                Propietario prop = propData.obtenerPropietarioPorId(rs.getInt("propietarioInmueble"));
+                inmueble.setPropietarioInmueble(prop);
+                inmueblesTipo.add(inmueble);
+                
+            }
+
+        } catch (SQLException ex) {
+            
+            JOptionPane.showMessageDialog(null, "Error al listar por Tipo" + ex);
+        }
+
+        return inmueblesTipo;
+        
+    }
+    
+    public ArrayList<Inmueble> listarInmueblesXAmbientes (ArrayList<Inmueble> lista){
+        
+        ArrayList<Inmueble> inmueblesAmbiente = new ArrayList<>();
+        Inmueble inmueble = new Inmueble();
+
+        String sql = "SELECT * inmueble WHERE cantAmbientes = ?";
+
+        try {
+
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, inmueble.getCantAmbientes());
+            
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()) {
+
+                inmueble.setDireccion(rs.getString("direccion"));
+                inmueble.setAltura(rs.getInt("altura"));
+                inmueble.setDisponibilidad(rs.getBoolean("disponibilidad"));
+                inmueble.setTipoDeInmueble(rs.getString("tipoDeInmueble"));
+                inmueble.setCantAmbientes(rs.getInt("cantAmbientes"));
+                inmueble.setZona(rs.getString("zona"));
+                inmueble.setSuperficie(rs.getDouble("superficie"));
+                inmueble.setPrecioBase(rs.getDouble("precioBase"));
+                inmueble.setIdInmueble(rs.getInt("idInmueble"));
+                Propietario prop = propData.obtenerPropietarioPorId(rs.getInt("propietarioInmueble"));
+                inmueble.setPropietarioInmueble(prop);
+                inmueblesAmbiente.add(inmueble);
+                
+            }
+
+        } catch (SQLException ex) {
+            
+            JOptionPane.showMessageDialog(null, "Error al listar por Ambientes" + ex);
+        }
+
+        return inmueblesAmbiente;
+        
+        
     }
 }

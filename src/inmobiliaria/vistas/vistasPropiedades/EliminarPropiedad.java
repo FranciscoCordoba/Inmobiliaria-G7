@@ -5,17 +5,26 @@
  */
 package inmobiliaria.vistas.vistasPropiedades;
 
+import inmobiliaria.Data.Conexion;
+import inmobiliaria.Data.PropiedadData;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author nican
  */
 public class EliminarPropiedad extends javax.swing.JPanel {
 
-    /**
-     * Creates new form EliminarPropiedad
-     */
+    private Conexion conexion;
+    private PropiedadData propiedadData;
+    private DefaultTableModel modelo;
+    
     public EliminarPropiedad() {
 	initComponents();
+        conexion = new Conexion();
+        propiedadData = new PropiedadData(conexion);
+        
+        
     }
 
     /**
@@ -30,7 +39,8 @@ public class EliminarPropiedad extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         Guardar1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jtEliminar = new javax.swing.JTable();
+        Guardar2 = new javax.swing.JButton();
 
         jTextField1.setBackground(new java.awt.Color(217, 217, 217));
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -41,7 +51,7 @@ public class EliminarPropiedad extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Roboto Light", 0, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel1.setText("DNI");
+        jLabel1.setText("DNI del propietario");
 
         Guardar1.setBackground(new java.awt.Color(0, 63, 121));
         Guardar1.setText("Eliminar");
@@ -51,7 +61,7 @@ public class EliminarPropiedad extends javax.swing.JPanel {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtEliminar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -62,7 +72,15 @@ public class EliminarPropiedad extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jtEliminar);
+
+        Guardar2.setBackground(new java.awt.Color(0, 63, 121));
+        Guardar2.setText("Buscar");
+        Guardar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Guardar2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -70,16 +88,18 @@ public class EliminarPropiedad extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(Guardar1)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(39, 39, 39)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(142, 142, 142)
+                        .addGap(89, 89, 89)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Guardar1)))
+                        .addGap(18, 18, 18)
+                        .addComponent(Guardar2)))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -89,10 +109,12 @@ public class EliminarPropiedad extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
-                    .addComponent(Guardar1))
+                    .addComponent(Guardar2))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(130, Short.MAX_VALUE))
+                .addGap(32, 32, 32)
+                .addComponent(Guardar1)
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -115,14 +137,18 @@ public class EliminarPropiedad extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_Guardar1ActionPerformed
 
+    private void Guardar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Guardar2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Guardar2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Guardar;
     private javax.swing.JButton Guardar1;
+    private javax.swing.JButton Guardar2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable jtEliminar;
     // End of variables declaration//GEN-END:variables
 }

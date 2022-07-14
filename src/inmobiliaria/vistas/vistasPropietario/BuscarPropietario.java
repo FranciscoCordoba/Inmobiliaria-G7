@@ -136,8 +136,7 @@ public class BuscarPropietario extends javax.swing.JPanel {
             modelo.addRow(new Object[]{propietario.getApellido(),propietario.getNombre(), propietario.getDni(), propietario.getDomicilio() , propietario.getTelefono()});
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "No hay ningun propietario con ese DNI");
-        }
-        
+        }       
        
     }//GEN-LAST:event_jbtnBuscarActionPerformed
 

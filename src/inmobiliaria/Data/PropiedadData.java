@@ -51,8 +51,6 @@ public class PropiedadData {
                 inmueble.setIdInmueble((resultSet.getInt("idInmueble")));
                 inmueble.setCantAmbientes(resultSet.getInt("cantAmbientes"));
 
-                Inquilino i = inquiData.obtenerInquilinoXId(resultSet.getInt("idInquilino"));
-
                 Propietario p = propData.obtenerPropietarioPorId(idPropietario); 
 
                 inmueble.setPropietarioInmueble(p); 
@@ -69,50 +67,6 @@ public class PropiedadData {
         return propiedades;
     }
 
-    /* public ArrayList<Inmueble> buscarInmueblesDeXInquilino(int idInquilino) { //Sin atributo ocupante, este metodo es obsoleto
-
-        ArrayList<Inmueble> propiedades = new ArrayList<>();
-
-        try {
-
-            String sql = "SELECT * FROM inmueble WHERE ocupante = ?;";
-
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, idInquilino);
-
-            ResultSet resultSet = ps.executeQuery();
-
-            Inmueble inmueble;
-
-            while (resultSet.next()) {
-                inmueble = new Inmueble();
-
-                inmueble.setDireccion(resultSet.getString("direccion"));
-                inmueble.setAltura(resultSet.getInt("altura"));
-                inmueble.setDisponibilidad((resultSet.getBoolean("disponibilidad")));
-                inmueble.setTipoDeInmueble((resultSet.getString("tipoDeInmueble")));
-                inmueble.setZona((resultSet.getString("zona")));
-                inmueble.setSuperficie((resultSet.getDouble("superficie")));
-                inmueble.setPrecioBase((resultSet.getDouble("precioBase")));
-                inmueble.setIdInmueble((resultSet.getInt("idInmueble")));
-                inmueble.setCantAmbientes(resultSet.getInt("cantAmbientes"));
-
-                Inquilino i = inquiData.obtenerInquilinoXId(idInquilino);
-
-                Propietario p = propData.obtenerPropietarioPorId(resultSet.getInt("propietarioInmueble"));
-                inmueble.setPropietarioInmueble(p);
-
-                propiedades.add(inmueble);
-            }
-            
-            ps.close();
-
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al conseguir las propiedades");
-        }
-
-        return propiedades;
-    }*/
     public Inmueble buscarInmuebleXId(int id) { //Metodo probado en main, funcionando
 
         Inmueble inmueble = new Inmueble();
@@ -231,8 +185,4 @@ public class PropiedadData {
 
         return inmuebles;
     }
-
-    //Se necesita modificar algo?
-    //Se agrego borrado logico
-    //Se agrego lista de todos los inmuebles
 }

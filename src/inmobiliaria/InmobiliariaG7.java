@@ -99,19 +99,7 @@ public class InmobiliariaG7 {
       
 /*-------------------------------------------------------------------------------------------------------------------------------------------------*/
 
-        System.out.println(InmData.buscarInmuebleXId(2));  
-        
-
-        
-        
-    
-        
-        
-        
-
-        
-        
-        
+        System.out.println(InmData.listarInmuebles());  
        
         
     }

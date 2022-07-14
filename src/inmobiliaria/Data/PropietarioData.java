@@ -129,16 +129,15 @@ public class PropietarioData {
     public boolean actualizarPropietario(Propietario propietario) {
         boolean actua = false;
         try {
-            String sql = "UPDATE propietario SET apellido=?, nombre=?,dni=?,domicilio=?,telefono=?, activo = ? WHERE idPropietario=?";
+            String sql = "UPDATE propietario SET apellido = ?, nombre = ?, dni = ?, domicilio = ?, telefono = ?, activo = ? WHERE dni = ?";
             PreparedStatement ps = conexion.prepareStatement(sql);
             ps.setString(1, propietario.getApellido());
             ps.setString(2, propietario.getNombre());
             ps.setLong(3, propietario.getDni());
             ps.setString(4, propietario.getDomicilio());
             ps.setLong(5, propietario.getTelefono());
-            ps.setInt(7, propietario.getId());
             ps.setBoolean(6, propietario.isActivo());
-            
+            ps.setLong(7, propietario.getDni());
             if (ps.executeUpdate() != 0) {
                 actua = true;
                 JOptionPane.showMessageDialog(null, "El propietario fue actualizado con exito");

@@ -18,10 +18,12 @@ public class PropiedadData {
     PropietarioData propData;
 
     public PropiedadData(Conexion conexion) {
-        con = conexion.getConexion();
+        this.con = conexion.getConexion();
+        inquiData = new InquilinoData(conexion);
+        propData = new PropietarioData(conexion);
     }
 
-    public ArrayList<Inmueble> buscarInmueblesDeXPropietario(int idPropietario) {
+    public ArrayList<Inmueble> buscarInmueblesDeXPropietario(int idPropietario) { //No anda
 
         ArrayList<Inmueble> propiedades = new ArrayList<>();
 
@@ -51,8 +53,9 @@ public class PropiedadData {
 
                 Inquilino i = inquiData.obtenerInquilinoXId(resultSet.getInt("idInquilino"));
 
-                Propietario p = propData.obtenerPropietarioPorId(idPropietario);
-                inmueble.setPropietarioInmueble(p);
+                Propietario p = propData.obtenerPropietarioPorId(idPropietario); 
+
+                inmueble.setPropietarioInmueble(p); 
 
                 propiedades.add(inmueble);
             }
@@ -110,7 +113,7 @@ public class PropiedadData {
 
         return propiedades;
     }*/
-    public Inmueble buscarInmuebleXId(int id) {
+    public Inmueble buscarInmuebleXId(int id) { //Metodo probado en main, funcionando
 
         Inmueble inmueble = new Inmueble();
 
@@ -118,25 +121,25 @@ public class PropiedadData {
 
             String sql = "SELECT * FROM inmueble WHERE idInmueble = ?;";
 
-            PreparedStatement ps = con.prepareCall(sql);
+            PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
 
             ResultSet resultSet = ps.executeQuery();
 
-            inmueble.setDireccion(resultSet.getString("direccion"));
-            inmueble.setAltura(resultSet.getInt("altura"));
-            inmueble.setDisponibilidad((resultSet.getBoolean("disponibilidad")));
-            inmueble.setTipoDeInmueble((resultSet.getString("tipoDeInmueble")));
-            inmueble.setZona((resultSet.getString("zona")));
-            inmueble.setSuperficie((resultSet.getDouble("superficie")));
-            inmueble.setPrecioBase((resultSet.getDouble("precioBase")));
-            inmueble.setIdInmueble((resultSet.getInt("idInmueble")));
-            inmueble.setCantAmbientes(resultSet.getInt("cantAmbientes"));
+            while (resultSet.next()) {
+                inmueble.setDireccion(resultSet.getString("direccion"));
+                inmueble.setAltura(resultSet.getInt("altura"));
+                inmueble.setDisponibilidad((resultSet.getBoolean("disponibilidad")));
+                inmueble.setTipoDeInmueble((resultSet.getString("tipoDeInmueble")));
+                inmueble.setZona((resultSet.getString("zona")));
+                inmueble.setSuperficie((resultSet.getDouble("superficie")));
+                inmueble.setPrecioBase((resultSet.getDouble("precioBase")));
+                inmueble.setIdInmueble((resultSet.getInt("idInmueble")));
+                inmueble.setCantAmbientes(resultSet.getInt("cantAmbientes"));
 
-            Inquilino i = inquiData.obtenerInquilinoXId(resultSet.getInt("idInquilino"));
-
-            Propietario p = propData.obtenerPropietarioPorId(resultSet.getInt("propietarioInmueble"));
-            inmueble.setPropietarioInmueble(p);
+                Propietario p = propData.obtenerPropietarioPorId(resultSet.getInt("propietarioInmueble"));
+                inmueble.setPropietarioInmueble(p); 
+            }
 
             ps.close();
         } catch (SQLException e) {
@@ -146,10 +149,10 @@ public class PropiedadData {
         return inmueble;
     }
 
-    public boolean borrarInmuebleXId(int id) {
+    public boolean borrarInmuebleXId(int id) {  //Probado en Main, funciona
         boolean inm = false;
         try {
-            String sql = "UPDATE FROM inmueble SET disponibilidad = 0 WHERE idInmueble = ?;";
+            String sql = "UPDATE inmueble SET disponibilidad = 0 WHERE idInmueble = ?;";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
 
@@ -165,7 +168,7 @@ public class PropiedadData {
         return inm;
     }
 
-    public boolean guardarInmueble(Inmueble inmueble) {
+    public boolean guardarInmueble(Inmueble inmueble) { //Probado en Main, funciona
         boolean inm = false;
         try {
             String sql = "INSERT INTO inmueble (direccion,altura,disponibilidad,tipoDeInmueble,zona,superficie,precioBase,propietarioInmueble,cantAmbientes) VALUES ( ? , ?, ? , ? , ? , ? , ? , ? , ? );";

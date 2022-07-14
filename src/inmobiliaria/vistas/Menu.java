@@ -39,6 +39,8 @@ public class Menu extends javax.swing.JFrame {
 	
 	mainPanel.add(principal);
 	mainPanel.revalidate();
+        
+        
     }
 
     /**

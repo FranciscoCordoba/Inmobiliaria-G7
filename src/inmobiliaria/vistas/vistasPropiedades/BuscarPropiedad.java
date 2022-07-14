@@ -5,17 +5,28 @@
  */
 package inmobiliaria.vistas.vistasPropiedades;
 
+import inmobiliaria.Data.Conexion;
+import inmobiliaria.Data.PropiedadData;
+import inmobiliaria.Modelo.Inmueble;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author nican
  */
 public class BuscarPropiedad extends javax.swing.JPanel {
 
-    /**
-     * Creates new form BuscarPropiedad
-     */
+    private Conexion conexion;
+    private PropiedadData propData;
+    private DefaultTableModel modelo;
+    
     public BuscarPropiedad() {
 	initComponents();
+        conexion = new Conexion();
+        propData = new PropiedadData(conexion);
+        
+        modelo = new DefaultTableModel();
     }
 
     /**
@@ -30,7 +41,7 @@ public class BuscarPropiedad extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
         jtDni = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        Guardar = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -46,21 +57,16 @@ public class BuscarPropiedad extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTable1);
 
         jtDni.setBackground(new java.awt.Color(217, 217, 217));
-        jtDni.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtDniActionPerformed(evt);
-            }
-        });
 
         jLabel1.setFont(new java.awt.Font("Roboto Light", 0, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel1.setText("DNI");
+        jLabel1.setText("DNI del propietario");
 
-        Guardar.setBackground(new java.awt.Color(0, 63, 121));
-        Guardar.setText("Buscar");
-        Guardar.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscar.setBackground(new java.awt.Color(0, 63, 121));
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GuardarActionPerformed(evt);
+                btnBuscarActionPerformed(evt);
             }
         });
 
@@ -74,12 +80,12 @@ public class BuscarPropiedad extends javax.swing.JPanel {
                         .addGap(39, 39, 39)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(144, 144, 144)
+                        .addGap(89, 89, 89)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jtDni, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Guardar)))
+                        .addComponent(btnBuscar)))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -89,10 +95,10 @@ public class BuscarPropiedad extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
-                    .addComponent(Guardar))
+                    .addComponent(btnBuscar))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(130, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(80, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -107,17 +113,17 @@ public class BuscarPropiedad extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jtDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtDniActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtDniActionPerformed
-
-    private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_GuardarActionPerformed
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        
+        int dni = Integer.parseInt(btnBuscar.getText());
+        
+        propData.buscarInmueblesDeXPropietario(dni);
+        
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Guardar;
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

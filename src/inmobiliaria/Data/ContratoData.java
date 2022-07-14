@@ -37,7 +37,7 @@ public class ContratoData {
         try {
 
             String sql = "INSERT INTO contrato "
-                    + "(fechaInicio, fechaFin, activo, monto, inquilinoContrato, propietarioContrato,"
+                    + "(fechaInicio, fechaFin, activo, monto, inquilinoContrato,"
                     + " propiedadContrato) VALUES (?, ?, ?, ?, ?, ?, ?):";
 
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -46,8 +46,7 @@ public class ContratoData {
             ps.setBoolean(3, contrato.isActivo());
             ps.setDouble(4, contrato.getMonto());
             ps.setInt(5, contrato.getInquilinoContrato().getIdInquilino());
-            ps.setInt(6, contrato.getPropietarioContrato().getId());
-            ps.setInt(7, contrato.getPropiedadContrato().getIdInmueble());
+            ps.setInt(6, contrato.getPropiedadContrato().getIdInmueble());
 
             ps.executeUpdate();
 
@@ -55,6 +54,7 @@ public class ContratoData {
 
             if (rs.next()) {
                 contrato.setIdContrato(rs.getByte(1));
+                propiedad.borrarInmuebleXId(rs.getInt("propiedadContrato"));
             } else {
 
                 JOptionPane.showMessageDialog(null, "Error al intentar agregar contrato");
@@ -152,7 +152,6 @@ public class ContratoData {
                 contrato.setActivo(rs.getBoolean("activo"));
                 contrato.setMonto(rs.getDouble("monto"));
                 contrato.setInquilinoContrato(inquilino.obtenerInquilinoXId(rs.getInt("inquilinoContrato")));
-                contrato.setPropietarioContrato(propietario.obtenerPropietarioPorId(rs.getInt("propietarioContrato")));
                 contrato.setPropiedadContrato(propiedad.buscarInmuebleXId(rs.getInt("propiedadContrato")));
                 contratos.add(contrato);
             }
@@ -180,7 +179,6 @@ public class ContratoData {
                 contrato.setFechaFin(rs.getDate("fechaFin").toLocalDate());
                 contrato.setActivo(rs.getBoolean("activo"));
                 contrato.setMonto(rs.getDouble("monto"));
-                contrato.setPropietarioContrato(propietario.obtenerPropietarioPorId(rs.getInt("propietarioContrato")));
                 contratos.add(contrato);
             }
         } catch (SQLException ex) {
@@ -207,7 +205,6 @@ public class ContratoData {
                 contrato.setFechaFin(rs.getDate("fechaFin").toLocalDate());
                 contrato.setActivo(rs.getBoolean("activo"));
                 contrato.setMonto(rs.getDouble("monto"));
-                contrato.setPropietarioContrato(propietario.obtenerPropietarioPorId(rs.getInt("propietarioContrato")));
                 contratos.add(contrato);
             }
         } catch (SQLException ex) {
@@ -236,7 +233,27 @@ public class ContratoData {
         }
         return resContrato;
     }
-     
-    
+       
+        public void actualizarContratos(){
+            
+            String sql = "UPDATE contrato SET activo = 0 WHERE fechaFin > NOW()";
+            
+            try {
+                
+                PreparedStatement ps = con.prepareStatement(sql);
+                
+                ps.executeUpdate();
+                
+            } catch (SQLException ex) {
+                
+                JOptionPane.showMessageDialog(null, "Error al actualizar contratos " + ex);
+                
+                
+            }
+            
+            
+            
+            
+        }
      
 }

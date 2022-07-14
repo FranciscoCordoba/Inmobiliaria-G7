@@ -10,30 +10,27 @@ public class Contrato {
     private boolean activo;
     private double monto;
     private Inquilino inquilinoContrato;
-    private Propietario propietarioContrato;
     private Inmueble propiedadContrato;
 
     public Contrato() {
     }
 
-    public Contrato(int idContrato, LocalDate fechaInicio, LocalDate fechaFin, boolean activo, double monto, Inquilino inquilinoContrato, Propietario propietarioContrato, Inmueble propiedadContrato) {
+    public Contrato(int idContrato, LocalDate fechaInicio, LocalDate fechaFin, boolean activo, double monto, Inquilino inquilinoContrato, Inmueble propiedadContrato) {
 	this.idContrato = idContrato;
 	this.fechaInicio = fechaInicio;
 	this.fechaFin = fechaFin;
 	this.activo = activo;
 	this.monto = monto;
 	this.inquilinoContrato = inquilinoContrato;
-	this.propietarioContrato = propietarioContrato;
 	this.propiedadContrato = propiedadContrato;
     }
 
-    public Contrato(LocalDate fechaInicio, LocalDate fechaFin, boolean activo, double monto, Inquilino inquilinoContrato, Propietario propietarioContrato, Inmueble propiedadContrato) {
+    public Contrato(LocalDate fechaInicio, LocalDate fechaFin, boolean activo, double monto, Inquilino inquilinoContrato, Inmueble propiedadContrato) {
 	this.fechaInicio = fechaInicio;
 	this.fechaFin = fechaFin;
 	this.activo = activo;
 	this.monto = monto;
 	this.inquilinoContrato = inquilinoContrato;
-	this.propietarioContrato = propietarioContrato;
 	this.propiedadContrato = propiedadContrato;
     }
 
@@ -73,9 +70,6 @@ public class Contrato {
 	return inquilinoContrato;
     }
 
-    public Propietario getPropietarioContrato() {
-	return propietarioContrato;
-    }
 
     public Inmueble getPropiedadContrato() {
 	return propiedadContrato;
@@ -95,10 +89,7 @@ public class Contrato {
 
     public void setMonto(double monto) {
 	this.monto = monto;
-    }
-
-    public void setPropietarioContrato(Propietario propietarioContrato) {
-	this.propietarioContrato = propietarioContrato;
+    
     }
 
     public void setPropiedadContrato(Inmueble propiedadContrato) {
@@ -132,7 +123,7 @@ public class Contrato {
 
     @Override
     public String toString() {
-        return "Contrato{" + "idContrato=" + idContrato + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", activo=" + activo + ", monto=" + monto + ", inquilinoContrato=" + inquilinoContrato + ", propietarioContrato=" + propietarioContrato + ", propiedadContrato=" + propiedadContrato + '}';
+        return "Contrato{" + "idContrato=" + idContrato + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", activo=" + activo + ", monto=" + monto + ", inquilinoContrato=" + inquilinoContrato + ", propiedadContrato=" + propiedadContrato + '}';
     }
     
     

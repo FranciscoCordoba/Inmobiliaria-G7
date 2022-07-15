@@ -306,16 +306,16 @@ public class PropiedadData {
         
     }
     
-    public ArrayList<Inmueble> inmueblesXInquiId(int idInquilino){
+    public ArrayList<Inmueble> buscarInmueblesXPropietarioDni(int dniPropietario){
         
         ArrayList<Inmueble> listaInm = new ArrayList<>();
         
         try {
-            String sql = "SELECT * Inmueble WHERE idInquilino = ?";
+            String sql = "SELECT i.* FROM Inmueble i, Propietario p WHERE p.dni = ? AND p.idPropietario = i.propietarioInmueble;";
             
             PreparedStatement ps = con.prepareStatement(sql);
             
-            ps.setInt(1, idInquilino);
+            ps.setInt(1, dniPropietario);
             
             ResultSet rs = ps.executeQuery();
             

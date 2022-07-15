@@ -68,12 +68,6 @@ public class EliminarPropiedad extends javax.swing.JPanel {
 	
 	ArrayList<Inmueble> inmueblesTodos = propData.listarInmuebles();
 	
-	System.out.println(inmueblesTodos.size());
-	
-	for (Inmueble inmueblesTodo : inmueblesTodos) {
-	    System.out.println(inmueblesTodo.toString());
-	}
-	
 	for (Inmueble inm : inmueblesTodos) {
 	    modelo.addRow(new Object[]{inm.getDireccion() + " " + inm.getAltura(), inm.getTipoDeInmueble(), inm.getCantAmbientes(), inm.getSuperficie(), inm.getPrecioBase(), inm.getZona(), inm.getPropietarioInmueble().getDni()});
 	}

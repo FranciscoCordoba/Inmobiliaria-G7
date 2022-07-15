@@ -35,6 +35,7 @@ public class BuscarContrato extends javax.swing.JPanel {
 	jtfPropietario.setEnabled(false);
 	modelo = new DefaultTableModel();
 	armarCabeceraTabla();
+	
     }
 
     @SuppressWarnings("unchecked")

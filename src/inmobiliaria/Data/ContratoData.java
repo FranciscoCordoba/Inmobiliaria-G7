@@ -81,15 +81,18 @@ public class ContratoData {
 
             ps.setDate(1, Date.valueOf(contrato.getFechaInicio()));
             ps.setDate(2, Date.valueOf(contrato.getFechaFin()));
-            ps.setInt(3, contrato.getIdContrato());
-
+            ps.setDouble(3, contrato.getMonto());
+	    ps.setInt(4, contrato.getIdContrato());
+	    
+	    System.out.println(contrato.getMonto());
+	    
             if (ps.executeUpdate() != 0) {
                 renovar = true;
             }
 
         } catch (SQLException e) {
 
-            JOptionPane.showMessageDialog(null, "Error al renovar contrato");
+            JOptionPane.showMessageDialog(null, "Error al renovar contrato" + e);
         }
         return renovar;
 
@@ -350,4 +353,32 @@ public class ContratoData {
         }
         return contrato;
     }
+    
+    public Contrato obtenercontratoXId (int id){
+
+        Contrato contrato=null;
+        try{
+            String sql="SELECT * FROM contrato WHERE idContrato=? ";
+            PreparedStatement ps= con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs= ps.executeQuery();
+            while(rs.next()){
+                contrato=new Contrato();
+                contrato.setIdContrato(rs.getInt("idContrato"));
+                contrato.setFechaInicio(rs.getDate("fechaInicio").toLocalDate());
+                contrato.setFechaFin(rs.getDate("fechaFin").toLocalDate());
+                contrato.setActivo(rs.getBoolean("activo"));
+                contrato.setMonto(rs.getDouble("monto"));
+                contrato.setInquilinoContrato(inquilino.obtenerInquilinoXId(rs.getInt("inquilinoContrato")));
+                contrato.setPropietarioContrato(propietario.obtenerPropietarioPorId(rs.getInt("propietarioContrato")));
+                contrato.setPropiedadContrato(propiedad.buscarInmuebleXId(rs.getInt("propiedadContrato")));
+            }
+            ps.close();
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null,"Error al obtener contrato "+ ex);
+        }
+        return contrato;
+
+    }
+    
 }

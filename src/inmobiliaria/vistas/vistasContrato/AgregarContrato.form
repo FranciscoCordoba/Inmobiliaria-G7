@@ -227,9 +227,6 @@
             </Property>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtNombreInquilinoActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jtDniInquilino">
           <Properties>

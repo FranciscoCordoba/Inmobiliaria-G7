@@ -86,11 +86,6 @@ public class AgregarContrato extends javax.swing.JPanel {
 
         jtNombreInquilino.setBackground(new java.awt.Color(217, 217, 217));
         jtNombreInquilino.setEnabled(false);
-        jtNombreInquilino.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtNombreInquilinoActionPerformed(evt);
-            }
-        });
 
         jtDniInquilino.setBackground(new java.awt.Color(217, 217, 217));
 
@@ -290,12 +285,8 @@ public class AgregarContrato extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jtNombreInquilinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtNombreInquilinoActionPerformed
-	// TODO add your handling code here:
-    }//GEN-LAST:event_jtNombreInquilinoActionPerformed
-
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
-	// TODO add your handling code here:
+	
 	long dniInquilino = Long.parseLong(jtDniInquilino.getText());
 
 	inquilinoData.obtenerInquilinoPorDni(dniInquilino);

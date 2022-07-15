@@ -260,22 +260,24 @@ public class AgregarInquilino extends javax.swing.JPanel {
 
     private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
         try {
-            String nombre = jtNombre.getText();
-            String apellido = jtApellido.getText();
-            Long dni = Long.parseLong(jtDNI.getText());
-            Long cuit = Long.parseLong(jtCUIT.getText());
-            String trabajo = jtTrabajo.getText();
-            String nombreGarante = jtNombreGarante.getText();
-            Long dniGarante = Long.parseLong(jtDniGarante.getText());
+            if (jtNombre.getText().isEmpty() || jtApellido.getText().isEmpty() || jtTrabajo.getText().isEmpty() || jtNombreGarante.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "No pueden quedar campos vacíos");
+            } else {
+                String nombre = jtNombre.getText();
+                String apellido = jtApellido.getText();
+                Long dni = Long.parseLong(jtDNI.getText());
+                Long cuit = Long.parseLong(jtCUIT.getText());
+                String trabajo = jtTrabajo.getText();
+                String nombreGarante = jtNombreGarante.getText();
+                Long dniGarante = Long.parseLong(jtDniGarante.getText());
 
-            Inquilino nuevoInquilino = new Inquilino(nombre, apellido, dni, cuit, trabajo, nombreGarante, dniGarante, true);
+                Inquilino nuevoInquilino = new Inquilino(nombre, apellido, dni, cuit, trabajo, nombreGarante, dniGarante, true);
 
-            inquilinoData.agregarInquilino(nuevoInquilino);
+                inquilinoData.agregarInquilino(nuevoInquilino);
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Complete todos los campos");
         }
-            
-        
 
 
     }//GEN-LAST:event_GuardarActionPerformed
@@ -298,7 +300,7 @@ public class AgregarInquilino extends javax.swing.JPanel {
         if (!(minusculas || mayusculas || espacio)) {
             evt.consume();
         }
-        
+
     }//GEN-LAST:event_jtNombreKeyTyped
 
     private void jtApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtApellidoKeyTyped
@@ -311,7 +313,7 @@ public class AgregarInquilino extends javax.swing.JPanel {
         if (!(minusculas || mayusculas || espacio)) {
             evt.consume();
         }
-        
+
     }//GEN-LAST:event_jtApellidoKeyTyped
 
     private void jtNombreGaranteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtNombreGaranteKeyTyped
@@ -324,7 +326,7 @@ public class AgregarInquilino extends javax.swing.JPanel {
         if (!(minusculas || mayusculas || espacio)) {
             evt.consume();
         }
-        
+
     }//GEN-LAST:event_jtNombreGaranteKeyTyped
 
     private void jtDNIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtDNIKeyTyped
@@ -339,7 +341,7 @@ public class AgregarInquilino extends javax.swing.JPanel {
         if (jtDNI.getText().trim().length() == 10) {
             evt.consume();
         }
-        
+
     }//GEN-LAST:event_jtDNIKeyTyped
 
     private void jtCUITKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtCUITKeyTyped
@@ -354,11 +356,11 @@ public class AgregarInquilino extends javax.swing.JPanel {
         if (jtCUIT.getText().trim().length() == 10) {
             evt.consume();
         }
-        
+
     }//GEN-LAST:event_jtCUITKeyTyped
 
     private void jtDniGaranteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtDniGaranteKeyTyped
-       int key = evt.getKeyChar();
+        int key = evt.getKeyChar();
 
         boolean numeros = key >= 48 && key <= 57;
 
@@ -369,7 +371,7 @@ public class AgregarInquilino extends javax.swing.JPanel {
         if (jtDniGarante.getText().trim().length() == 10) {
             evt.consume();
         }
-        
+
     }//GEN-LAST:event_jtDniGaranteKeyTyped
 
     private void jtTrabajoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtTrabajoKeyTyped
@@ -378,11 +380,11 @@ public class AgregarInquilino extends javax.swing.JPanel {
         boolean mayusculas = key >= 65 && key <= 90;
         boolean minusculas = key >= 97 && key <= 122;
         boolean espacio = key == 32;
-
-        if (!(minusculas || mayusculas || espacio)) {
+        boolean numeros = key >= 48 && key <= 57;
+        if (!(minusculas || mayusculas || espacio || numeros)) {
             evt.consume();
         }
-        
+
     }//GEN-LAST:event_jtTrabajoKeyTyped
 
 

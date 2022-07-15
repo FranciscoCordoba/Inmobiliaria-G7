@@ -20,6 +20,7 @@ public class BuscarInquilino extends javax.swing.JPanel {
         inquilinoData = new InquilinoData(con);
         tablaModelo = new DefaultTableModel();
         armarTabla();
+        jbLimpiar.setEnabled(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -32,6 +33,7 @@ public class BuscarInquilino extends javax.swing.JPanel {
         jtDniBuscar = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         Buscar = new javax.swing.JButton();
+        jbLimpiar = new javax.swing.JButton();
 
         jtInquilinosTabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -47,14 +49,14 @@ public class BuscarInquilino extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jtInquilinosTabla);
 
         jtDniBuscar.setBackground(new java.awt.Color(217, 217, 217));
-        jtDniBuscar.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jtDniBuscarFocusLost(evt);
-            }
-        });
         jtDniBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtDniBuscarActionPerformed(evt);
+            }
+        });
+        jtDniBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtDniBuscarKeyTyped(evt);
             }
         });
 
@@ -70,23 +72,35 @@ public class BuscarInquilino extends javax.swing.JPanel {
             }
         });
 
+        jbLimpiar.setBackground(new java.awt.Color(0, 63, 121));
+        jbLimpiar.setText("Limpiar");
+        jbLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbLimpiarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(45, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(144, 144, 144)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jtDniBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Buscar)))
-                .addContainerGap(38, Short.MAX_VALUE))
+                        .addComponent(Buscar))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(222, 222, 222)
+                        .addComponent(jbLimpiar)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -98,7 +112,9 @@ public class BuscarInquilino extends javax.swing.JPanel {
                     .addComponent(Buscar))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(130, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jbLimpiar)
+                .addContainerGap(89, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -118,34 +134,39 @@ public class BuscarInquilino extends javax.swing.JPanel {
     }//GEN-LAST:event_jtDniBuscarActionPerformed
 
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
-        if (contador != 1) {
-            JOptionPane.showMessageDialog(this, "Complete todos los campos correctamente");
-        } else {
+       
+            
             long dni = Long.parseLong(jtDniBuscar.getText());
 
             try {
 
                 Inquilino inquilino = inquilinoData.obtenerInquilinoPorDni(dni);
                 tablaModelo.addRow(new Object[]{inquilino.getNombre(), inquilino.getApellido(), inquilino.getDni(), inquilino.getCuit(), inquilino.getLugarTrabajo(), inquilino.getNombreGarante(), inquilino.getDniGarante()});
-
+                jbLimpiar.setEnabled(true);
+                Buscar.setEnabled(false);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "No se encontró ningún inquilino con ese DNI");
-            }
+            
         }
     }//GEN-LAST:event_BuscarActionPerformed
 
-    private void jtDniBuscarFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtDniBuscarFocusLost
-        String texto = jtDniBuscar.getText();
-        try {
-            if (!texto.isEmpty()) {
-                Double.parseDouble(texto);
-                contador++;
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error, debe ingresar un número en este campo");
-            jtDniBuscar.requestFocus();
+    private void jtDniBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtDniBuscarKeyTyped
+         int key = evt.getKeyChar();
+
+        boolean numeros = key >= 48 && key <= 57;
+
+        if (!numeros) {
+            evt.consume();
         }
-    }//GEN-LAST:event_jtDniBuscarFocusLost
+
+        if (jtDniBuscar.getText().trim().length() == 10) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtDniBuscarKeyTyped
+
+    private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed
+        limpiarCampos();
+    }//GEN-LAST:event_jbLimpiarActionPerformed
 
     private void armarTabla() {
 
@@ -175,6 +196,8 @@ public class BuscarInquilino extends javax.swing.JPanel {
                 tablaModelo.removeRow(i);
             }
         }
+        jbLimpiar.setEnabled(false);
+        Buscar.setEnabled(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -182,6 +205,7 @@ public class BuscarInquilino extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jbLimpiar;
     private javax.swing.JTextField jtDniBuscar;
     private javax.swing.JTable jtInquilinosTabla;
     // End of variables declaration//GEN-END:variables

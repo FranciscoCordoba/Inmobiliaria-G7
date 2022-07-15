@@ -9,7 +9,7 @@ public class EditarInquilino extends javax.swing.JPanel {
 
     private InquilinoData inquilinoData;
     private Conexion con;
-    private int contador ;
+    private int contador;
 
     public EditarInquilino() {
         initComponents();
@@ -89,14 +89,14 @@ public class EditarInquilino extends javax.swing.JPanel {
 
         jtNombre.setBackground(new java.awt.Color(217, 217, 217));
         jtNombre.setEnabled(false);
-        jtNombre.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jtNombreFocusLost(evt);
-            }
-        });
         jtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtNombreActionPerformed(evt);
+            }
+        });
+        jtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtNombreKeyTyped(evt);
             }
         });
 
@@ -119,48 +119,48 @@ public class EditarInquilino extends javax.swing.JPanel {
 
         jtApellido.setBackground(new java.awt.Color(217, 217, 217));
         jtApellido.setEnabled(false);
-        jtApellido.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jtApellidoFocusLost(evt);
+        jtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtApellidoKeyTyped(evt);
             }
         });
 
         jtNombreGarante.setBackground(new java.awt.Color(217, 217, 217));
         jtNombreGarante.setEnabled(false);
-        jtNombreGarante.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jtNombreGaranteFocusLost(evt);
+        jtNombreGarante.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtNombreGaranteKeyTyped(evt);
             }
         });
 
         jtDniGarante.setBackground(new java.awt.Color(217, 217, 217));
         jtDniGarante.setEnabled(false);
-        jtDniGarante.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jtDniGaranteFocusLost(evt);
+        jtDniGarante.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtDniGaranteKeyTyped(evt);
             }
         });
 
         jtDNI.setBackground(new java.awt.Color(217, 217, 217));
-        jtDNI.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jtDNIFocusLost(evt);
+        jtDNI.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtDNIKeyTyped(evt);
             }
         });
 
         jtCUIT.setBackground(new java.awt.Color(217, 217, 217));
         jtCUIT.setEnabled(false);
-        jtCUIT.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jtCUITFocusLost(evt);
+        jtCUIT.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtCUITKeyTyped(evt);
             }
         });
 
         jtTrabajo.setBackground(new java.awt.Color(217, 217, 217));
         jtTrabajo.setEnabled(false);
-        jtTrabajo.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jtTrabajoFocusLost(evt);
+        jtTrabajo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtTrabajoKeyTyped(evt);
             }
         });
 
@@ -297,22 +297,29 @@ public class EditarInquilino extends javax.swing.JPanel {
     }//GEN-LAST:event_jbtnLimpiarActionPerformed
 
     private void btnGuardaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardaActionPerformed
-        if(contador != 7){
+
+        try {
+            if (jtNombre.getText().isEmpty() || jtApellido.getText().isEmpty() || jtTrabajo.getText().isEmpty() || jtNombreGarante.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "No pueden quedar campos vacíos");
+            } else {
+                String nombre = jtNombre.getText();
+                String apellido = jtApellido.getText();
+                Long dni = Long.parseLong(jtDNI.getText());
+                Long cuit = Long.parseLong(jtCUIT.getText());
+                String trabajo = jtTrabajo.getText();
+                String nombreGarante = jtNombreGarante.getText();
+                Long dniGarante = Long.parseLong(jtDniGarante.getText());
+                Boolean activo = cbActivo.isSelected();
+
+                Inquilino nuevoInquilino = new Inquilino(nombre, apellido, dni, cuit, trabajo, nombreGarante, dniGarante, activo);
+
+                inquilinoData.modificarInquilino(nuevoInquilino);
+            }
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Complete todos los campos correctamente");
-        }else{
-        String nombre = jtNombre.getText();
-        String apellido = jtApellido.getText();
-        Long dni = Long.parseLong(jtDNI.getText());
-        Long cuit = Long.parseLong(jtCUIT.getText());
-        String trabajo = jtTrabajo.getText();
-        String nombreGarante = jtNombreGarante.getText();
-        Long dniGarante = Long.parseLong(jtDniGarante.getText());
-        Boolean activo = cbActivo.isSelected();
-
-        Inquilino nuevoInquilino = new Inquilino(nombre, apellido, dni, cuit, trabajo, nombreGarante, dniGarante, activo);
-
-        inquilinoData.modificarInquilino(nuevoInquilino);
         }
+
+
     }//GEN-LAST:event_btnGuardaActionPerformed
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
@@ -349,96 +356,95 @@ public class EditarInquilino extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jbBuscarActionPerformed
 
-    private void jtNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtNombreFocusLost
-        String texto = jtNombre.getText();
-        try {
-            if (!texto.isEmpty()) {
-                Double.parseDouble(texto);
-                JOptionPane.showMessageDialog(this, "No puede ingresar un número en este campo");
-                jtNombre.requestFocus();
-                contador++;
-            }
-        } catch (Exception e) {
-        }
-    }//GEN-LAST:event_jtNombreFocusLost
+    private void jtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtNombreKeyTyped
+        int key = evt.getKeyChar();
 
-    private void jtApellidoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtApellidoFocusLost
-        String texto = jtApellido.getText();
-        try {
-            if (!texto.isEmpty()) {
-                Double.parseDouble(texto);
-                JOptionPane.showMessageDialog(this, "No puede ingresar un número en este campo");
-                jtApellido.requestFocus();
-                contador++;
-            }
-        } catch (Exception e) {
-        }
-    }//GEN-LAST:event_jtApellidoFocusLost
+        boolean mayusculas = key >= 65 && key <= 90;
+        boolean minusculas = key >= 97 && key <= 122;
+        boolean espacio = key == 32;
 
-    private void jtDNIFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtDNIFocusLost
-        String texto = jtDNI.getText();
-        try {
-            if (!texto.isEmpty()) {
-                Double.parseDouble(texto);
-                contador++;
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error, debe ingresar un número en este campo");
-            jtDNI.requestFocus();
+        if (!(minusculas || mayusculas || espacio)) {
+            evt.consume();
         }
-    }//GEN-LAST:event_jtDNIFocusLost
+    }//GEN-LAST:event_jtNombreKeyTyped
 
-    private void jtCUITFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtCUITFocusLost
-        String texto = jtCUIT.getText();
-        try {
-            if (!texto.isEmpty()) {
-                Double.parseDouble(texto);
-                contador++;
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error, debe ingresar un número en este campo");
-            jtCUIT.requestFocus();
-        }
-    }//GEN-LAST:event_jtCUITFocusLost
+    private void jtApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtApellidoKeyTyped
+        int key = evt.getKeyChar();
 
-    private void jtTrabajoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtTrabajoFocusLost
-        String texto = jtTrabajo.getText();
-        try {
-            if (!texto.isEmpty()) {
-                Double.parseDouble(texto);
-                JOptionPane.showMessageDialog(this, "No puede ingresar un número en este campo");
-                jtTrabajo.requestFocus();
-                contador++;
-            }
-        } catch (Exception e) {
-        }
-    }//GEN-LAST:event_jtTrabajoFocusLost
+        boolean mayusculas = key >= 65 && key <= 90;
+        boolean minusculas = key >= 97 && key <= 122;
+        boolean espacio = key == 32;
 
-    private void jtNombreGaranteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtNombreGaranteFocusLost
-         String texto = jtNombreGarante.getText();
-        try {
-            if (!texto.isEmpty()) {
-                Double.parseDouble(texto);
-                JOptionPane.showMessageDialog(this, "No puede ingresar un número en este campo");
-                jtNombreGarante.requestFocus();
-                contador++;
-            }
-        } catch (Exception e) {
+        if (!(minusculas || mayusculas || espacio)) {
+            evt.consume();
         }
-    }//GEN-LAST:event_jtNombreGaranteFocusLost
+    }//GEN-LAST:event_jtApellidoKeyTyped
 
-    private void jtDniGaranteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtDniGaranteFocusLost
-         String texto = jtDniGarante.getText();
-        try {
-            if (!texto.isEmpty()) {
-                Double.parseDouble(texto);
-                contador++;
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error, debe ingresar un número en este campo");
-            jtDniGarante.requestFocus();
+    private void jtDNIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtDNIKeyTyped
+        int key = evt.getKeyChar();
+
+        boolean numeros = key >= 48 && key <= 57;
+
+        if (!numeros) {
+            evt.consume();
         }
-    }//GEN-LAST:event_jtDniGaranteFocusLost
+
+        if (jtDNI.getText().trim().length() == 10) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtDNIKeyTyped
+
+    private void jtCUITKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtCUITKeyTyped
+        int key = evt.getKeyChar();
+
+        boolean numeros = key >= 48 && key <= 57;
+
+        if (!numeros) {
+            evt.consume();
+        }
+
+        if (jtCUIT.getText().trim().length() == 10) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtCUITKeyTyped
+
+    private void jtTrabajoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtTrabajoKeyTyped
+        int key = evt.getKeyChar();
+
+        boolean mayusculas = key >= 65 && key <= 90;
+        boolean minusculas = key >= 97 && key <= 122;
+        boolean espacio = key == 32;
+        boolean numeros = key >= 48 && key <= 57;
+        if (!(minusculas || mayusculas || espacio || numeros)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtTrabajoKeyTyped
+
+    private void jtNombreGaranteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtNombreGaranteKeyTyped
+        int key = evt.getKeyChar();
+
+        boolean mayusculas = key >= 65 && key <= 90;
+        boolean minusculas = key >= 97 && key <= 122;
+        boolean espacio = key == 32;
+
+        if (!(minusculas || mayusculas || espacio)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtNombreGaranteKeyTyped
+
+    private void jtDniGaranteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtDniGaranteKeyTyped
+        int key = evt.getKeyChar();
+
+        boolean numeros = key >= 48 && key <= 57;
+
+        if (!numeros) {
+            evt.consume();
+        }
+
+        if (jtDniGarante.getText().trim().length() == 10) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtDniGaranteKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

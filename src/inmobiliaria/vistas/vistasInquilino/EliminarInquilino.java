@@ -13,13 +13,15 @@ public class EliminarInquilino extends javax.swing.JPanel {
     private Conexion con;
     private DefaultTableModel tablaModelo;
     private int contador;
-    
+
     public EliminarInquilino() {
-	initComponents();
-	con = new Conexion();
-	inquilinoData = new InquilinoData(con);
-	tablaModelo = new DefaultTableModel();
-	armarTabla();
+        initComponents();
+        con = new Conexion();
+        inquilinoData = new InquilinoData(con);
+        tablaModelo = new DefaultTableModel();
+        armarTabla();
+        jbLimpiar.setEnabled(false);
+        jbtnEliminar.setEnabled(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -61,14 +63,14 @@ public class EliminarInquilino extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jtInquilinosTablaEliminar);
 
         jtDniEliminar.setBackground(new java.awt.Color(217, 217, 217));
-        jtDniEliminar.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jtDniEliminarFocusLost(evt);
-            }
-        });
         jtDniEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtDniEliminarActionPerformed(evt);
+            }
+        });
+        jtDniEliminar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtDniEliminarKeyTyped(evt);
             }
         });
 
@@ -142,20 +144,18 @@ public class EliminarInquilino extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
-         if (contador != 1) {
-            JOptionPane.showMessageDialog(this, "Complete todos los campos correctamente");
-        } else {
-	long dni = Long.parseLong(jtDniEliminar.getText());
-         
-	try {
 
-	    Inquilino inquilino = inquilinoData.obtenerInquilinoPorDni(dni);
-	    tablaModelo.addRow(new Object[]{inquilino.getNombre(), inquilino.getApellido(), inquilino.getDni(), inquilino.getCuit(), inquilino.getLugarTrabajo(), inquilino.getNombreGarante(), inquilino.getDniGarante()});
+        long dni = Long.parseLong(jtDniEliminar.getText());
 
-	} catch (Exception e) {
-	    JOptionPane.showMessageDialog(this, "No se encontró ningún inquilino con ese DNI");
-	}
+        try {
+
+            Inquilino inquilino = inquilinoData.obtenerInquilinoPorDni(dni);
+            tablaModelo.addRow(new Object[]{inquilino.getNombre(), inquilino.getApellido(), inquilino.getDni(), inquilino.getCuit(), inquilino.getLugarTrabajo(), inquilino.getNombreGarante(), inquilino.getDniGarante()});
+            jbtnEliminar.setEnabled(true);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "No se encontró ningún inquilino con ese DNI");
         }
+
     }//GEN-LAST:event_BuscarActionPerformed
 
     private void jtDniEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtDniEliminarActionPerformed
@@ -163,63 +163,71 @@ public class EliminarInquilino extends javax.swing.JPanel {
     }//GEN-LAST:event_jtDniEliminarActionPerformed
 
     private void jbtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnEliminarActionPerformed
-        
-        int filaSeleccionada = jtInquilinosTablaEliminar.getSelectedRow();
+        try {
+            int filaSeleccionada = jtInquilinosTablaEliminar.getSelectedRow();
 
-        if (filaSeleccionada != -1) {
-            long idInquilino = (Long)tablaModelo.getValueAt(filaSeleccionada, 2);
-            Inquilino inquilino = inquilinoData.obtenerInquilinoPorDni(idInquilino);
-            inquilinoData.bajaInquilo(inquilino.getIdInquilino());
+            if (filaSeleccionada != -1) {
+                long idInquilino = (Long) tablaModelo.getValueAt(filaSeleccionada, 2);
+                Inquilino inquilino = inquilinoData.obtenerInquilinoPorDni(idInquilino);
+                inquilinoData.bajaInquilo(inquilino.getIdInquilino());
+                jbLimpiar.setEnabled(true);
+                Buscar.setEnabled(false);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "No puede eliminar");
         }
-         
+
+
     }//GEN-LAST:event_jbtnEliminarActionPerformed
 
     private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed
         limpiarCampos();
     }//GEN-LAST:event_jbLimpiarActionPerformed
 
-    private void jtDniEliminarFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtDniEliminarFocusLost
-        String texto = jtDniEliminar.getText();
-        try {
-            if (!texto.isEmpty()) {
-                Double.parseDouble(texto);
-                contador++;
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error, debe ingresar un número en este campo");
-            jtDniEliminar.requestFocus();
-        }
-    }//GEN-LAST:event_jtDniEliminarFocusLost
+    private void jtDniEliminarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtDniEliminarKeyTyped
+        int key = evt.getKeyChar();
 
-    
+        boolean numeros = key >= 48 && key <= 57;
+
+        if (!numeros) {
+            evt.consume();
+        }
+
+        if (jtDniEliminar.getText().trim().length() == 10) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtDniEliminarKeyTyped
+
     private void armarTabla() {
 
-	ArrayList<Object> columnas = new ArrayList<Object>();
-	columnas.add("Nombre");
-	columnas.add("Apellido");
-	columnas.add("DNI");
-	columnas.add("CUIT");
-	columnas.add("Trabajo");
-	columnas.add("Garante");
-	columnas.add("DNI Garante");
+        ArrayList<Object> columnas = new ArrayList<Object>();
+        columnas.add("Nombre");
+        columnas.add("Apellido");
+        columnas.add("DNI");
+        columnas.add("CUIT");
+        columnas.add("Trabajo");
+        columnas.add("Garante");
+        columnas.add("DNI Garante");
 
-	for (Object it : columnas) {
-	    tablaModelo.addColumn(it);
-	}
-	jtInquilinosTablaEliminar.setModel(tablaModelo);
+        for (Object it : columnas) {
+            tablaModelo.addColumn(it);
+        }
+        jtInquilinosTablaEliminar.setModel(tablaModelo);
 
     }
 
     private void limpiarCampos() {
-	jtDniEliminar.setText("");
+        jtDniEliminar.setText("");
 
-	if (tablaModelo != null) {
+        if (tablaModelo != null) {
 
-	    int a = tablaModelo.getRowCount() - 1;
-	    for (int i = a; i >= 0; i--) {
-		tablaModelo.removeRow(i);
-	    }
-	}
+            int a = tablaModelo.getRowCount() - 1;
+            for (int i = a; i >= 0; i--) {
+                tablaModelo.removeRow(i);
+            }
+        }
+        jbLimpiar.setEnabled(false);
+        Buscar.setEnabled(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

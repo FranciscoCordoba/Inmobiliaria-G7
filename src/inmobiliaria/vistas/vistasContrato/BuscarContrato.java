@@ -23,19 +23,19 @@ public class BuscarContrato extends javax.swing.JPanel {
     private ArrayList<Contrato> listacontratos;
 
     public BuscarContrato() {
-	initComponents();
-	conexion = new Conexion();
-	propietarioData = new PropietarioData(conexion);
-	inquilinoData = new InquilinoData(conexion);
-	contratoData = new ContratoData(conexion);
-	propiedadData = new PropiedadData(conexion);
-	jtfInquilino.setEnabled(false);
-	jbtnLimpiar.setEnabled(false);
-	jbtnContrato.setEnabled(false);
-	jtfPropietario.setEnabled(false);
-	modelo = new DefaultTableModel();
-	armarCabeceraTabla();
-	
+        initComponents();
+        conexion = new Conexion();
+        propietarioData = new PropietarioData(conexion);
+        inquilinoData = new InquilinoData(conexion);
+        contratoData = new ContratoData(conexion);
+        propiedadData = new PropiedadData(conexion);
+        jtfInquilino.setEnabled(false);
+        jbtnLimpiar.setEnabled(false);
+        jbtnContrato.setEnabled(false);
+        jtfPropietario.setEnabled(false);
+        modelo = new DefaultTableModel();
+        armarCabeceraTabla();
+
     }
 
     @SuppressWarnings("unchecked")
@@ -80,9 +80,9 @@ public class BuscarContrato extends javax.swing.JPanel {
         jLabel6.setText("Inquilino");
 
         jtfDniInq.setBackground(new java.awt.Color(217, 217, 217));
-        jtfDniInq.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfDniInqActionPerformed(evt);
+        jtfDniInq.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfDniInqKeyTyped(evt);
             }
         });
 
@@ -99,9 +99,9 @@ public class BuscarContrato extends javax.swing.JPanel {
         });
 
         jtfDniPro.setBackground(new java.awt.Color(217, 217, 217));
-        jtfDniPro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfDniProActionPerformed(evt);
+        jtfDniPro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfDniProKeyTyped(evt);
             }
         });
 
@@ -186,10 +186,11 @@ public class BuscarContrato extends javax.swing.JPanel {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(32, 32, 32)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jtfDniPro, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel8))
-                                        .addGap(8, 8, 8)
-                                        .addComponent(jbtnBuscarPro))
+                                            .addComponent(jLabel8)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(jtfDniPro, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jbtnBuscarPro))))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(18, 18, 18)
                                         .addComponent(noVigentes))))))
@@ -198,7 +199,7 @@ public class BuscarContrato extends javax.swing.JPanel {
                         .addComponent(jbtnContrato)
                         .addGap(18, 18, 18)
                         .addComponent(jbtnLimpiar)))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -246,155 +247,180 @@ public class BuscarContrato extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jtfDniInqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfDniInqActionPerformed
-	// TODO add your handling code here:
-    }//GEN-LAST:event_jtfDniInqActionPerformed
-
     private void jbtnBuscarInqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnBuscarInqActionPerformed
-	long dni = Long.parseLong(jtfDniInq.getText());
-	try {
-	    Inquilino inquilino = inquilinoData.obtenerInquilinoPorDni(dni);
-	    String completo = inquilino.getApellido() + " " + inquilino.getNombre();
-	    jtfInquilino.setText(completo);
-	    jtfInquilino.setEnabled(true);
-	    jtfInquilino.setEditable(false);
-	    jtfPropietario.setEditable(false);
-	    jtfDniPro.setEnabled(false);
-	    jbtnBuscarPro.setEnabled(false);
-	    jbtnLimpiar.setEnabled(true);
-	    jbtnContrato.setEnabled(true);
-	} catch (Exception e) {
-	    JOptionPane.showMessageDialog(this, "No hay ningun inquilino con ese DNI");
-	}
+        if (!jtfDniInq.getText().isEmpty()) {
+            long dni = Long.parseLong(jtfDniInq.getText());
+            try {
+                Inquilino inquilino = inquilinoData.obtenerInquilinoPorDni(dni);
+                String completo = inquilino.getApellido() + " " + inquilino.getNombre();
+                jtfInquilino.setText(completo);
+                jtfInquilino.setEnabled(true);
+                jtfInquilino.setEditable(false);
+                jtfPropietario.setEditable(false);
+                jtfDniPro.setEnabled(false);
+                jbtnBuscarPro.setEnabled(false);
+                jbtnLimpiar.setEnabled(true);
+                jbtnContrato.setEnabled(true);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "No hay ningun inquilino con ese DNI");
+            }
+        }
     }//GEN-LAST:event_jbtnBuscarInqActionPerformed
 
-    private void jtfDniProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfDniProActionPerformed
-	// TODO add your handling code here:
-    }//GEN-LAST:event_jtfDniProActionPerformed
-
     private void jbtnBuscarProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnBuscarProActionPerformed
-	long dni = Long.parseLong(jtfDniPro.getText());
-	try {
-	    Propietario propietario = propietarioData.obtenerPropietarioPorDni(dni);
-	    String completo = propietario.getApellido() + " " + propietario.getNombre();
-	    jtfPropietario.setText(completo);
-	    jtfPropietario.setEnabled(true);
-	    jtfPropietario.setEditable(false);
-	    jtfInquilino.setEditable(false);
-	    jtfDniInq.setEnabled(false);
-	    jbtnBuscarInq.setEnabled(false);
-	    jbtnContrato.setEnabled(true);
-	    jbtnLimpiar.setEnabled(true);
+        if (!jtfDniPro.getText().isEmpty()) {
+            long dni = Long.parseLong(jtfDniPro.getText());
+            try {
+                Propietario propietario = propietarioData.obtenerPropietarioPorDni(dni);
+                String completo = propietario.getApellido() + " " + propietario.getNombre();
+                jtfPropietario.setText(completo);
+                jtfPropietario.setEnabled(true);
+                jtfPropietario.setEditable(false);
+                jtfInquilino.setEditable(false);
+                jtfDniInq.setEnabled(false);
+                jbtnBuscarInq.setEnabled(false);
+                jbtnContrato.setEnabled(true);
+                jbtnLimpiar.setEnabled(true);
 
-	} catch (Exception e) {
-	    JOptionPane.showMessageDialog(this, "No hay ningun propietario con ese DNI");
-	}
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "No hay ningun propietario con ese DNI");
+            }
+        }
     }//GEN-LAST:event_jbtnBuscarProActionPerformed
 
     private void jbtnContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnContratoActionPerformed
-	if (jbtnBuscarInq.isEnabled() == true) {
-	    long dniInq = Long.parseLong(jtfDniInq.getText());
-	    Inquilino inquilin = inquilinoData.obtenerInquilinoPorDni(dniInq);
+        limpiarCampos();
+        if (jbtnBuscarInq.isEnabled()) {
+            long dniInq = Long.parseLong(jtfDniInq.getText());
+            Inquilino inquilin = inquilinoData.obtenerInquilinoPorDni(dniInq);
 
-	    listacontratos = contratoData.contratosXInquilino(inquilin.getIdInquilino());
+            listacontratos = contratoData.contratosXInquilino(inquilin.getIdInquilino());
 
-	    for (Contrato cont : listacontratos) {
-		modelo.addRow(new Object[]{cont.getPropiedadContrato().getIdInmueble(), (cont.getPropietarioContrato().getApellido() + ", " + cont.getPropietarioContrato().getNombre()), (cont.getInquilinoContrato().getApellido() + ", " + cont.getInquilinoContrato().getNombre()), cont.getPropiedadContrato().getDireccion(), cont.getMonto(), cont.getFechaInicio(), cont.getFechaFin()});
-	    }
-	} else if (jbtnBuscarPro.isEnabled()) {
-	    long dniInq = Long.parseLong(jtfDniPro.getText());
-	    Propietario propie = propietarioData.obtenerPropietarioPorDni(dniInq);
-	    listacontratos = contratoData.contratosXPropietario(propie.getId());
-	    for (Contrato cont : listacontratos) {
-		modelo.addRow(new Object[]{cont.getPropiedadContrato().getIdInmueble(), (cont.getPropietarioContrato().getApellido() + ", " + cont.getPropietarioContrato().getNombre()), (cont.getInquilinoContrato().getApellido() + ", " + cont.getInquilinoContrato().getNombre()), cont.getPropiedadContrato().getDireccion(), cont.getMonto(), cont.getFechaInicio(), cont.getFechaFin(), cont.isActivo()});
-	    }
-	} else if (vigentes.isSelected()) {
-	    listacontratos = contratoData.mostrarContratosVigentes();
-	    for (Contrato cont : listacontratos) {
-		modelo.addRow(new Object[]{cont.getPropiedadContrato().getIdInmueble(), (cont.getPropietarioContrato().getApellido() + ", " + cont.getPropietarioContrato().getNombre()), (cont.getInquilinoContrato().getApellido() + ", " + cont.getInquilinoContrato().getNombre()), cont.getPropiedadContrato().getDireccion(), cont.getMonto(), cont.getFechaInicio(), cont.getFechaFin(), cont.isActivo()});
-	    }
-	} else {
-	    listacontratos = contratoData.mostrarVencidos();
-	    for (Contrato cont : listacontratos) {
-		modelo.addRow(new Object[]{cont.getPropiedadContrato().getIdInmueble(), (cont.getPropietarioContrato().getApellido() + ", " + cont.getPropietarioContrato().getNombre()), (cont.getInquilinoContrato().getApellido() + ", " + cont.getInquilinoContrato().getNombre()), cont.getPropiedadContrato().getDireccion(), cont.getMonto(), cont.getFechaInicio(), cont.getFechaFin(), cont.isActivo()});
-	    }
-	}
+            for (Contrato cont : listacontratos) {
+                modelo.addRow(new Object[]{cont.getPropiedadContrato().getIdInmueble(), (cont.getPropietarioContrato().getApellido() + ", " + cont.getPropietarioContrato().getNombre()), (cont.getInquilinoContrato().getApellido() + ", " + cont.getInquilinoContrato().getNombre()), cont.getPropiedadContrato().getDireccion(), cont.getMonto(), cont.getFechaInicio(), cont.getFechaFin()});
+            }
+        } else if (jbtnBuscarPro.isEnabled()) {
+            long dniInq = Long.parseLong(jtfDniPro.getText());
+            Propietario propie = propietarioData.obtenerPropietarioPorDni(dniInq);
+            listacontratos = contratoData.contratosXPropietario(propie.getId());
+            for (Contrato cont : listacontratos) {
+                modelo.addRow(new Object[]{cont.getPropiedadContrato().getIdInmueble(), (cont.getPropietarioContrato().getApellido() + ", " + cont.getPropietarioContrato().getNombre()), (cont.getInquilinoContrato().getApellido() + ", " + cont.getInquilinoContrato().getNombre()), cont.getPropiedadContrato().getDireccion(), cont.getMonto(), cont.getFechaInicio(), cont.getFechaFin(), cont.isActivo()});
+            }
+        } else if (vigentes.isSelected()) {
+            listacontratos = contratoData.mostrarContratosVigentes();
+            for (Contrato cont : listacontratos) {
+                modelo.addRow(new Object[]{cont.getPropiedadContrato().getIdInmueble(), (cont.getPropietarioContrato().getApellido() + ", " + cont.getPropietarioContrato().getNombre()), (cont.getInquilinoContrato().getApellido() + ", " + cont.getInquilinoContrato().getNombre()), cont.getPropiedadContrato().getDireccion(), cont.getMonto(), cont.getFechaInicio(), cont.getFechaFin(), cont.isActivo()});
+            }
+        } else {
+            listacontratos = contratoData.mostrarVencidos();
+            for (Contrato cont : listacontratos) {
+                modelo.addRow(new Object[]{cont.getPropiedadContrato().getIdInmueble(), (cont.getPropietarioContrato().getApellido() + ", " + cont.getPropietarioContrato().getNombre()), (cont.getInquilinoContrato().getApellido() + ", " + cont.getInquilinoContrato().getNombre()), cont.getPropiedadContrato().getDireccion(), cont.getMonto(), cont.getFechaInicio(), cont.getFechaFin(), cont.isActivo()});
+            }
+        }
     }//GEN-LAST:event_jbtnContratoActionPerformed
 
     private void jbtnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnLimpiarActionPerformed
-	limpiarCampos();
+        limpiarCampos();
     }//GEN-LAST:event_jbtnLimpiarActionPerformed
 
     private void vigentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vigentesActionPerformed
 
-	noVigentes.setSelected(false);
-	jbtnContrato.setEnabled(true);
-	jbtnLimpiar.setEnabled(true);
-	jtfDniInq.setEnabled(false);
-	jbtnBuscarInq.setEnabled(false);
-	jtfDniPro.setEnabled(false);
-	jbtnBuscarPro.setEnabled(false);
+        noVigentes.setSelected(false);
+        jbtnContrato.setEnabled(true);
+        jbtnLimpiar.setEnabled(true);
+        jtfDniInq.setEnabled(false);
+        jbtnBuscarInq.setEnabled(false);
+        jtfDniPro.setEnabled(false);
+        jbtnBuscarPro.setEnabled(false);
 
     }//GEN-LAST:event_vigentesActionPerformed
 
     private void noVigentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noVigentesActionPerformed
 
-	vigentes.setSelected(false);
-	jbtnContrato.setEnabled(true);
-	jbtnLimpiar.setEnabled(true);
-	jtfDniInq.setEnabled(false);
-	jbtnBuscarInq.setEnabled(false);
-	jtfDniPro.setEnabled(false);
-	jbtnBuscarPro.setEnabled(false);
+        vigentes.setSelected(false);
+        jbtnContrato.setEnabled(true);
+        jbtnLimpiar.setEnabled(true);
+        jtfDniInq.setEnabled(false);
+        jbtnBuscarInq.setEnabled(false);
+        jtfDniPro.setEnabled(false);
+        jbtnBuscarPro.setEnabled(false);
 
     }//GEN-LAST:event_noVigentesActionPerformed
 
-    private void limpiarCampos() {
-	jtfDniInq.setText("");
-	jtfDniPro.setText("");
-	jtfInquilino.setText("");
-	jtfPropietario.setText("");
+    private void jtfDniInqKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfDniInqKeyTyped
+        int key = evt.getKeyChar();
 
-	jbtnContrato.setEnabled(false);
-	jbtnBuscarPro.setEnabled(true);
-	jbtnBuscarInq.setEnabled(true);
-	jtfPropietario.setEnabled(false);
-	jtfInquilino.setEnabled(false);
-	jtfDniPro.setEnabled(true);
-	jtfDniInq.setEnabled(true);
-	jbtnLimpiar.setEnabled(false);
-	vigentes.setSelected(false);
-	noVigentes.setSelected(false);
-	
-	borrarFilasTabla();
+        boolean numeros = key >= 48 && key <= 57;
+
+        if (!numeros) {
+            evt.consume();
+        }
+
+        if (jtfDniInq.getText().trim().length() == 10) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtfDniInqKeyTyped
+
+    private void jtfDniProKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfDniProKeyTyped
+        int key = evt.getKeyChar();
+
+        boolean numeros = key >= 48 && key <= 57;
+
+        if (!numeros) {
+            evt.consume();
+        }
+
+        if (jtfDniPro.getText().trim().length() == 10) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtfDniProKeyTyped
+
+    private void limpiarCampos() {
+        jtfDniInq.setText("");
+        jtfDniPro.setText("");
+        jtfInquilino.setText("");
+        jtfPropietario.setText("");
+
+        jbtnContrato.setEnabled(false);
+        jbtnBuscarPro.setEnabled(true);
+        jbtnBuscarInq.setEnabled(true);
+        jtfPropietario.setEnabled(false);
+        jtfInquilino.setEnabled(false);
+        jtfDniPro.setEnabled(true);
+        jtfDniInq.setEnabled(true);
+        jbtnLimpiar.setEnabled(false);
+        vigentes.setSelected(false);
+        noVigentes.setSelected(false);
+
+        borrarFilasTabla();
     }
 
     private void borrarFilasTabla() {
 
-	if (modelo != null) {
+        if (modelo != null) {
 
-	    int a = modelo.getRowCount() - 1;
-	    for (int i = a; i >= 0; i--) {
-		modelo.removeRow(i);
-	    }
-	}
+            int a = modelo.getRowCount() - 1;
+            for (int i = a; i >= 0; i--) {
+                modelo.removeRow(i);
+            }
+        }
 
     }
 
     private void armarCabeceraTabla() {
-	ArrayList<Object> columnas = new ArrayList<Object>();
-	columnas.add("Direccion ");
-	columnas.add("Altura");
-	columnas.add("Tipo de Inmueble");
-	columnas.add("Ambientes");
-	columnas.add("Zona");
-	columnas.add("Superficie");
-	columnas.add("Precio");
+        ArrayList<Object> columnas = new ArrayList<Object>();
+        columnas.add("Direccion ");
+        columnas.add("Altura");
+        columnas.add("Tipo de Inmueble");
+        columnas.add("Ambientes");
+        columnas.add("Zona");
+        columnas.add("Superficie");
+        columnas.add("Precio");
 
-	for (Object it : columnas) {
-	    modelo.addColumn(it);
-	}
-	jtListaContrato.setModel(modelo);
+        for (Object it : columnas) {
+            modelo.addColumn(it);
+        }
+        jtListaContrato.setModel(modelo);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

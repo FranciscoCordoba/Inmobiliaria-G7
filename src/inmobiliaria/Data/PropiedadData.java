@@ -103,7 +103,7 @@ public class PropiedadData {
         return inmueble;
     }
 
-    public boolean borrarInmuebleXId(int id) {  //Probado en Main, funciona
+    public boolean borrarInmuebleXId(int id) {
         boolean inm = false;
         try {
             String sql = "UPDATE inmueble SET disponibilidad = 0 WHERE idInmueble = ?;";
@@ -118,6 +118,25 @@ public class PropiedadData {
         } catch (SQLException ex) {
 
             JOptionPane.showMessageDialog(null, "No se pudo borrar el inmueble " + ex.getMessage());
+        }
+        return inm;
+    }
+    
+    public boolean habilitarInmuebleXId(int id) {
+        boolean inm = false;
+        try {
+            String sql = "UPDATE inmueble SET disponibilidad = 1 WHERE idInmueble = ?;";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+
+            if (ps.executeUpdate() != 0) {
+                inm = true;
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+
+            JOptionPane.showMessageDialog(null, "No se pudo habilitar el inmueble " + ex.getMessage());
         }
         return inm;
     }

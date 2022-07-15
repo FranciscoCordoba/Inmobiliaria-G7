@@ -358,6 +358,9 @@ public class AgregarContrato extends javax.swing.JPanel {
         if (indexPropiedad == -1) {
             Firmar.setEnabled(false);
         }
+        
+            JOptionPane.showMessageDialog(this, "Contrato firmado");
+        
         }catch(Exception e){
             JOptionPane.showMessageDialog(this, "Error, no existe un inquilino con ese DNI");
         }

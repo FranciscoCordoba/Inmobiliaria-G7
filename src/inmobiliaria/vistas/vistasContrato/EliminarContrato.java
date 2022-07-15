@@ -77,6 +77,11 @@ public class EliminarContrato extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jtListaContrato.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jtListaContratoFocusGained(evt);
+            }
+        });
         jScrollPane1.setViewportView(jtListaContrato);
 
         jLabel6.setFont(new java.awt.Font("Roboto Light", 0, 12)); // NOI18N
@@ -139,6 +144,7 @@ public class EliminarContrato extends javax.swing.JPanel {
 
         jbtnRescindir.setBackground(new java.awt.Color(0, 63, 121));
         jbtnRescindir.setText("Rescindir");
+        jbtnRescindir.setEnabled(false);
         jbtnRescindir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnRescindirActionPerformed(evt);
@@ -324,10 +330,8 @@ public class EliminarContrato extends javax.swing.JPanel {
         Contrato contratoR;
         if (filaSeleccionada != -1) {
             int idPropiedad = (int) modelo.getValueAt(filaSeleccionada, 0);
-            System.out.println(idPropiedad);
             Inmueble inmueble = propiedadData.buscarInmuebleXId(idPropiedad);
             contratoR = contratoData.obtenerContratoXInmuebleId(inmueble.getIdInmueble());
-            System.out.println(contratoR.toString());
             contratoData.rescindirContrato(contratoR);
         }
 
@@ -364,6 +368,10 @@ public class EliminarContrato extends javax.swing.JPanel {
             evt.consume();
         }
     }//GEN-LAST:event_jtfDniProKeyTyped
+
+    private void jtListaContratoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtListaContratoFocusGained
+        jbtnRescindir.setSelected(true);
+    }//GEN-LAST:event_jtListaContratoFocusGained
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

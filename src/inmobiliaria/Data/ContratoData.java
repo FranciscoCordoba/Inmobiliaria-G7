@@ -226,6 +226,7 @@ public class ContratoData {
         String sql = "UPDATE contrato SET activo = 0 WHERE idContrato = ?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
+            propiedad.habilitarInmuebleXId(contrato.getPropiedadContrato().getIdInmueble());
             ps.setInt(1, contrato.getIdContrato());
             if (ps.executeUpdate() != 0) {
                 resContrato = true;

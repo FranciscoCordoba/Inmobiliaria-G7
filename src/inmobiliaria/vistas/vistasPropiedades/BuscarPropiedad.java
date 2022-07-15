@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package inmobiliaria.vistas.vistasPropiedades;
 
 import inmobiliaria.Data.Conexion;
@@ -11,10 +6,6 @@ import inmobiliaria.Modelo.Inmueble;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author nican
- */
 public class BuscarPropiedad extends javax.swing.JPanel {
 
     private Conexion conexion;

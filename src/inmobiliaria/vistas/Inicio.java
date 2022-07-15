@@ -19,9 +19,9 @@ public class Inicio extends javax.swing.JPanel {
      */
     
         
-    Color darkBlue = new Color(13,20,26);
-    Color normalBlue = new Color(24,32,38);
-    ImageIcon background = new ImageIcon("Assets/fotoMainMenu.png");
+    private Color darkBlue = new Color(13,20,26);
+    private Color normalBlue = new Color(24,32,38);
+    private ImageIcon background = new ImageIcon("Assets/fotoMainMenu.png");
 
     
     public Inicio() {

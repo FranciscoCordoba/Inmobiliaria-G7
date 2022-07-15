@@ -8,12 +8,12 @@ import javax.swing.ImageIcon;
 
 public class Menu extends javax.swing.JFrame { //comentario
 
-    ImageIcon logo = new ImageIcon("Assets/logoG7Mini.png");
-    ImageIcon background = new ImageIcon("Assets/fotoMainMenu.png");
-    int xMouse, yMouse;
+    private ImageIcon logo = new ImageIcon("Assets/logoG7Mini.png");
+    private ImageIcon background = new ImageIcon("Assets/fotoMainMenu.png");
+    private int xMouse, yMouse;
     
-    Color darkBlue = new Color(13,20,26);
-    Color normalBlue = new Color(24,32,38);
+    private Color darkBlue = new Color(13,20,26);
+    private Color normalBlue = new Color(24,32,38);
 
     public Menu() {
         initComponents();

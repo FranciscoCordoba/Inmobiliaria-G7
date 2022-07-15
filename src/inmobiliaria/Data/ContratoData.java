@@ -20,7 +20,7 @@ public class ContratoData {
     private PropietarioData propietario;
     private InquilinoData inquilino;
     private PropiedadData propiedad;
-    Connection con = null;
+    private Connection con = null;
 
     public ContratoData(Conexion conexion) {
 

@@ -15,8 +15,8 @@ public class ContratoMenu extends javax.swing.JPanel {
 
     
         
-    Color lightblue = new Color(54,135,195);
-    Color blue = new Color(0,63,121);
+    private Color lightblue = new Color(54,135,195);
+    private Color blue = new Color(0,63,121);
     /**
      * Creates new form ContratoMenu
      */

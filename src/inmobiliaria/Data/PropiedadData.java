@@ -13,9 +13,9 @@ import javax.swing.JOptionPane;
 
 public class PropiedadData {
 
-    Connection con = null;
-    InquilinoData inquiData;
-    PropietarioData propData;
+    private Connection con = null;
+    private InquilinoData inquiData;
+    private PropietarioData propData;
 
     public PropiedadData(Conexion conexion) {
         this.con = conexion.getConexion();
@@ -189,15 +189,10 @@ public class PropiedadData {
     public ArrayList<Inmueble> listarInmueblesXZona(ArrayList<Inmueble> lista, String zona) {
 
         ArrayList<Inmueble> inmueblesZona = new ArrayList<>();
-        Inmueble inmueble = new Inmueble();
         
-        if (!zona.isEmpty()) {
-            
-            
-            
-        
-
-        String sql = "SELECT * inmueble WHERE zona = ?";
+        if (!zona.equals("")) {
+	    
+        String sql = "SELECT * FROM inmueble WHERE zona LIKE ?";
 
         try {
 
@@ -207,6 +202,8 @@ public class PropiedadData {
             ResultSet rs = ps.executeQuery();
             
             while (rs.next()) {
+		
+		Inmueble inmueble = new Inmueble();
 
                 inmueble.setDireccion(rs.getString("direccion"));
                 inmueble.setAltura(rs.getInt("altura"));
@@ -236,13 +233,10 @@ public class PropiedadData {
     public ArrayList<Inmueble> listarInmueblesXTipo (ArrayList<Inmueble> lista, String tipo){
         
         ArrayList<Inmueble> inmueblesTipo = new ArrayList<>();
-        Inmueble inmueble = new Inmueble();
         
         if (!tipo.isEmpty()) {
-            
-        
-
-        String sql = "SELECT * inmueble WHERE tipo = ?";
+            	    
+        String sql = "SELECT * FROM inmueble WHERE tipoDeInmueble LIKE ?";
 
         try {
 
@@ -252,7 +246,8 @@ public class PropiedadData {
             ResultSet rs = ps.executeQuery();
             
             while (rs.next()) {
-
+		
+		Inmueble inmueble = new Inmueble();
                 inmueble.setDireccion(rs.getString("direccion"));
                 inmueble.setAltura(rs.getInt("altura"));
                 inmueble.setDisponibilidad(rs.getBoolean("disponibilidad"));
@@ -282,7 +277,6 @@ public class PropiedadData {
     public ArrayList<Inmueble> listarInmueblesXAmbientes (ArrayList<Inmueble> lista, String ambientes){
         
         ArrayList<Inmueble> inmueblesAmbiente = new ArrayList<>();
-        Inmueble inmueble = new Inmueble();
         int cantidad;
         
         if (!ambientes.isEmpty()) {
@@ -290,7 +284,7 @@ public class PropiedadData {
             
         
 
-        String sql = "SELECT * inmueble WHERE cantAmbientes = ?";
+        String sql = "SELECT * FROM inmueble WHERE cantAmbientes LIKE ?";
 
         try {
 
@@ -301,6 +295,7 @@ public class PropiedadData {
             
             while (rs.next()) {
 
+		Inmueble inmueble = new Inmueble();
                 inmueble.setDireccion(rs.getString("direccion"));
                 inmueble.setAltura(rs.getInt("altura"));
                 inmueble.setDisponibilidad(rs.getBoolean("disponibilidad"));
@@ -320,13 +315,9 @@ public class PropiedadData {
             
             JOptionPane.showMessageDialog(null, "Error al listar por Ambientes" + ex);
         }
-        
-        
-        
+
         }
         
-        
-
         return inmueblesAmbiente;
         
         
@@ -347,7 +338,7 @@ public class PropiedadData {
             
                 while (rs.next()) {
                     
-                    Inmueble inmueble = new Inmueble();
+                Inmueble inmueble = new Inmueble();
 
                 inmueble.setDireccion(rs.getString("direccion"));
                 inmueble.setAltura(rs.getInt("altura"));

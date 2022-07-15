@@ -32,9 +32,6 @@ public class PropiedadesMenu extends javax.swing.JPanel {
     private void initComponents() {
 
         jpMenuPropiedades = new javax.swing.JPanel();
-        jpEditarPropi = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jpEliminarPropi = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -44,49 +41,6 @@ public class PropiedadesMenu extends javax.swing.JPanel {
         jpBuscarPropi = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-
-        jpEditarPropi.setBackground(new java.awt.Color(54, 135, 195));
-        jpEditarPropi.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jpEditarPropi.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jpEditarPropiMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jpEditarPropiMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jpEditarPropiMouseExited(evt);
-            }
-        });
-
-        jLabel5.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Editar");
-
-        jLabel6.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Propiedad");
-
-        javax.swing.GroupLayout jpEditarPropiLayout = new javax.swing.GroupLayout(jpEditarPropi);
-        jpEditarPropi.setLayout(jpEditarPropiLayout);
-        jpEditarPropiLayout.setHorizontalGroup(
-            jpEditarPropiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpEditarPropiLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jpEditarPropiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6))
-                .addContainerGap(98, Short.MAX_VALUE))
-        );
-        jpEditarPropiLayout.setVerticalGroup(
-            jpEditarPropiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpEditarPropiLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel6)
-                .addContainerGap())
-        );
 
         jpEliminarPropi.setBackground(new java.awt.Color(54, 135, 195));
         jpEliminarPropi.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -223,14 +177,14 @@ public class PropiedadesMenu extends javax.swing.JPanel {
             jpMenuPropiedadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpMenuPropiedadesLayout.createSequentialGroup()
                 .addContainerGap(78, Short.MAX_VALUE)
-                .addGroup(jpMenuPropiedadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jpAgregarPropi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jpBuscarPropi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(47, 47, 47)
-                .addGroup(jpMenuPropiedadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jpEditarPropi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jpEliminarPropi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(85, 85, 85))
+                .addComponent(jpAgregarPropi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51)
+                .addComponent(jpBuscarPropi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(81, 81, 81))
+            .addGroup(jpMenuPropiedadesLayout.createSequentialGroup()
+                .addGap(183, 183, 183)
+                .addComponent(jpEliminarPropi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpMenuPropiedadesLayout.setVerticalGroup(
             jpMenuPropiedadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -238,12 +192,10 @@ public class PropiedadesMenu extends javax.swing.JPanel {
                 .addGap(118, 118, 118)
                 .addGroup(jpMenuPropiedadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jpAgregarPropi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jpEditarPropi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(57, 57, 57)
-                .addGroup(jpMenuPropiedadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jpBuscarPropi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jpEliminarPropi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(139, Short.MAX_VALUE))
+                    .addComponent(jpBuscarPropi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(58, 58, 58)
+                .addComponent(jpEliminarPropi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(138, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -257,28 +209,6 @@ public class PropiedadesMenu extends javax.swing.JPanel {
             .addComponent(jpMenuPropiedades, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jpEditarPropiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpEditarPropiMouseClicked
-        // TODO add your handling code here:
-        jpMenuPropiedades.removeAll();
-
-        EditarPropiedad editPropiedadMenu = new EditarPropiedad();
-        editPropiedadMenu.setSize(530, 410);
-        editPropiedadMenu.setLocation(0, 0);
-
-        jpMenuPropiedades.add(editPropiedadMenu);
-        jpMenuPropiedades.revalidate();
-    }//GEN-LAST:event_jpEditarPropiMouseClicked
-
-    private void jpEditarPropiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpEditarPropiMouseEntered
-        // TODO add your handling code here:
-        jpEditarPropi.setBackground(blue);
-    }//GEN-LAST:event_jpEditarPropiMouseEntered
-
-    private void jpEditarPropiMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpEditarPropiMouseExited
-        // TODO add your handling code here:
-        jpEditarPropi.setBackground(lightblue);
-    }//GEN-LAST:event_jpEditarPropiMouseExited
 
     private void jpEliminarPropiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpEliminarPropiMouseClicked
         // TODO add your handling code here:
@@ -352,13 +282,10 @@ public class PropiedadesMenu extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jpAgregarPropi;
     private javax.swing.JPanel jpBuscarPropi;
-    private javax.swing.JPanel jpEditarPropi;
     private javax.swing.JPanel jpEliminarPropi;
     private javax.swing.JPanel jpMenuPropiedades;
     // End of variables declaration//GEN-END:variables

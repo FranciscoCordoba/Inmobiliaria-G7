@@ -21,6 +21,7 @@ public class BuscarPropietario extends javax.swing.JPanel {
         propietarioData = new PropietarioData(conexion);
         modelo = new DefaultTableModel();
         armarCabeceraTabla();
+        jbLimpiar.setEnabled(false);
     }
 
     
@@ -53,6 +54,11 @@ public class BuscarPropietario extends javax.swing.JPanel {
         jtfDni.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtfDniActionPerformed(evt);
+            }
+        });
+        jtfDni.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfDniKeyTyped(evt);
             }
         });
 
@@ -134,6 +140,8 @@ public class BuscarPropietario extends javax.swing.JPanel {
         try {
             Propietario propietario = propietarioData.obtenerPropietarioPorDni(dni);
             modelo.addRow(new Object[]{propietario.getApellido(),propietario.getNombre(), propietario.getDni(), propietario.getDomicilio() , propietario.getTelefono()});
+            jbLimpiar.setEnabled(true);
+            jbtnBuscar.setEnabled(false);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "No hay ningun propietario con ese DNI");
         }       
@@ -143,6 +151,20 @@ public class BuscarPropietario extends javax.swing.JPanel {
     private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed
         limpiarCampos();
     }//GEN-LAST:event_jbLimpiarActionPerformed
+
+    private void jtfDniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfDniKeyTyped
+         int key = evt.getKeyChar();
+
+        boolean numeros = key >= 48 && key <= 57;
+
+        if (!numeros) {
+            evt.consume();
+        }
+
+        if (jtfDni.getText().trim().length() == 10) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtfDniKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -179,6 +201,8 @@ public class BuscarPropietario extends javax.swing.JPanel {
                 modelo.removeRow(i);
             }
         }
+        jbLimpiar.setEnabled(false);
+        jbtnBuscar.setEnabled(true);
     }
  
 

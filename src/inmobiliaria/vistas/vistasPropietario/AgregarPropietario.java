@@ -40,37 +40,37 @@ public class AgregarPropietario extends javax.swing.JPanel {
         jbGuardar = new javax.swing.JButton();
 
         jtNombre.setBackground(new java.awt.Color(217, 217, 217));
-        jtNombre.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jtNombreFocusLost(evt);
+        jtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtNombreKeyTyped(evt);
             }
         });
 
         jtApellido.setBackground(new java.awt.Color(217, 217, 217));
-        jtApellido.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jtApellidoFocusLost(evt);
+        jtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtApellidoKeyTyped(evt);
             }
         });
 
         jtDni.setBackground(new java.awt.Color(217, 217, 217));
-        jtDni.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jtDniFocusLost(evt);
+        jtDni.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtDniKeyTyped(evt);
             }
         });
 
         jtTelefono.setBackground(new java.awt.Color(217, 217, 217));
-        jtTelefono.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jtTelefonoFocusLost(evt);
+        jtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtTelefonoKeyTyped(evt);
             }
         });
 
         jtDomicilio.setBackground(new java.awt.Color(217, 217, 217));
-        jtDomicilio.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jtDomicilioFocusLost(evt);
+        jtDomicilio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtDomicilioKeyTyped(evt);
             }
         });
 
@@ -225,69 +225,6 @@ public class AgregarPropietario extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jbGuardarActionPerformed
 
-    private void jtNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtNombreFocusLost
-
-        String texto = jtNombre.getText();
-        try{
-            if(!texto.isEmpty()){
-                Double.parseDouble(texto);
-                JOptionPane.showMessageDialog(this, "No puede ingresar un número en este campo");
-                jtNombre.requestFocus();
-                jtNombre.setText("");
-            }
-        }catch(Exception e){}
-    }//GEN-LAST:event_jtNombreFocusLost
-
-    private void jtApellidoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtApellidoFocusLost
-        String texto = jtApellido.getText();
-        try{
-            if(!texto.isEmpty()){
-                Double.parseDouble(texto);
-                JOptionPane.showMessageDialog(this, "No puede ingresar un número en este campo");
-                jtApellido.requestFocus();
-                jtApellido.setText("");
-            }
-        }catch(Exception e){}
-    }//GEN-LAST:event_jtApellidoFocusLost
-
-    private void jtDniFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtDniFocusLost
-        String texto = jtDni.getText();
-        try{
-            if(!texto.isEmpty()){
-                Double.parseDouble(texto);
-            }
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(this, "Error, debe ingresar un número en este campo");
-            jtDni.requestFocus();
-            jtDni.setText("");
-        }
-    }//GEN-LAST:event_jtDniFocusLost
-
-    private void jtTelefonoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtTelefonoFocusLost
-        String texto = jtTelefono.getText();
-        try{
-            if(!texto.isEmpty()){
-                Double.parseDouble(texto);
-            }
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(this, "Error, debe ingresar un número en este campo");
-            jtTelefono.requestFocus();
-            jtTelefono.setText("");
-        }
-    }//GEN-LAST:event_jtTelefonoFocusLost
-
-    private void jtDomicilioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtDomicilioFocusLost
-        String texto = jtDomicilio.getText();
-        try{
-            if(!texto.isEmpty()){
-                Double.parseDouble(texto);
-                JOptionPane.showMessageDialog(this, "No puede ingresar un número en este campo");
-                jtDomicilio.requestFocus();
-                jtDomicilio.setText("");
-            }
-        }catch(Exception e){}
-    }//GEN-LAST:event_jtDomicilioFocusLost
-
     private void jbGuardarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jbGuardarFocusGained
         
     }//GEN-LAST:event_jbGuardarFocusGained
@@ -299,6 +236,70 @@ public class AgregarPropietario extends javax.swing.JPanel {
     private void jbGuardarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbGuardarMouseEntered
         //System.out.println("");
     }//GEN-LAST:event_jbGuardarMouseEntered
+
+    private void jtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtNombreKeyTyped
+        int key = evt.getKeyChar();
+
+        boolean mayusculas = key >= 65 && key <= 90;
+        boolean minusculas = key >= 97 && key <= 122;
+        boolean espacio = key == 32;
+
+        if (!(minusculas || mayusculas || espacio)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtNombreKeyTyped
+
+    private void jtApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtApellidoKeyTyped
+        int key = evt.getKeyChar();
+
+        boolean mayusculas = key >= 65 && key <= 90;
+        boolean minusculas = key >= 97 && key <= 122;
+        boolean espacio = key == 32;
+
+        if (!(minusculas || mayusculas || espacio)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtApellidoKeyTyped
+
+    private void jtDniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtDniKeyTyped
+        int key = evt.getKeyChar();
+
+        boolean numeros = key >= 48 && key <= 57;
+
+        if (!numeros) {
+            evt.consume();
+        }
+
+        if (jtDni.getText().trim().length() == 10) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtDniKeyTyped
+
+    private void jtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtTelefonoKeyTyped
+        int key = evt.getKeyChar();
+
+        boolean numeros = key >= 48 && key <= 57;
+
+        if (!numeros) {
+            evt.consume();
+        }
+
+        if (jtTelefono.getText().trim().length() == 10) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtTelefonoKeyTyped
+
+    private void jtDomicilioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtDomicilioKeyTyped
+        int key = evt.getKeyChar();
+
+        boolean mayusculas = key >= 65 && key <= 90;
+        boolean minusculas = key >= 97 && key <= 122;
+        boolean espacio = key == 32;
+        boolean numeros = key >= 48 && key <= 57;
+        if (!(minusculas || mayusculas || espacio || numeros)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtDomicilioKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

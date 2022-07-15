@@ -36,6 +36,7 @@ public class EditarInquilino extends javax.swing.JPanel {
         cbActivo.setSelected(false);
         cbActivo.setEnabled(false);
         jbBuscar.setEnabled(true);
+        jtDNI.setEditable(true);
     }
 
     /**

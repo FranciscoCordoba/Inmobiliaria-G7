@@ -51,11 +51,6 @@ public class BuscarPropietario extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jtPropietarioLista);
 
         jtfDni.setBackground(new java.awt.Color(217, 217, 217));
-        jtfDni.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfDniActionPerformed(evt);
-            }
-        });
         jtfDni.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtfDniKeyTyped(evt);
@@ -130,10 +125,6 @@ public class BuscarPropietario extends javax.swing.JPanel {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jtfDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfDniActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfDniActionPerformed
 
     private void jbtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnBuscarActionPerformed
         

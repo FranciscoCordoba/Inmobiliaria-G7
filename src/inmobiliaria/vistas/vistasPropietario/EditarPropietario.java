@@ -380,6 +380,7 @@ public class EditarPropietario extends javax.swing.JPanel {
         jtfTelefono.setText("");
         jtfDomicilio.setText("");
         jtfDni.setText("");
+        jtfDni.setEditable(true);
         jcbActivo.setSelected(false);
         jtfNombre.setEnabled(false);
         jtfApellido.setEnabled(false);

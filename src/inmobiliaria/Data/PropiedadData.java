@@ -186,7 +186,7 @@ public class PropiedadData {
         return inmuebles;
     }
 
-    public ArrayList<Inmueble> listarInmueblesXZona(String zona) {
+    public ArrayList<Inmueble> listarInmueblesXZona(ArrayList<Inmueble> lista, String zona) {
 
         ArrayList<Inmueble> inmueblesZona = new ArrayList<>();
         Inmueble inmueble = new Inmueble();
@@ -225,7 +225,7 @@ public class PropiedadData {
         return inmueblesZona;
     }
     
-    public ArrayList<Inmueble> listarInmueblesXTipo (String tipo){
+    public ArrayList<Inmueble> listarInmueblesXTipo (ArrayList<Inmueble> lista, String tipo){
         
         ArrayList<Inmueble> inmueblesTipo = new ArrayList<>();
         Inmueble inmueble = new Inmueble();
@@ -265,7 +265,7 @@ public class PropiedadData {
         
     }
     
-    public ArrayList<Inmueble> listarInmueblesXAmbientes (int ambientes){
+    public ArrayList<Inmueble> listarInmueblesXAmbientes (ArrayList<Inmueble> lista, int ambientes){
         
         ArrayList<Inmueble> inmueblesAmbiente = new ArrayList<>();
         Inmueble inmueble = new Inmueble();

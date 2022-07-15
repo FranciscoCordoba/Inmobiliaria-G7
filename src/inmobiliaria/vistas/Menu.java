@@ -76,6 +76,7 @@ public class Menu extends javax.swing.JFrame { //comentario
         jLabel2.setText("Propiedades");
 
         jpSideInicio.setBackground(new java.awt.Color(24, 32, 38));
+        jpSideInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jpSideInicio.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jpSideInicioMouseClicked(evt);
@@ -110,7 +111,7 @@ public class Menu extends javax.swing.JFrame { //comentario
         );
 
         jpSidePropietarios.setBackground(new java.awt.Color(24, 32, 38));
-        jpSidePropietarios.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jpSidePropietarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jpSidePropietarios.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jpSidePropietariosMouseClicked(evt);
@@ -146,7 +147,7 @@ public class Menu extends javax.swing.JFrame { //comentario
         );
 
         jpSideInquilinos.setBackground(new java.awt.Color(24, 32, 38));
-        jpSideInquilinos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jpSideInquilinos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jpSideInquilinos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jpSideInquilinosMouseClicked(evt);
@@ -182,7 +183,7 @@ public class Menu extends javax.swing.JFrame { //comentario
         );
 
         jpSidePropiedades.setBackground(new java.awt.Color(24, 32, 38));
-        jpSidePropiedades.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jpSidePropiedades.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jpSidePropiedades.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jpSidePropiedadesMouseClicked(evt);
@@ -218,7 +219,7 @@ public class Menu extends javax.swing.JFrame { //comentario
         );
 
         jpSideContratos.setBackground(new java.awt.Color(24, 32, 38));
-        jpSideContratos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jpSideContratos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jpSideContratos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jpSideContratosMouseClicked(evt);

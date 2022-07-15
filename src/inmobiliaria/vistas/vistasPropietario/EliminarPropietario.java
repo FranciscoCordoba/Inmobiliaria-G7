@@ -1,9 +1,12 @@
 package inmobiliaria.vistas.vistasPropietario;
 
 import inmobiliaria.Data.Conexion;
+import inmobiliaria.Data.PropiedadData;
 import inmobiliaria.Data.PropietarioData;
+import inmobiliaria.Modelo.Inmueble;
 import inmobiliaria.Modelo.Propietario;
 import java.util.ArrayList;
+import java.util.Iterator;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -11,12 +14,14 @@ public class EliminarPropietario extends javax.swing.JPanel {
 
     private Conexion conexion;
     private PropietarioData propietarioData;
+    private PropiedadData propiedadData;
     private DefaultTableModel modelo;
 
     public EliminarPropietario() {
         initComponents();
         conexion = new Conexion();
         propietarioData = new PropietarioData(conexion);
+        propiedadData = new PropiedadData(conexion);
         modelo = new DefaultTableModel();
         armarCabeceraTabla();
         jbLimpiar.setEnabled(false);
@@ -157,6 +162,17 @@ public class EliminarPropietario extends javax.swing.JPanel {
         if (filaSeleccionada != -1) {
             long idPropietario = (Long) modelo.getValueAt(filaSeleccionada, 2);
             Propietario propie = propietarioData.obtenerPropietarioPorDni(idPropietario);
+            
+            ArrayList<Inmueble> inmuebles = propiedadData.buscarInmueblesXPropietarioDni((int) idPropietario);
+            int tam = inmuebles.size();
+            System.out.println(tam);
+            /*for(int i = tam; i >= 0; i--){
+                propiedadData.borrarInmuebleXId(inmuebles.get(i).getIdInmueble());
+            }*/
+            Iterator<Inmueble> iterador = inmuebles.iterator();
+	    while (iterador.hasNext()){
+		propiedadData.borrarInmuebleXId(iterador.next().getIdInmueble());
+	    }
             propietarioData.bajaPropietario(propie.getId());
             jbtnEliminar.setEnabled(false);
             jbLimpiar.setEnabled(true);

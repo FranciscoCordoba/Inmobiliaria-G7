@@ -251,9 +251,44 @@ public class ContratoData {
                 
             }
             
+        }
+        
+        public ArrayList<Contrato> contratosXInquilino(int idInquilino){
             
+            ArrayList<Contrato> contratosInqui = new ArrayList<>();
             
+            try {
+                String sql = "SELECT * contrato WHERE idInquilino = ?";
+                
+                PreparedStatement ps = con.prepareStatement(sql);
+                
+                ps.setInt(1, idInquilino);
+                
+                ResultSet rs = ps.executeQuery();
+                
+                
+                while (rs.next()) {
+                    
+                Contrato contrato = new Contrato();
+                contrato.setIdContrato(rs.getInt("idContrato"));
+                contrato.setInquilinoContrato(inquilino.obtenerInquilinoXId(rs.getInt("inquilinoContrato")));
+                contrato.setPropiedadContrato(propiedad.buscarInmuebleXId(rs.getInt("propiedadContrato")));
+                contrato.setFechaInicio(rs.getDate("fechaInicio").toLocalDate());
+                contrato.setFechaFin(rs.getDate("fechaFin").toLocalDate());
+                contrato.setActivo(rs.getBoolean("activo"));
+                contrato.setMonto(rs.getDouble("monto"));
+                contratosInqui.add(contrato);
+                    
+                    
+                }
+                
+                
+            } catch (SQLException ex) {
+                
+                JOptionPane.showMessageDialog(null, "Error al obtener contratos por inquilino" + ex);
+            }
             
+            return contratosInqui;
         }
      
 }

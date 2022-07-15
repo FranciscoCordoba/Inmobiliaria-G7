@@ -305,4 +305,47 @@ public class PropiedadData {
         
         
     }
+    
+    public ArrayList<Inmueble> inmueblesXInquiId(int idInquilino){
+        
+        ArrayList<Inmueble> listaInm = new ArrayList<>();
+        
+        try {
+            String sql = "SELECT * Inmueble WHERE idInquilino = ?";
+            
+            PreparedStatement ps = con.prepareStatement(sql);
+            
+            ps.setInt(1, idInquilino);
+            
+            ResultSet rs = ps.executeQuery();
+            
+                while (rs.next()) {
+                    
+                    Inmueble inmueble = new Inmueble();
+
+                inmueble.setDireccion(rs.getString("direccion"));
+                inmueble.setAltura(rs.getInt("altura"));
+                inmueble.setDisponibilidad(rs.getBoolean("disponibilidad"));
+                inmueble.setTipoDeInmueble(rs.getString("tipoDeInmueble"));
+                inmueble.setCantAmbientes(rs.getInt("cantAmbientes"));
+                inmueble.setZona(rs.getString("zona"));
+                inmueble.setSuperficie(rs.getDouble("superficie"));
+                inmueble.setPrecioBase(rs.getDouble("precioBase"));
+                inmueble.setIdInmueble(rs.getInt("idInmueble"));
+                Propietario prop = propData.obtenerPropietarioPorId(rs.getInt("propietarioInmueble"));
+                inmueble.setPropietarioInmueble(prop);
+                listaInm.add(inmueble);
+                
+            }
+            
+            
+        } catch (Exception ex) {
+            
+            JOptionPane.showMessageDialog(null, "Error al obtener inmuebles");
+        }
+        
+        return listaInm;
+        
+        
+    }
 }

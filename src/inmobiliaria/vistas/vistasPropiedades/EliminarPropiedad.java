@@ -102,6 +102,11 @@ public class EliminarPropiedad extends javax.swing.JPanel {
         btnLimpiar = new javax.swing.JButton();
 
         jtDni.setBackground(new java.awt.Color(217, 217, 217));
+        jtDni.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtDniKeyTyped(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Roboto Light", 0, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
@@ -109,6 +114,7 @@ public class EliminarPropiedad extends javax.swing.JPanel {
 
         btnEliminar.setBackground(new java.awt.Color(0, 63, 121));
         btnEliminar.setText("Eliminar");
+        btnEliminar.setEnabled(false);
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarActionPerformed(evt);
@@ -126,6 +132,11 @@ public class EliminarPropiedad extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jtEliminar.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jtEliminarFocusGained(evt);
+            }
+        });
         jScrollPane1.setViewportView(jtEliminar);
 
         btnBuscar.setBackground(new java.awt.Color(0, 63, 121));
@@ -233,22 +244,23 @@ public class EliminarPropiedad extends javax.swing.JPanel {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
 
 	limpiarTabla();
-	if (buscarPorPropietario.isSelected()) {
+	if (buscarPorPropietario.isSelected() && !jtDni.getText().isEmpty()) {
 	    listaTabla = refrescarTablaPorPropietario();
-	} else {
+	} else if(buscarTodas.isSelected()){
 	    listaTabla = refescarTablaTodos();
 	}
-
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void buscarTodasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarTodasActionPerformed
-	// TODO add your handling code here:
+	limpiarTabla();
+        btnEliminar.setEnabled(false);
 	buscarPorPropietario.setSelected(false);
 	jtDni.setEnabled(false);
     }//GEN-LAST:event_buscarTodasActionPerformed
 
     private void buscarPorPropietarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarPorPropietarioActionPerformed
-	// TODO add your handling code here:
+	limpiarTabla();
+        btnEliminar.setEnabled(false);
 	buscarTodas.setSelected(false);
 	jtDni.setEnabled(true);
     }//GEN-LAST:event_buscarPorPropietarioActionPerformed
@@ -258,6 +270,24 @@ public class EliminarPropiedad extends javax.swing.JPanel {
 	limpiarTabla();
 	jtDni.setText("");
     }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void jtDniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtDniKeyTyped
+        int key = evt.getKeyChar();
+
+        boolean numeros = key >= 48 && key <= 57;
+
+        if (!numeros) {
+            evt.consume();
+        }
+
+        if (jtDni.getText().trim().length() == 10) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtDniKeyTyped
+
+    private void jtEliminarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtEliminarFocusGained
+        btnEliminar.setEnabled(true);
+    }//GEN-LAST:event_jtEliminarFocusGained
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

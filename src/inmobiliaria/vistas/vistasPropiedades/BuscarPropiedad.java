@@ -82,6 +82,11 @@ public class BuscarPropiedad extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jtPropiedades);
 
         jtDni.setBackground(new java.awt.Color(217, 217, 217));
+        jtDni.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtDniKeyTyped(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Roboto Light", 0, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
@@ -142,6 +147,20 @@ public class BuscarPropiedad extends javax.swing.JPanel {
         limpiarTabla();
         refrescarTabla();
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void jtDniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtDniKeyTyped
+        int key = evt.getKeyChar();
+
+        boolean numeros = key >= 48 && key <= 57;
+
+        if (!numeros) {
+            evt.consume();
+        }
+
+        if (jtDni.getText().trim().length() == 10) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtDniKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

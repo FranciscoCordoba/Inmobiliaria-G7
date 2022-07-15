@@ -4,6 +4,8 @@ import inmobiliaria.Data.Conexion;
 import inmobiliaria.Data.PropiedadData;
 import inmobiliaria.Data.PropietarioData;
 import inmobiliaria.Modelo.Inmueble;
+import inmobiliaria.Modelo.Propietario;
+import javax.swing.JOptionPane;
 
 public class AgregarPropiedad extends javax.swing.JPanel {
 
@@ -43,12 +45,32 @@ public class AgregarPropiedad extends javax.swing.JPanel {
         jcbTipo = new javax.swing.JComboBox<>();
 
         jtDireccion.setBackground(new java.awt.Color(217, 217, 217));
+        jtDireccion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtDireccionKeyTyped(evt);
+            }
+        });
 
         jtAltura.setBackground(new java.awt.Color(217, 217, 217));
+        jtAltura.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtAlturaKeyTyped(evt);
+            }
+        });
 
         jtCantidad.setBackground(new java.awt.Color(217, 217, 217));
+        jtCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtCantidadKeyTyped(evt);
+            }
+        });
 
         jtSuperficie.setBackground(new java.awt.Color(217, 217, 217));
+        jtSuperficie.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtSuperficieKeyTyped(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Roboto Light", 0, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
@@ -87,12 +109,22 @@ public class AgregarPropiedad extends javax.swing.JPanel {
         });
 
         jtPrecio.setBackground(new java.awt.Color(217, 217, 217));
+        jtPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtPrecioKeyTyped(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Roboto Light", 0, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(51, 51, 51));
         jLabel6.setText("Precio Base");
 
         jtDniPropietario.setBackground(new java.awt.Color(217, 217, 217));
+        jtDniPropietario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtDniPropietarioKeyTyped(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Roboto Light", 0, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(51, 51, 51));
@@ -217,20 +249,109 @@ public class AgregarPropiedad extends javax.swing.JPanel {
     }//GEN-LAST:event_jbLimpiarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        Inmueble inmueble = new Inmueble();
         
-        inmueble.setDireccion(jtDireccion.getText());
-        inmueble.setAltura(Integer.parseInt(jtAltura.getText()));
-        inmueble.setCantAmbientes(Integer.parseInt(jtCantidad.getText()));
-        inmueble.setDisponibilidad(true);
-        inmueble.setPrecioBase(Double.parseDouble(jtPrecio.getText()));
-        inmueble.setPropietarioInmueble(propietarioData.obtenerPropietarioPorDni(Integer.parseInt(jtDniPropietario.getText())));
-        inmueble.setSuperficie(Double.parseDouble(jtSuperficie.getText()));
-        inmueble.setTipoDeInmueble(jcbTipo.getSelectedItem().toString());
-        inmueble.setZona(jcbZona.getSelectedItem().toString());
+        String direccion = jtDireccion.getText();
+        int altura = (Integer.parseInt(jtAltura.getText()));
+        int cantAmbientes = (Integer.parseInt(jtCantidad.getText()));
+        double precioBase = (Double.parseDouble(jtPrecio.getText()));
+        Propietario propietarioInmueble = (propietarioData.obtenerPropietarioPorDni(Integer.parseInt(jtDniPropietario.getText())));
+        double superficie = (Double.parseDouble(jtSuperficie.getText()));
+        String tipoDeInmueble = (jcbTipo.getSelectedItem().toString());
+        String zona = (jcbZona.getSelectedItem().toString());
         
-        propData.guardarInmueble(inmueble);
+        if(jtDniPropietario.getText().isEmpty() || zona.isEmpty() || direccion.isEmpty() || tipoDeInmueble.isEmpty() || jtCantidad.getText().isEmpty() || jtAltura.getText().isEmpty() || jtPrecio.getText().isEmpty() || jtSuperficie.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "No pueden quedar campos vacíos");
+        }else{
+            Inmueble inmueble = new Inmueble(direccion, altura, true, tipoDeInmueble, cantAmbientes, zona, superficie, precioBase, propietarioInmueble);
+            propData.guardarInmueble(inmueble);
+            JOptionPane.showMessageDialog(this, "Propiedad cargada con éxito");
+        }
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void jtDireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtDireccionKeyTyped
+        int key = evt.getKeyChar();
+
+        boolean mayusculas = key >= 65 && key <= 90;
+        boolean minusculas = key >= 97 && key <= 122;
+        boolean espacio = key == 32;
+
+        if (!(minusculas || mayusculas || espacio)) {
+            evt.consume();
+        }
+        
+    }//GEN-LAST:event_jtDireccionKeyTyped
+
+    private void jtAlturaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtAlturaKeyTyped
+        int key = evt.getKeyChar();
+
+        boolean numeros = key >= 48 && key <= 57;
+
+        if (!numeros) {
+            evt.consume();
+        }
+
+        if (jtAltura.getText().trim().length() == 6) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtAlturaKeyTyped
+
+    private void jtCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtCantidadKeyTyped
+        int key = evt.getKeyChar();
+
+        boolean numeros = key >= 48 && key <= 57;
+
+        if (!numeros) {
+            evt.consume();
+        }
+
+        if (jtCantidad.getText().trim().length() == 6) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtCantidadKeyTyped
+
+    private void jtSuperficieKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtSuperficieKeyTyped
+        int key = evt.getKeyChar();
+
+        boolean numeros = key >= 48 && key <= 57;
+        boolean punto = key == 46;
+
+        if (!numeros && !punto) {
+            evt.consume();
+        }
+
+        if (jtSuperficie.getText().trim().length() == 10) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtSuperficieKeyTyped
+
+    private void jtPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtPrecioKeyTyped
+        int key = evt.getKeyChar();
+
+        boolean numeros = key >= 48 && key <= 57;
+        boolean punto = key == 46;
+
+        if (!numeros && !punto) {
+            evt.consume();
+        }
+
+        if (jtPrecio.getText().trim().length() == 10) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtPrecioKeyTyped
+
+    private void jtDniPropietarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtDniPropietarioKeyTyped
+        int key = evt.getKeyChar();
+
+        boolean numeros = key >= 48 && key <= 57;
+
+        if (!numeros) {
+            evt.consume();
+        }
+
+        if (jtDniPropietario.getText().trim().length() == 10) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtDniPropietarioKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -99,6 +99,9 @@
               <Color blue="d9" green="d9" red="d9" type="rgb"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jtDniKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
@@ -117,6 +120,7 @@
               <Color blue="79" green="3f" red="0" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Eliminar"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEliminarActionPerformed"/>
@@ -140,6 +144,9 @@
                   </Table>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jtEliminarFocusGained"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

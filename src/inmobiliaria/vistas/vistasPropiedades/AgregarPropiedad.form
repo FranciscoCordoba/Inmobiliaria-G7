@@ -136,6 +136,9 @@
               <Color blue="d9" green="d9" red="d9" type="rgb"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jtDireccionKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jtAltura">
           <Properties>
@@ -143,6 +146,9 @@
               <Color blue="d9" green="d9" red="d9" type="rgb"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jtAlturaKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jtCantidad">
           <Properties>
@@ -150,6 +156,9 @@
               <Color blue="d9" green="d9" red="d9" type="rgb"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jtCantidadKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jtSuperficie">
           <Properties>
@@ -157,6 +166,9 @@
               <Color blue="d9" green="d9" red="d9" type="rgb"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jtSuperficieKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
@@ -241,6 +253,9 @@
               <Color blue="d9" green="d9" red="d9" type="rgb"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jtPrecioKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
@@ -259,6 +274,9 @@
               <Color blue="d9" green="d9" red="d9" type="rgb"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jtDniPropietarioKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel7">
           <Properties>

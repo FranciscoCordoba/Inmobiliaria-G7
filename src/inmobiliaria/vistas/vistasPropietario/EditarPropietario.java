@@ -55,9 +55,9 @@ public class EditarPropietario extends javax.swing.JPanel {
 
         jtfNombre.setBackground(new java.awt.Color(217, 217, 217));
         jtfNombre.setEnabled(false);
-        jtfNombre.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jtfNombreFocusLost(evt);
+        jtfNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfNombreKeyTyped(evt);
             }
         });
 
@@ -72,9 +72,9 @@ public class EditarPropietario extends javax.swing.JPanel {
 
         jtfApellido.setBackground(new java.awt.Color(217, 217, 217));
         jtfApellido.setEnabled(false);
-        jtfApellido.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jtfApellidoFocusLost(evt);
+        jtfApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfApellidoKeyTyped(evt);
             }
         });
 
@@ -93,12 +93,27 @@ public class EditarPropietario extends javax.swing.JPanel {
                 jtfDniFocusLost(evt);
             }
         });
+        jtfDni.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfDniKeyTyped(evt);
+            }
+        });
 
         jtfTelefono.setBackground(new java.awt.Color(217, 217, 217));
         jtfTelefono.setEnabled(false);
+        jtfTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfTelefonoKeyTyped(evt);
+            }
+        });
 
         jtfDomicilio.setBackground(new java.awt.Color(217, 217, 217));
         jtfDomicilio.setEnabled(false);
+        jtfDomicilio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfDomicilioKeyTyped(evt);
+            }
+        });
 
         jcbActivo.setFont(new java.awt.Font("Roboto Light", 0, 12)); // NOI18N
         jcbActivo.setForeground(new java.awt.Color(51, 51, 51));
@@ -257,30 +272,12 @@ public class EditarPropietario extends javax.swing.JPanel {
             jbtnGuarda.setEnabled(true);
             jcbActivo.setEnabled(true);
             jcbActivo.setSelected(true);
+            jtfDni.setEditable(false);
+            jbBuscar.setEnabled(false);
         }
+        
+        
     }//GEN-LAST:event_jbBuscarActionPerformed
-
-    private void jtfNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfNombreFocusLost
-        String texto = jtfNombre.getText();
-        try{
-            if(!texto.isEmpty()){
-                Double.parseDouble(texto);
-                JOptionPane.showMessageDialog(this, "No puede ingresar un número en este campo");
-                jtfNombre.requestFocus();
-            }
-        }catch(Exception e){}
-    }//GEN-LAST:event_jtfNombreFocusLost
-
-    private void jtfApellidoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfApellidoFocusLost
-        String texto = jtfApellido.getText();
-        try{
-            if(!texto.isEmpty()){
-                Double.parseDouble(texto);
-                JOptionPane.showMessageDialog(this, "No puede ingresar un número en este campo");
-                jtfApellido.requestFocus();
-            }
-        }catch(Exception e){}
-    }//GEN-LAST:event_jtfApellidoFocusLost
 
     private void jtfDniFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfDniFocusLost
         String texto = jtfDni.getText();
@@ -293,6 +290,70 @@ public class EditarPropietario extends javax.swing.JPanel {
             jtfDni.requestFocus();
         }
     }//GEN-LAST:event_jtfDniFocusLost
+
+    private void jtfNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfNombreKeyTyped
+       int key = evt.getKeyChar();
+
+        boolean mayusculas = key >= 65 && key <= 90;
+        boolean minusculas = key >= 97 && key <= 122;
+        boolean espacio = key == 32;
+
+        if (!(minusculas || mayusculas || espacio)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtfNombreKeyTyped
+
+    private void jtfApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfApellidoKeyTyped
+        int key = evt.getKeyChar();
+
+        boolean mayusculas = key >= 65 && key <= 90;
+        boolean minusculas = key >= 97 && key <= 122;
+        boolean espacio = key == 32;
+
+        if (!(minusculas || mayusculas || espacio)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtfApellidoKeyTyped
+
+    private void jtfDniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfDniKeyTyped
+        int key = evt.getKeyChar();
+
+        boolean numeros = key >= 48 && key <= 57;
+
+        if (!numeros) {
+            evt.consume();
+        }
+
+        if (jtfDni.getText().trim().length() == 10) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtfDniKeyTyped
+
+    private void jtfTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfTelefonoKeyTyped
+        int key = evt.getKeyChar();
+
+        boolean numeros = key >= 48 && key <= 57;
+
+        if (!numeros) {
+            evt.consume();
+        }
+
+        if (jtfTelefono.getText().trim().length() == 10) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtfTelefonoKeyTyped
+
+    private void jtfDomicilioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfDomicilioKeyTyped
+        int key = evt.getKeyChar();
+
+        boolean mayusculas = key >= 65 && key <= 90;
+        boolean minusculas = key >= 97 && key <= 122;
+        boolean espacio = key == 32;
+        boolean numeros = key >= 48 && key <= 57;
+        if (!(minusculas || mayusculas || espacio || numeros)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtfDomicilioKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -327,5 +388,6 @@ public class EditarPropietario extends javax.swing.JPanel {
         jbtnLimpiar.setEnabled(false);
         jbtnGuarda.setEnabled(false);
         jcbActivo.setEnabled(false);
+        jbBuscar.setEnabled(true);
     }
 }

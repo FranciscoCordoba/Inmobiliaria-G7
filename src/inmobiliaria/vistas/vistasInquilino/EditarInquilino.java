@@ -9,7 +9,7 @@ public class EditarInquilino extends javax.swing.JPanel {
 
     private InquilinoData inquilinoData;
     private Conexion con;
-    private int contador;
+    
 
     public EditarInquilino() {
         initComponents();
@@ -314,6 +314,7 @@ public class EditarInquilino extends javax.swing.JPanel {
                 Inquilino nuevoInquilino = new Inquilino(nombre, apellido, dni, cuit, trabajo, nombreGarante, dniGarante, activo);
 
                 inquilinoData.modificarInquilino(nuevoInquilino);
+                btnGuarda.setEnabled(false);
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Complete todos los campos correctamente");
@@ -323,8 +324,12 @@ public class EditarInquilino extends javax.swing.JPanel {
     }//GEN-LAST:event_btnGuardaActionPerformed
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
-        String texto = jtDNI.getText();
+        
         try {
+            if (jtDNI.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "No pueden quedar campos vacíos");
+                } else {
+            String texto = jtDNI.getText();
             if (!texto.isEmpty()) {
                 Double.parseDouble(texto);
                 Inquilino i = inquilinoData.obtenerInquilinoPorDni(Long.parseLong(jtDNI.getText()));
@@ -347,7 +352,9 @@ public class EditarInquilino extends javax.swing.JPanel {
                     cbActivo.setEnabled(true);
                     cbActivo.setSelected(true);
                     jbBuscar.setEnabled(false);
+                    jtDNI.setEditable(false);
                 }
+            }
             }
 
         } catch (Exception e) {

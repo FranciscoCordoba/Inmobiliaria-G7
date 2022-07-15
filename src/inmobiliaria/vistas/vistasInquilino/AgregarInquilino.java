@@ -9,7 +9,7 @@ public class AgregarInquilino extends javax.swing.JPanel {
 
     private InquilinoData inquilinoData;
     private Conexion con;
-    private int contador;
+    
 
     public AgregarInquilino() {
         initComponents();
@@ -256,7 +256,7 @@ public class AgregarInquilino extends javax.swing.JPanel {
         jtTrabajo.setText("");
         jtNombreGarante.setText("");
         jtDniGarante.setText("");
-	contador = 0;
+        Guardar.setEnabled(true);
     }//GEN-LAST:event_jbtnLimpiarActionPerformed
 
     private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
@@ -275,6 +275,7 @@ public class AgregarInquilino extends javax.swing.JPanel {
                 Inquilino nuevoInquilino = new Inquilino(nombre, apellido, dni, cuit, trabajo, nombreGarante, dniGarante, true);
 
                 inquilinoData.agregarInquilino(nuevoInquilino);
+                Guardar.setEnabled(false);
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Complete todos los campos");

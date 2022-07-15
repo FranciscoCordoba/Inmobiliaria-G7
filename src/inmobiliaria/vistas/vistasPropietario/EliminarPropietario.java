@@ -166,11 +166,18 @@ public class EliminarPropietario extends javax.swing.JPanel {
     }//GEN-LAST:event_jbtnEliminarActionPerformed
 
     private void jbtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnBuscarActionPerformed
-        long dni = Long.parseLong(jtfDni.getText());
+
         try {
-        Propietario propietario = propietarioData.obtenerPropietarioPorDni(dni);
-        modelo.addRow(new Object[]{propietario.getApellido(), propietario.getNombre(), propietario.getDni(), propietario.getDomicilio(), propietario.getTelefono()});
-        jbtnEliminar.setEnabled(true);
+            if (jtfDni.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "No pueden quedar campos vacíos");
+            } else {
+                long dni = Long.parseLong(jtfDni.getText());
+                Propietario propietario = propietarioData.obtenerPropietarioPorDni(dni);
+                modelo.addRow(new Object[]{propietario.getApellido(), propietario.getNombre(), propietario.getDni(), propietario.getDomicilio(), propietario.getTelefono()});
+                jbtnEliminar.setEnabled(true);
+                jbtnBuscar.setEnabled(false);
+                jbLimpiar.setEnabled(true);
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "No se encontró ningún propietario con ese DNI");
         }

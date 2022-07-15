@@ -12,7 +12,7 @@ public class EliminarInquilino extends javax.swing.JPanel {
     private InquilinoData inquilinoData;
     private Conexion con;
     private DefaultTableModel tablaModelo;
-    private int contador;
+    
 
     public EliminarInquilino() {
         initComponents();
@@ -145,13 +145,17 @@ public class EliminarInquilino extends javax.swing.JPanel {
 
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
 
-        long dni = Long.parseLong(jtDniEliminar.getText());
-
         try {
-
-            Inquilino inquilino = inquilinoData.obtenerInquilinoPorDni(dni);
-            tablaModelo.addRow(new Object[]{inquilino.getNombre(), inquilino.getApellido(), inquilino.getDni(), inquilino.getCuit(), inquilino.getLugarTrabajo(), inquilino.getNombreGarante(), inquilino.getDniGarante()});
-            jbtnEliminar.setEnabled(true);
+            if (jtDniEliminar.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "No pueden quedar campos vacíos");
+            } else {
+                long dni = Long.parseLong(jtDniEliminar.getText());
+                Inquilino inquilino = inquilinoData.obtenerInquilinoPorDni(dni);
+                tablaModelo.addRow(new Object[]{inquilino.getNombre(), inquilino.getApellido(), inquilino.getDni(), inquilino.getCuit(), inquilino.getLugarTrabajo(), inquilino.getNombreGarante(), inquilino.getDniGarante()});
+                jbtnEliminar.setEnabled(true);
+                jbLimpiar.setEnabled(true);
+                Buscar.setEnabled(false);
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "No se encontró ningún inquilino con ese DNI");
         }
@@ -228,6 +232,7 @@ public class EliminarInquilino extends javax.swing.JPanel {
         }
         jbLimpiar.setEnabled(false);
         Buscar.setEnabled(true);
+        jbtnEliminar.setEnabled(false);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

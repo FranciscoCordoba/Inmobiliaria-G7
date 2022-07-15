@@ -12,7 +12,6 @@ public class BuscarInquilino extends javax.swing.JPanel {
     private InquilinoData inquilinoData;
     private Conexion con;
     private DefaultTableModel tablaModelo;
-    private int contador;
 
     public BuscarInquilino() {
         initComponents();
@@ -134,24 +133,25 @@ public class BuscarInquilino extends javax.swing.JPanel {
     }//GEN-LAST:event_jtDniBuscarActionPerformed
 
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
-       
-            
-            long dni = Long.parseLong(jtDniBuscar.getText());
 
-            try {
-
+        try {
+            if (jtDniBuscar.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "No pueden quedar campos vacíos");
+            } else {
+                long dni = Long.parseLong(jtDniBuscar.getText());
                 Inquilino inquilino = inquilinoData.obtenerInquilinoPorDni(dni);
                 tablaModelo.addRow(new Object[]{inquilino.getNombre(), inquilino.getApellido(), inquilino.getDni(), inquilino.getCuit(), inquilino.getLugarTrabajo(), inquilino.getNombreGarante(), inquilino.getDniGarante()});
                 jbLimpiar.setEnabled(true);
                 Buscar.setEnabled(false);
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "No se encontró ningún inquilino con ese DNI");
-            
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "No se encontró ningún inquilino con ese DNI");
+
         }
     }//GEN-LAST:event_BuscarActionPerformed
 
     private void jtDniBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtDniBuscarKeyTyped
-         int key = evt.getKeyChar();
+        int key = evt.getKeyChar();
 
         boolean numeros = key >= 48 && key <= 57;
 

@@ -186,7 +186,7 @@ public class PropiedadData {
         return inmuebles;
     }
 
-    public ArrayList<Inmueble> listarInmueblesXZona(ArrayList<Inmueble> lista) {
+    public ArrayList<Inmueble> listarInmueblesXZona(String zona) {
 
         ArrayList<Inmueble> inmueblesZona = new ArrayList<>();
         Inmueble inmueble = new Inmueble();
@@ -196,7 +196,7 @@ public class PropiedadData {
         try {
 
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, inmueble.getZona());
+            ps.setString(1, zona);
             
             ResultSet rs = ps.executeQuery();
             
@@ -225,7 +225,7 @@ public class PropiedadData {
         return inmueblesZona;
     }
     
-    public ArrayList<Inmueble> listarInmueblesXTipo (ArrayList<Inmueble> lista){
+    public ArrayList<Inmueble> listarInmueblesXTipo (String tipo){
         
         ArrayList<Inmueble> inmueblesTipo = new ArrayList<>();
         Inmueble inmueble = new Inmueble();
@@ -235,7 +235,7 @@ public class PropiedadData {
         try {
 
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, inmueble.getTipoDeInmueble());
+            ps.setString(1, tipo);
             
             ResultSet rs = ps.executeQuery();
             
@@ -265,7 +265,7 @@ public class PropiedadData {
         
     }
     
-    public ArrayList<Inmueble> listarInmueblesXAmbientes (ArrayList<Inmueble> lista){
+    public ArrayList<Inmueble> listarInmueblesXAmbientes (int ambientes){
         
         ArrayList<Inmueble> inmueblesAmbiente = new ArrayList<>();
         Inmueble inmueble = new Inmueble();
@@ -275,7 +275,7 @@ public class PropiedadData {
         try {
 
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, inmueble.getCantAmbientes());
+            ps.setInt(1, ambientes);
             
             ResultSet rs = ps.executeQuery();
             

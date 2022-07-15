@@ -296,6 +296,7 @@ public class EliminarContrato extends javax.swing.JPanel {
 
     private void jbtnContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnContratoActionPerformed
         if (jbtnBuscarInq.isEnabled() == true) {
+            limpiarTabla();
             long dniInq = Long.parseLong(jtfDniInq.getText());
             Inquilino inquilin = inquilinoData.obtenerInquilinoPorDni(dniInq);
 
@@ -306,6 +307,7 @@ public class EliminarContrato extends javax.swing.JPanel {
             }
             jbtnRescindir.setEnabled(true);
         }else {
+            limpiarTabla();
             long dniInq = Long.parseLong(jtfDniPro.getText());
             Propietario propie = propietarioData.obtenerPropietarioPorDni(dniInq);
              listacontratos = contratoData.contratosXPropietario(propie.getId());
@@ -355,6 +357,13 @@ public class EliminarContrato extends javax.swing.JPanel {
     private javax.swing.JTextField jtfPropietario;
     // End of variables declaration//GEN-END:variables
 
+    private void limpiarTabla(){
+        int a = modelo.getRowCount()-1;
+        for(int i = a; i >= 0; i--){
+            modelo.removeRow(i);
+        }
+    }
+    
     private void limpiarCampos() {
         jtfDniInq.setText("");
         jtfDniPro.setText("");

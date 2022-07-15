@@ -259,7 +259,7 @@ public class ContratoData {
         ArrayList<Contrato> contratosInqui = new ArrayList<>();
 
         try {
-            String sql = "SELECT * FROM contrato WHERE inquilinoContrato = ?";
+            String sql = "SELECT * FROM contrato WHERE inquilinoContrato = ? AND activo = 1";
 
             PreparedStatement ps = con.prepareStatement(sql);
 
@@ -295,7 +295,7 @@ public class ContratoData {
         ArrayList<Contrato> contratosPropi = new ArrayList<>();
 
         try {
-            String sql = "SELECT * FROM contrato WHERE propietarioContrato = ?";
+            String sql = "SELECT * FROM contrato WHERE propietarioContrato = ? AND activo = 1";
 
             PreparedStatement ps = con.prepareStatement(sql);
 

@@ -272,7 +272,7 @@ public class AgregarContrato extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Firmar)
                     .addComponent(Limpiar))
-                .addContainerGap(197, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -288,16 +288,17 @@ public class AgregarContrato extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
+        if (!jtDniInquilino.getText().isEmpty()) {
+            long dniInquilino = Long.parseLong(jtDniInquilino.getText());
+            try {
+                inquilinoData.obtenerInquilinoPorDni(dniInquilino);
 
-        long dniInquilino = Long.parseLong(jtDniInquilino.getText());
-        try {
-            inquilinoData.obtenerInquilinoPorDni(dniInquilino);
+                Inquilino inquilino = inquilinoData.obtenerInquilinoPorDni(dniInquilino);
 
-            Inquilino inquilino = inquilinoData.obtenerInquilinoPorDni(dniInquilino);
-
-            jtNombreInquilino.setText(inquilino.getNombre() + " " + inquilino.getApellido());
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "No hay ningun inquilino con ese DNI");
+                jtNombreInquilino.setText(inquilino.getNombre() + " " + inquilino.getApellido());
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "No hay ningun inquilino con ese DNI");
+            }
         }
     }//GEN-LAST:event_BuscarActionPerformed
 
@@ -366,7 +367,7 @@ public class AgregarContrato extends javax.swing.JPanel {
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Error, no existe un inquilino con ese DNI");
             }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "Error, la fecha de inicio seleccionada está después de la fecha final");
         }
     }//GEN-LAST:event_FirmarActionPerformed

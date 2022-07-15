@@ -4,6 +4,7 @@ package inmobiliaria.vistas.vistasPropietario;
 import inmobiliaria.Data.Conexion;
 import inmobiliaria.Data.PropietarioData;
 import inmobiliaria.Modelo.Propietario;
+import javax.swing.JOptionPane;
 
 
 public class EditarPropietario extends javax.swing.JPanel {
@@ -54,9 +55,9 @@ public class EditarPropietario extends javax.swing.JPanel {
 
         jtfNombre.setBackground(new java.awt.Color(217, 217, 217));
         jtfNombre.setEnabled(false);
-        jtfNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfNombreActionPerformed(evt);
+        jtfNombre.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jtfNombreFocusLost(evt);
             }
         });
 
@@ -71,6 +72,11 @@ public class EditarPropietario extends javax.swing.JPanel {
 
         jtfApellido.setBackground(new java.awt.Color(217, 217, 217));
         jtfApellido.setEnabled(false);
+        jtfApellido.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jtfApellidoFocusLost(evt);
+            }
+        });
 
         jbtnGuarda.setBackground(new java.awt.Color(0, 63, 121));
         jbtnGuarda.setText("Guardar");
@@ -82,6 +88,11 @@ public class EditarPropietario extends javax.swing.JPanel {
         });
 
         jtfDni.setBackground(new java.awt.Color(217, 217, 217));
+        jtfDni.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jtfDniFocusLost(evt);
+            }
+        });
 
         jtfTelefono.setBackground(new java.awt.Color(217, 217, 217));
         jtfTelefono.setEnabled(false);
@@ -194,10 +205,6 @@ public class EditarPropietario extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jtfNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfNombreActionPerformed
-        
-    }//GEN-LAST:event_jtfNombreActionPerformed
-
     private void jbtnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnLimpiarActionPerformed
        limpiarCampos();
     }//GEN-LAST:event_jbtnLimpiarActionPerformed
@@ -205,17 +212,38 @@ public class EditarPropietario extends javax.swing.JPanel {
     private void jbtnGuardaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnGuardaActionPerformed
         String nombre = jtfNombre.getText();
         String apellido = jtfApellido.getText();
-        long dni = Long.parseLong(jtfDni.getText());
+        long dni = 0;
+        try{
+            dni = Long.parseLong(jtfDni.getText());
+        }catch(Exception e){}
+        long telefono = 0;
+        try{
+            telefono = Long.parseLong(jtfTelefono.getText());
+        }catch(Exception e){}
         String domicilio = jtfDomicilio.getText();
-        long telefono = Long.parseLong(jtfTelefono.getText());
         boolean activo = jcbActivo.isSelected();
         
-        Propietario propietario = new Propietario(nombre, apellido, dni, domicilio, telefono, activo);
-        propietarioData.actualizarPropietario(propietario);
+        if(nombre.isEmpty() || apellido.isEmpty() || jtfDni.getText().isEmpty() || dni == 0 || jtfTelefono.getText().isEmpty() || telefono == 0 ||domicilio.isEmpty()){
+            JOptionPane.showMessageDialog(this, "No pueden quedar campos vacíos");
+        }else{
+            Propietario propietario = new Propietario(nombre, apellido, dni, domicilio, telefono, activo);
+            propietarioData.actualizarPropietario(propietario);
+        }
     }//GEN-LAST:event_jbtnGuardaActionPerformed
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
-        Propietario p = propietarioData.obtenerPropietarioPorDni(Long.parseLong(jtfDni.getText()));
+        Propietario p = null;
+        try{
+            if(!jtfDni.getText().isEmpty()){
+                p = propietarioData.obtenerPropietarioPorDni(Long.parseLong(jtfDni.getText()));
+            }else{
+                JOptionPane.showMessageDialog(this, "Campo DNI vacío");
+                jtfDni.requestFocus();
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Error, debe ingresar un número en este campo");
+            p = null;
+        }
         if(p != null){
             jtfNombre.setEnabled(true);
             jtfNombre.setText(p.getNombre());
@@ -231,6 +259,40 @@ public class EditarPropietario extends javax.swing.JPanel {
             jcbActivo.setSelected(true);
         }
     }//GEN-LAST:event_jbBuscarActionPerformed
+
+    private void jtfNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfNombreFocusLost
+        String texto = jtfNombre.getText();
+        try{
+            if(!texto.isEmpty()){
+                Double.parseDouble(texto);
+                JOptionPane.showMessageDialog(this, "No puede ingresar un número en este campo");
+                jtfNombre.requestFocus();
+            }
+        }catch(Exception e){}
+    }//GEN-LAST:event_jtfNombreFocusLost
+
+    private void jtfApellidoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfApellidoFocusLost
+        String texto = jtfApellido.getText();
+        try{
+            if(!texto.isEmpty()){
+                Double.parseDouble(texto);
+                JOptionPane.showMessageDialog(this, "No puede ingresar un número en este campo");
+                jtfApellido.requestFocus();
+            }
+        }catch(Exception e){}
+    }//GEN-LAST:event_jtfApellidoFocusLost
+
+    private void jtfDniFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfDniFocusLost
+        String texto = jtfDni.getText();
+        try{
+            if(!texto.isEmpty()){
+                Double.parseDouble(texto);
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Error, debe ingresar un número en este campo");
+            jtfDni.requestFocus();
+        }
+    }//GEN-LAST:event_jtfDniFocusLost
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

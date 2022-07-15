@@ -40,24 +40,39 @@ public class AgregarPropietario extends javax.swing.JPanel {
         jbGuardar = new javax.swing.JButton();
 
         jtNombre.setBackground(new java.awt.Color(217, 217, 217));
-        jtNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtNombreActionPerformed(evt);
+        jtNombre.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jtNombreFocusLost(evt);
             }
         });
 
         jtApellido.setBackground(new java.awt.Color(217, 217, 217));
+        jtApellido.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jtApellidoFocusLost(evt);
+            }
+        });
 
         jtDni.setBackground(new java.awt.Color(217, 217, 217));
+        jtDni.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jtDniFocusLost(evt);
+            }
+        });
 
         jtTelefono.setBackground(new java.awt.Color(217, 217, 217));
-        jtTelefono.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtTelefonoActionPerformed(evt);
+        jtTelefono.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jtTelefonoFocusLost(evt);
             }
         });
 
         jtDomicilio.setBackground(new java.awt.Color(217, 217, 217));
+        jtDomicilio.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jtDomicilioFocusLost(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Roboto Light", 0, 12)); // NOI18N
         jLabel1.setText("Nombre");
@@ -84,6 +99,19 @@ public class AgregarPropietario extends javax.swing.JPanel {
 
         jbGuardar.setBackground(new java.awt.Color(0, 63, 121));
         jbGuardar.setText("Guardar");
+        jbGuardar.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jbGuardarFocusGained(evt);
+            }
+        });
+        jbGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbGuardarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jbGuardarMouseEntered(evt);
+            }
+        });
         jbGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbGuardarActionPerformed(evt);
@@ -170,14 +198,6 @@ public class AgregarPropietario extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtNombreActionPerformed
-       
-    }//GEN-LAST:event_jtNombreActionPerformed
-
-    private void jtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtTelefonoActionPerformed
-        
-    }//GEN-LAST:event_jtTelefonoActionPerformed
-
     private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed
         
         limpiarCampos();
@@ -187,14 +207,98 @@ public class AgregarPropietario extends javax.swing.JPanel {
         
         String nombre = jtNombre.getText();
         String apellido = jtApellido.getText();
-        long dni = Long.parseLong(jtDni.getText());
-        long telefono = Long.parseLong(jtTelefono.getText());
+        long dni = 0;
+        try{
+            dni = Long.parseLong(jtDni.getText());
+        }catch(Exception e){}
+        long telefono = 0;
+        try{
+            telefono = Long.parseLong(jtTelefono.getText());
+        }catch(Exception e){}
         String domicilio = jtDomicilio.getText();
         
-        Propietario propietario1 = new Propietario(nombre, apellido, dni, domicilio, telefono, true);
-        propietarioData.altaPropietario(propietario1);
-        
+        if(nombre.isEmpty() || apellido.isEmpty() || jtDni.getText().isEmpty() || dni == 0 || jtTelefono.getText().isEmpty() || telefono == 0 ||domicilio.isEmpty()){
+            JOptionPane.showMessageDialog(this, "No pueden quedar campos vacíos");
+        }else{
+            Propietario propietario1 = new Propietario(nombre, apellido, dni, domicilio, telefono, true);
+            propietarioData.altaPropietario(propietario1);
+        }
     }//GEN-LAST:event_jbGuardarActionPerformed
+
+    private void jtNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtNombreFocusLost
+
+        String texto = jtNombre.getText();
+        try{
+            if(!texto.isEmpty()){
+                Double.parseDouble(texto);
+                JOptionPane.showMessageDialog(this, "No puede ingresar un número en este campo");
+                jtNombre.requestFocus();
+                jtNombre.setText("");
+            }
+        }catch(Exception e){}
+    }//GEN-LAST:event_jtNombreFocusLost
+
+    private void jtApellidoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtApellidoFocusLost
+        String texto = jtApellido.getText();
+        try{
+            if(!texto.isEmpty()){
+                Double.parseDouble(texto);
+                JOptionPane.showMessageDialog(this, "No puede ingresar un número en este campo");
+                jtApellido.requestFocus();
+                jtApellido.setText("");
+            }
+        }catch(Exception e){}
+    }//GEN-LAST:event_jtApellidoFocusLost
+
+    private void jtDniFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtDniFocusLost
+        String texto = jtDni.getText();
+        try{
+            if(!texto.isEmpty()){
+                Double.parseDouble(texto);
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Error, debe ingresar un número en este campo");
+            jtDni.requestFocus();
+            jtDni.setText("");
+        }
+    }//GEN-LAST:event_jtDniFocusLost
+
+    private void jtTelefonoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtTelefonoFocusLost
+        String texto = jtTelefono.getText();
+        try{
+            if(!texto.isEmpty()){
+                Double.parseDouble(texto);
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Error, debe ingresar un número en este campo");
+            jtTelefono.requestFocus();
+            jtTelefono.setText("");
+        }
+    }//GEN-LAST:event_jtTelefonoFocusLost
+
+    private void jtDomicilioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtDomicilioFocusLost
+        String texto = jtDomicilio.getText();
+        try{
+            if(!texto.isEmpty()){
+                Double.parseDouble(texto);
+                JOptionPane.showMessageDialog(this, "No puede ingresar un número en este campo");
+                jtDomicilio.requestFocus();
+                jtDomicilio.setText("");
+            }
+        }catch(Exception e){}
+    }//GEN-LAST:event_jtDomicilioFocusLost
+
+    private void jbGuardarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jbGuardarFocusGained
+        
+    }//GEN-LAST:event_jbGuardarFocusGained
+
+    private void jbGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbGuardarMouseClicked
+        System.out.println("asdasdasdada");
+    }//GEN-LAST:event_jbGuardarMouseClicked
+
+    private void jbGuardarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbGuardarMouseEntered
+        //System.out.println("");
+    }//GEN-LAST:event_jbGuardarMouseEntered
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

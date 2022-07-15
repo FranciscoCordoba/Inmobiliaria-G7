@@ -49,7 +49,7 @@ public class PropietarioData {
             }
             ps.close();
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Error al agregar propietario" + ex);
+            JOptionPane.showMessageDialog(null, "Error al agregar propietario " + ex);
         }
 
         return agregado;

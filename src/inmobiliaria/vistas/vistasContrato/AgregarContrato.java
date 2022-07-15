@@ -337,34 +337,38 @@ public class AgregarContrato extends javax.swing.JPanel {
 
         LocalDate fechaFin = LocalDate.parse(fechaFinFormat, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
 
-        double monto = Double.parseDouble(jtMonto.getText());
-        
-        Inquilino inquilinoContrato = null;
-        try{
-        inquilinoContrato = inquilinoData.obtenerInquilinoPorDni(Integer.parseInt(jtDniInquilino.getText()));
-        int indexPropiedad = jListaPropiedades.getSelectedRow();
-        Inmueble propiedadContrato;
+        if (fechaInicio.isBefore(fechaFin)) {
 
-        propiedadContrato = propiedadData.buscarInmuebleXId(inmuebles.get(indexPropiedad).getIdInmueble());
+            double monto = Double.parseDouble(jtMonto.getText());
 
-        Propietario propietarioContrato = propietarioData.obtenerPropietarioPorId(propiedadContrato.getPropietarioInmueble().getId());
+            Inquilino inquilinoContrato = null;
+            try {
+                inquilinoContrato = inquilinoData.obtenerInquilinoPorDni(Integer.parseInt(jtDniInquilino.getText()));
+                int indexPropiedad = jListaPropiedades.getSelectedRow();
+                Inmueble propiedadContrato;
 
-        Contrato contrato = new Contrato(fechaInicio, fechaFin, true, monto, inquilinoContrato, propietarioContrato, propiedadContrato);
+                propiedadContrato = propiedadData.buscarInmuebleXId(inmuebles.get(indexPropiedad).getIdInmueble());
 
-        contratoData.guardarContrato(contrato);
+                Propietario propietarioContrato = propietarioData.obtenerPropietarioPorId(propiedadContrato.getPropietarioInmueble().getId());
 
-        propiedadData.borrarInmuebleXId(propiedadContrato.getIdInmueble());
+                Contrato contrato = new Contrato(fechaInicio, fechaFin, true, monto, inquilinoContrato, propietarioContrato, propiedadContrato);
 
-        if (indexPropiedad == -1) {
-            Firmar.setEnabled(false);
+                contratoData.guardarContrato(contrato);
+
+                propiedadData.borrarInmuebleXId(propiedadContrato.getIdInmueble());
+
+                if (indexPropiedad == -1) {
+                    Firmar.setEnabled(false);
+                }
+
+                JOptionPane.showMessageDialog(this, "Contrato firmado");
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Error, no existe un inquilino con ese DNI");
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "Error, la fecha de inicio seleccionada está después de la fecha final");
         }
-        
-            JOptionPane.showMessageDialog(this, "Contrato firmado");
-        
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(this, "Error, no existe un inquilino con ese DNI");
-        }
-
     }//GEN-LAST:event_FirmarActionPerformed
 
     private void LimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LimpiarActionPerformed

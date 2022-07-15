@@ -81,6 +81,9 @@ public class EliminarContrato extends javax.swing.JPanel {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jtListaContratoFocusGained(evt);
             }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jtListaContratoFocusLost(evt);
+            }
         });
         jScrollPane1.setViewportView(jtListaContrato);
 
@@ -311,7 +314,6 @@ public class EliminarContrato extends javax.swing.JPanel {
             for (Contrato cont : listacontratos) {
                 modelo.addRow(new Object[]{cont.getPropiedadContrato().getIdInmueble(), (cont.getPropietarioContrato().getApellido() + ", " + cont.getPropietarioContrato().getNombre()), (cont.getInquilinoContrato().getApellido() + ", " + cont.getInquilinoContrato().getNombre()), cont.getPropiedadContrato().getDireccion() + " " + cont.getPropiedadContrato().getAltura(), cont.getMonto(), cont.getFechaInicio(), cont.getFechaFin()});
             }
-            jbtnRescindir.setEnabled(true);
         } else {
             limpiarTabla();
             long dniInq = Long.parseLong(jtfDniPro.getText());
@@ -320,7 +322,6 @@ public class EliminarContrato extends javax.swing.JPanel {
             for (Contrato cont : listacontratos) {
                 modelo.addRow(new Object[]{cont.getPropiedadContrato().getIdInmueble(), (cont.getPropietarioContrato().getApellido() + ", " + cont.getPropietarioContrato().getNombre()), (cont.getInquilinoContrato().getApellido() + ", " + cont.getInquilinoContrato().getNombre()), cont.getPropiedadContrato().getDireccion(), cont.getMonto(), cont.getFechaInicio(), cont.getFechaFin(), cont.isActivo()});
             }
-            jbtnRescindir.setEnabled(true);
         }
     }//GEN-LAST:event_jbtnContratoActionPerformed
 
@@ -339,6 +340,7 @@ public class EliminarContrato extends javax.swing.JPanel {
 
     private void jbtnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnLimpiarActionPerformed
         limpiarCampos();
+        jtfDniInq.requestFocus();
     }//GEN-LAST:event_jbtnLimpiarActionPerformed
 
     private void jtfDniInqKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfDniInqKeyTyped
@@ -370,8 +372,12 @@ public class EliminarContrato extends javax.swing.JPanel {
     }//GEN-LAST:event_jtfDniProKeyTyped
 
     private void jtListaContratoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtListaContratoFocusGained
-        jbtnRescindir.setSelected(true);
+        jbtnRescindir.setEnabled(true);
     }//GEN-LAST:event_jtListaContratoFocusGained
+
+    private void jtListaContratoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtListaContratoFocusLost
+        jbtnRescindir.setEnabled(false);
+    }//GEN-LAST:event_jtListaContratoFocusLost
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -406,8 +412,8 @@ public class EliminarContrato extends javax.swing.JPanel {
         jtfInquilino.setText("");
         jtfPropietario.setText("");
 
-        jbtnContrato.setEnabled(false);
         jbtnRescindir.setEnabled(false);
+        jbtnContrato.setEnabled(false);
         jbtnBuscarPro.setEnabled(true);
         jbtnBuscarInq.setEnabled(true);
         jtfPropietario.setEnabled(false);
@@ -415,7 +421,6 @@ public class EliminarContrato extends javax.swing.JPanel {
         jtfDniPro.setEnabled(true);
         jtfDniInq.setEnabled(true);
         jbtnLimpiar.setEnabled(false);
-        jbtnRescindir.setEnabled(false);
 
         borrarFilasTabla();
     }

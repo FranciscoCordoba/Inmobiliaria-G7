@@ -90,9 +90,9 @@ public class EliminarContrato extends javax.swing.JPanel {
         jLabel7.setText("DNI");
 
         jtfDniInq.setBackground(new java.awt.Color(217, 217, 217));
-        jtfDniInq.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfDniInqActionPerformed(evt);
+        jtfDniInq.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfDniInqKeyTyped(evt);
             }
         });
 
@@ -113,9 +113,9 @@ public class EliminarContrato extends javax.swing.JPanel {
         });
 
         jtfDniPro.setBackground(new java.awt.Color(217, 217, 217));
-        jtfDniPro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfDniProActionPerformed(evt);
+        jtfDniPro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfDniProKeyTyped(evt);
             }
         });
 
@@ -249,50 +249,50 @@ public class EliminarContrato extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jtfDniInqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfDniInqActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfDniInqActionPerformed
-
     private void jbtnBuscarInqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnBuscarInqActionPerformed
-        long dni = Long.parseLong(jtfDniInq.getText());
-        try {
-            Inquilino inquilino = inquilinoData.obtenerInquilinoPorDni(dni);
-            String completo = inquilino.getApellido() + " " + inquilino.getNombre();
-            jtfInquilino.setText(completo);
-            jtfInquilino.setEnabled(true);
-            jtfInquilino.setEditable(false);
-            jtfPropietario.setEditable(false);
-            jtfDniPro.setEnabled(false);
-            jbtnBuscarPro.setEnabled(false);
-            jbtnLimpiar.setEnabled(true);
-            jbtnContrato.setEnabled(true);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "No hay ningun propietario con ese DNI");
+        if (!jtfDniInq.getText().isEmpty()) {
+            long dni = Long.parseLong(jtfDniInq.getText());
+            try {
+                Inquilino inquilino = inquilinoData.obtenerInquilinoPorDni(dni);
+                String completo = inquilino.getApellido() + " " + inquilino.getNombre();
+                jtfInquilino.setText(completo);
+                jtfInquilino.setEnabled(true);
+                jtfInquilino.setEditable(false);
+                jtfPropietario.setEditable(false);
+                jtfDniPro.setEnabled(false);
+                jbtnBuscarPro.setEnabled(false);
+                jbtnLimpiar.setEnabled(true);
+                jbtnContrato.setEnabled(true);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "No hay ningun propietario con ese DNI");
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "Debe ingresar un  DNI para buscar");
         }
     }//GEN-LAST:event_jbtnBuscarInqActionPerformed
 
     private void jbtnBuscarProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnBuscarProActionPerformed
-        long dni = Long.parseLong(jtfDniPro.getText());
-        try {
-            Propietario propietario = propietarioData.obtenerPropietarioPorDni(dni);
-            String completo = propietario.getApellido() + " " + propietario.getNombre();
-            jtfPropietario.setText(completo);
-            jtfPropietario.setEnabled(true);
-            jtfPropietario.setEditable(false);
-            jtfInquilino.setEditable(false);
-            jtfDniInq.setEnabled(false);
-            jbtnBuscarInq.setEnabled(false);
-            jbtnContrato.setEnabled(true);
-            jbtnLimpiar.setEnabled(true);
+        if (!jtfDniPro.getText().isEmpty()) {
+            long dni = Long.parseLong(jtfDniPro.getText());
+            try {
+                Propietario propietario = propietarioData.obtenerPropietarioPorDni(dni);
+                String completo = propietario.getApellido() + " " + propietario.getNombre();
+                jtfPropietario.setText(completo);
+                jtfPropietario.setEnabled(true);
+                jtfPropietario.setEditable(false);
+                jtfInquilino.setEditable(false);
+                jtfDniInq.setEnabled(false);
+                jbtnBuscarInq.setEnabled(false);
+                jbtnContrato.setEnabled(true);
+                jbtnLimpiar.setEnabled(true);
 
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "No hay ningun propietario con ese DNI");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "No hay ningun propietario con ese DNI");
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "Debe ingresar un  DNI para buscar");
         }
     }//GEN-LAST:event_jbtnBuscarProActionPerformed
-
-    private void jtfDniProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfDniProActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfDniProActionPerformed
 
     private void jbtnContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnContratoActionPerformed
         if (jbtnBuscarInq.isEnabled() == true) {
@@ -306,13 +306,13 @@ public class EliminarContrato extends javax.swing.JPanel {
                 modelo.addRow(new Object[]{cont.getPropiedadContrato().getIdInmueble(), (cont.getPropietarioContrato().getApellido() + ", " + cont.getPropietarioContrato().getNombre()), (cont.getInquilinoContrato().getApellido() + ", " + cont.getInquilinoContrato().getNombre()), cont.getPropiedadContrato().getDireccion() + " " + cont.getPropiedadContrato().getAltura(), cont.getMonto(), cont.getFechaInicio(), cont.getFechaFin()});
             }
             jbtnRescindir.setEnabled(true);
-        }else {
+        } else {
             limpiarTabla();
             long dniInq = Long.parseLong(jtfDniPro.getText());
             Propietario propie = propietarioData.obtenerPropietarioPorDni(dniInq);
-             listacontratos = contratoData.contratosXPropietario(propie.getId());
-             for (Contrato cont : listacontratos) {
-                modelo.addRow(new Object[]{cont.getPropiedadContrato().getIdInmueble(), (cont.getPropietarioContrato().getApellido() + ", " + cont.getPropietarioContrato().getNombre()), (cont.getInquilinoContrato().getApellido() + ", " + cont.getInquilinoContrato().getNombre()), cont.getPropiedadContrato().getDireccion(), cont.getMonto(), cont.getFechaInicio(), cont.getFechaFin(),cont.isActivo()});
+            listacontratos = contratoData.contratosXPropietario(propie.getId());
+            for (Contrato cont : listacontratos) {
+                modelo.addRow(new Object[]{cont.getPropiedadContrato().getIdInmueble(), (cont.getPropietarioContrato().getApellido() + ", " + cont.getPropietarioContrato().getNombre()), (cont.getInquilinoContrato().getApellido() + ", " + cont.getInquilinoContrato().getNombre()), cont.getPropiedadContrato().getDireccion(), cont.getMonto(), cont.getFechaInicio(), cont.getFechaFin(), cont.isActivo()});
             }
             jbtnRescindir.setEnabled(true);
         }
@@ -324,10 +324,10 @@ public class EliminarContrato extends javax.swing.JPanel {
         Contrato contratoR;
         if (filaSeleccionada != -1) {
             int idPropiedad = (int) modelo.getValueAt(filaSeleccionada, 0);
-	    System.out.println(idPropiedad);
+            System.out.println(idPropiedad);
             Inmueble inmueble = propiedadData.buscarInmuebleXId(idPropiedad);
             contratoR = contratoData.obtenerContratoXInmuebleId(inmueble.getIdInmueble());
-	    System.out.println(contratoR.toString());
+            System.out.println(contratoR.toString());
             contratoData.rescindirContrato(contratoR);
         }
 
@@ -336,6 +336,34 @@ public class EliminarContrato extends javax.swing.JPanel {
     private void jbtnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnLimpiarActionPerformed
         limpiarCampos();
     }//GEN-LAST:event_jbtnLimpiarActionPerformed
+
+    private void jtfDniInqKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfDniInqKeyTyped
+        int key = evt.getKeyChar();
+
+        boolean numeros = key >= 48 && key <= 57;
+
+        if (!numeros) {
+            evt.consume();
+        }
+
+        if (jtfDniInq.getText().trim().length() == 10) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtfDniInqKeyTyped
+
+    private void jtfDniProKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfDniProKeyTyped
+        int key = evt.getKeyChar();
+
+        boolean numeros = key >= 48 && key <= 57;
+
+        if (!numeros) {
+            evt.consume();
+        }
+
+        if (jtfDniPro.getText().trim().length() == 10) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtfDniProKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -357,13 +385,13 @@ public class EliminarContrato extends javax.swing.JPanel {
     private javax.swing.JTextField jtfPropietario;
     // End of variables declaration//GEN-END:variables
 
-    private void limpiarTabla(){
-        int a = modelo.getRowCount()-1;
-        for(int i = a; i >= 0; i--){
+    private void limpiarTabla() {
+        int a = modelo.getRowCount() - 1;
+        for (int i = a; i >= 0; i--) {
             modelo.removeRow(i);
         }
     }
-    
+
     private void limpiarCampos() {
         jtfDniInq.setText("");
         jtfDniPro.setText("");
@@ -393,14 +421,13 @@ public class EliminarContrato extends javax.swing.JPanel {
         columnas.add("Monto");
         columnas.add("Fecha Inicio");
         columnas.add("Fecha Final");
-        
+
         for (Object it : columnas) {
             modelo.addColumn(it);
         }
         jtListaContrato.setModel(modelo);
     }
 
-    
     private void borrarFilasTabla() {
 
         if (modelo != null) {

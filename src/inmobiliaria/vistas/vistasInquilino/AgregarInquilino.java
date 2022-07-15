@@ -256,6 +256,7 @@ public class AgregarInquilino extends javax.swing.JPanel {
         jtTrabajo.setText("");
         jtNombreGarante.setText("");
         jtDniGarante.setText("");
+	contador = 0;
     }//GEN-LAST:event_jbtnLimpiarActionPerformed
 
     private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed

@@ -319,11 +319,13 @@ public class EliminarContrato extends javax.swing.JPanel {
     private void jbtnRescindirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnRescindirActionPerformed
 
         int filaSeleccionada = jtListaContrato.getSelectedRow();
-        Contrato contratoR = new Contrato();
+        Contrato contratoR;
         if (filaSeleccionada != -1) {
             int idPropiedad = (int) modelo.getValueAt(filaSeleccionada, 0);
+	    System.out.println(idPropiedad);
             Inmueble inmueble = propiedadData.buscarInmuebleXId(idPropiedad);
             contratoR = contratoData.obtenerContratoXInmuebleId(inmueble.getIdInmueble());
+	    System.out.println(contratoR.toString());
             contratoData.rescindirContrato(contratoR);
         }
 

@@ -28,6 +28,7 @@ public class ContratoData {
         this.propietario = new PropietarioData(conexion);
         this.inquilino = new InquilinoData(conexion);
         this.propiedad = new PropiedadData(conexion);
+	
     }
 
     public boolean guardarContrato(Contrato contrato) {
@@ -52,8 +53,7 @@ public class ContratoData {
             ResultSet rs = ps.getGeneratedKeys();
 
             if (rs.next()) {
-                contrato.setIdContrato(rs.getInt(1));
-                propiedad.borrarInmuebleXId(rs.getInt("propiedadContrato"));
+                contrato.setIdContrato(rs.getInt(1));	
             } else {
 
                 JOptionPane.showMessageDialog(null, "Error al intentar agregar contrato");
@@ -64,7 +64,7 @@ public class ContratoData {
         } catch (SQLException ex) {
 
             guardar = false;
-            JOptionPane.showMessageDialog(null, "Error al cargar Contrato");
+	    JOptionPane.showMessageDialog(null, "Error al cargar Contrato");
         }
 
         return guardar;

@@ -4,27 +4,36 @@ import inmobiliaria.Data.Conexion;
 import inmobiliaria.Data.ContratoData;
 import inmobiliaria.Data.InquilinoData;
 import inmobiliaria.Data.PropiedadData;
+import inmobiliaria.Data.PropietarioData;
+import inmobiliaria.Modelo.Contrato;
 import inmobiliaria.Modelo.Inmueble;
 import inmobiliaria.Modelo.Inquilino;
+import inmobiliaria.Modelo.Propietario;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.table.DefaultTableModel;
 
 public class AgregarContrato extends javax.swing.JPanel {
-    
+
     private InquilinoData inquilinoData;
     private ContratoData contratoData;
     private PropiedadData propiedadData;
+    private PropietarioData propietarioData;
     private Conexion con;
-    private DefaultTableModel modelo; 
+    private DefaultTableModel modelo;
     private ArrayList<Inmueble> inmuebles;
-    
+
     public AgregarContrato() {
 	initComponents();
 	con = new Conexion();
 	inquilinoData = new InquilinoData(con);
 	propiedadData = new PropiedadData(con);
 	contratoData = new ContratoData(con);
+	propietarioData = new PropietarioData(con);
 	modelo = new DefaultTableModel();
 	inmuebles = propiedadData.listarInmuebles();
 	armarCabeceraTabla();
@@ -43,8 +52,8 @@ public class AgregarContrato extends javax.swing.JPanel {
         jtNombreInquilino = new javax.swing.JTextField();
         jtDniInquilino = new javax.swing.JTextField();
         Buscar = new javax.swing.JButton();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        jDateFin = new com.toedter.calendar.JDateChooser();
+        jDateInicio = new com.toedter.calendar.JDateChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
         jListaPropiedades = new javax.swing.JTable();
         Firmar = new javax.swing.JButton();
@@ -93,9 +102,9 @@ public class AgregarContrato extends javax.swing.JPanel {
             }
         });
 
-        jDateChooser1.setBackground(new java.awt.Color(217, 217, 217));
+        jDateFin.setBackground(new java.awt.Color(217, 217, 217));
 
-        jDateChooser2.setBackground(new java.awt.Color(217, 217, 217));
+        jDateInicio.setBackground(new java.awt.Color(217, 217, 217));
 
         jListaPropiedades.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -188,10 +197,10 @@ public class AgregarContrato extends javax.swing.JPanel {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
-                                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jDateInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(36, 36, 36)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jDateFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel4))))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -240,7 +249,7 @@ public class AgregarContrato extends javax.swing.JPanel {
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabel3)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jDateInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabel8)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -248,7 +257,7 @@ public class AgregarContrato extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jDateFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(40, 40, 40)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -282,108 +291,137 @@ public class AgregarContrato extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jtNombreInquilinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtNombreInquilinoActionPerformed
-        // TODO add your handling code here:
+	// TODO add your handling code here:
     }//GEN-LAST:event_jtNombreInquilinoActionPerformed
 
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
-        // TODO add your handling code here:
+	// TODO add your handling code here:
 	long dniInquilino = Long.parseLong(jtDniInquilino.getText());
-	
+
 	inquilinoData.obtenerInquilinoPorDni(dniInquilino);
-	
+
 	Inquilino inquilino = inquilinoData.obtenerInquilinoPorDni(dniInquilino);
 
 	jtNombreInquilino.setText(inquilino.getNombre() + " " + inquilino.getApellido());
-	
+
     }//GEN-LAST:event_BuscarActionPerformed
 
-    private void cargarTodasLasPropiedades(){
-    
+    private void cargarTodasLasPropiedades() {
+
 	for (Inmueble inmueble : inmuebles) {
 	    modelo.addRow(new Object[]{inmueble.getDireccion(), inmueble.getAltura(), inmueble.getTipoDeInmueble(), inmueble.getCantAmbientes(), inmueble.getZona(), inmueble.getSuperficie(), inmueble.getPrecioBase(), inmueble.getPropietarioInmueble().getNombre() + " " + inmueble.getPropietarioInmueble().getApellido()});
 	}
-	
+
     }
-    
-    
-private void armarCabeceraTabla() {
-    
-        ArrayList<Object> columnas = new ArrayList<Object>();
-        columnas.add("Direccion ");
-        columnas.add("Altura");
-        columnas.add("Tipo de Inmueble");
-        columnas.add("Ambientes");
-        columnas.add("Zona");
-        columnas.add("Superficie");
-        columnas.add("Precio");
+
+    private void armarCabeceraTabla() {
+
+	ArrayList<Object> columnas = new ArrayList<Object>();
+	columnas.add("Direccion ");
+	columnas.add("Altura");
+	columnas.add("Tipo de Inmueble");
+	columnas.add("Ambientes");
+	columnas.add("Zona");
+	columnas.add("Superficie");
+	columnas.add("Precio");
 	columnas.add("Propietario");
 
-        for (Object it : columnas) {
-            modelo.addColumn(it);
-        }
-        jListaPropiedades.setModel(modelo);
+	for (Object it : columnas) {
+	    modelo.addColumn(it);
+	}
+	jListaPropiedades.setModel(modelo);
     }
-    
+
     private void FirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FirmarActionPerformed
-        // TODO add your handling code here:
+
+	SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-yyyy");
+	String fechaInicioFormat = formatoFecha.format(jDateInicio.getDate());
+	String fechaFinFormat = formatoFecha.format(jDateFin.getDate());
+	
+	LocalDate fechaInicio = LocalDate.parse(fechaInicioFormat, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+	
+	LocalDate fechaFin =  LocalDate.parse(fechaFinFormat, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+	
+	
+	double monto = Double.parseDouble(jtMonto.getText());
+	Inquilino inquilinoContrato = inquilinoData.obtenerInquilinoPorDni(Integer.parseInt(jtDniInquilino.getText()));
+	int indexPropiedad = jListaPropiedades.getSelectedRow();
+	Inmueble propiedadContrato;
+	
+	propiedadContrato = propiedadData.buscarInmuebleXId(inmuebles.get(indexPropiedad).getIdInmueble());
+	System.out.println(propiedadContrato);
+	
+	Propietario propietarioContrato = propietarioData.obtenerPropietarioPorId(propiedadContrato.getPropietarioInmueble().getId()) ;
+	System.out.println(propietarioContrato);
+	
+	Contrato contrato = new Contrato(fechaInicio, fechaFin, true, monto, inquilinoContrato, propietarioContrato ,propiedadContrato);
+	
+	contratoData.guardarContrato(contrato);
+	
+	propiedadData.borrarInmuebleXId(propiedadContrato.getIdInmueble());
+	
+	if (indexPropiedad == -1) {
+	    Firmar.setEnabled(false);
+	}
+	
     }//GEN-LAST:event_FirmarActionPerformed
 
     private void LimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LimpiarActionPerformed
-	
+
 	limpiarTabla();
-	
+
     }//GEN-LAST:event_LimpiarActionPerformed
 
     private void FiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FiltrarActionPerformed
-	
+
 	limpiarTabla();
-	
+
 	inmuebles = propiedadData.listarInmuebles();
-	
-        if(!jcbZona.getSelectedItem().toString().isEmpty()){
-            Iterator<Inmueble> iterador = inmuebles.iterator();
-            while(iterador.hasNext()){
-                if(!iterador.next().getZona().equals(jcbZona.getSelectedItem().toString())){
-                    iterador.remove();
-                }
-            }
-        }
-        if(!jcbTipo.getSelectedItem().toString().isEmpty()){
-            Iterator<Inmueble> iterador = inmuebles.iterator();
-            while(iterador.hasNext()){
-                if(!iterador.next().getTipoDeInmueble().equals(jcbTipo.getSelectedItem().toString())){
-                    iterador.remove();
-                }
-            }
-        }
-        if(!jcbAmbientes.getSelectedItem().toString().isEmpty()){
-            Iterator<Inmueble> iterador = inmuebles.iterator();
-            while(iterador.hasNext()){
-                if(iterador.next().getCantAmbientes() != Integer.parseInt(jcbAmbientes.getSelectedItem().toString())){
-                    iterador.remove();
-                }
-            }
-        }
-        
+
+	if (!jcbZona.getSelectedItem().toString().isEmpty()) {
+	    Iterator<Inmueble> iterador = inmuebles.iterator();
+	    while (iterador.hasNext()) {
+		if (!iterador.next().getZona().equals(jcbZona.getSelectedItem().toString())) {
+		    iterador.remove();
+		}
+	    }
+	}
+	if (!jcbTipo.getSelectedItem().toString().isEmpty()) {
+	    Iterator<Inmueble> iterador = inmuebles.iterator();
+	    while (iterador.hasNext()) {
+		if (!iterador.next().getTipoDeInmueble().equals(jcbTipo.getSelectedItem().toString())) {
+		    iterador.remove();
+		}
+	    }
+	}
+	if (!jcbAmbientes.getSelectedItem().toString().isEmpty()) {
+	    Iterator<Inmueble> iterador = inmuebles.iterator();
+	    while (iterador.hasNext()) {
+		if (iterador.next().getCantAmbientes() != Integer.parseInt(jcbAmbientes.getSelectedItem().toString())) {
+		    iterador.remove();
+		}
+	    }
+	}
+
 	cargarTodasLasPropiedades();
-	
+
     }//GEN-LAST:event_FiltrarActionPerformed
 
-    private void limpiarTabla(){
-    	int a = modelo.getRowCount() - 1;
+    private void limpiarTabla() {
+	int a = modelo.getRowCount() - 1;
 	for (int i = a; i >= 0; i--) {
 	    modelo.removeRow(i);
 	}
     }
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Buscar;
     private javax.swing.JButton Filtrar;
     private javax.swing.JButton Firmar;
     private javax.swing.JButton Limpiar;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
+    private com.toedter.calendar.JDateChooser jDateFin;
+    private com.toedter.calendar.JDateChooser jDateInicio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

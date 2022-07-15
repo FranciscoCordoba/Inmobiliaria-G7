@@ -27,12 +27,13 @@ public class Contrato {
 	this.propiedadContrato = propiedadContrato;
     }
 
-    public Contrato(LocalDate fechaInicio, LocalDate fechaFin, boolean activo, double monto, Inquilino inquilinoContrato, Inmueble propiedadContrato) {
+    public Contrato(LocalDate fechaInicio, LocalDate fechaFin, boolean activo, double monto, Inquilino inquilinoContrato, Propietario propietarioContrato, Inmueble propiedadContrato) {
 	this.fechaInicio = fechaInicio;
 	this.fechaFin = fechaFin;
 	this.activo = activo;
 	this.monto = monto;
 	this.inquilinoContrato = inquilinoContrato;
+	this.propietarioContrato = propietarioContrato;
 	this.propiedadContrato = propiedadContrato;
     }
 

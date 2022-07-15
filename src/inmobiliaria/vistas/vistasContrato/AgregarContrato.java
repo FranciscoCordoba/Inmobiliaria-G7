@@ -7,6 +7,7 @@ import inmobiliaria.Data.PropiedadData;
 import inmobiliaria.Modelo.Inmueble;
 import inmobiliaria.Modelo.Inquilino;
 import java.util.ArrayList;
+import java.util.Iterator;
 import javax.swing.table.DefaultTableModel;
 
 public class AgregarContrato extends javax.swing.JPanel {
@@ -338,12 +339,32 @@ private void armarCabeceraTabla() {
 	limpiarTabla();
 	
 	inmuebles = propiedadData.listarInmuebles();
-		
-	inmuebles = propiedadData.listarInmueblesXZona(inmuebles, (String) jcbZona.getSelectedItem());
-	inmuebles = propiedadData.listarInmueblesXTipo(inmuebles, (String) jcbTipo.getSelectedItem());
-	inmuebles =  propiedadData.listarInmueblesXAmbientes(inmuebles, (String) jcbAmbientes.getSelectedItem());
-
 	
+        if(!jcbZona.getSelectedItem().toString().isEmpty()){
+            Iterator<Inmueble> iterador = inmuebles.iterator();
+            while(iterador.hasNext()){
+                if(!iterador.next().getZona().equals(jcbZona.getSelectedItem().toString())){
+                    iterador.remove();
+                }
+            }
+        }
+        if(!jcbTipo.getSelectedItem().toString().isEmpty()){
+            Iterator<Inmueble> iterador = inmuebles.iterator();
+            while(iterador.hasNext()){
+                if(!iterador.next().getTipoDeInmueble().equals(jcbTipo.getSelectedItem().toString())){
+                    iterador.remove();
+                }
+            }
+        }
+        if(!jcbAmbientes.getSelectedItem().toString().isEmpty()){
+            Iterator<Inmueble> iterador = inmuebles.iterator();
+            while(iterador.hasNext()){
+                if(iterador.next().getCantAmbientes() != Integer.parseInt(jcbAmbientes.getSelectedItem().toString())){
+                    iterador.remove();
+                }
+            }
+        }
+        
 	cargarTodasLasPropiedades();
 	
     }//GEN-LAST:event_FiltrarActionPerformed

@@ -190,6 +190,12 @@ public class PropiedadData {
 
         ArrayList<Inmueble> inmueblesZona = new ArrayList<>();
         Inmueble inmueble = new Inmueble();
+        
+        if (!zona.isEmpty()) {
+            
+            
+            
+        
 
         String sql = "SELECT * inmueble WHERE zona = ?";
 
@@ -221,6 +227,8 @@ public class PropiedadData {
             
             JOptionPane.showMessageDialog(null, "Error al listar por Zona" + ex);
         }
+        
+        }
 
         return inmueblesZona;
     }
@@ -229,6 +237,10 @@ public class PropiedadData {
         
         ArrayList<Inmueble> inmueblesTipo = new ArrayList<>();
         Inmueble inmueble = new Inmueble();
+        
+        if (!tipo.isEmpty()) {
+            
+        
 
         String sql = "SELECT * inmueble WHERE tipo = ?";
 
@@ -260,22 +272,30 @@ public class PropiedadData {
             
             JOptionPane.showMessageDialog(null, "Error al listar por Tipo" + ex);
         }
+        
+        }
 
         return inmueblesTipo;
         
     }
     
-    public ArrayList<Inmueble> listarInmueblesXAmbientes (ArrayList<Inmueble> lista, int ambientes){
+    public ArrayList<Inmueble> listarInmueblesXAmbientes (ArrayList<Inmueble> lista, String ambientes){
         
         ArrayList<Inmueble> inmueblesAmbiente = new ArrayList<>();
         Inmueble inmueble = new Inmueble();
+        int cantidad;
+        
+        if (!ambientes.isEmpty()) {
+           cantidad = Integer.parseInt(ambientes);
+            
+        
 
         String sql = "SELECT * inmueble WHERE cantAmbientes = ?";
 
         try {
 
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, ambientes);
+            ps.setInt(1, cantidad);
             
             ResultSet rs = ps.executeQuery();
             
@@ -300,6 +320,12 @@ public class PropiedadData {
             
             JOptionPane.showMessageDialog(null, "Error al listar por Ambientes" + ex);
         }
+        
+        
+        
+        }
+        
+        
 
         return inmueblesAmbiente;
         

@@ -208,6 +208,7 @@
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jtNombreFocusLost"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtNombreActionPerformed"/>
           </Events>
         </Component>
@@ -252,6 +253,9 @@
             </Property>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jtApellidoFocusLost"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jtNombreGarante">
           <Properties>
@@ -260,6 +264,9 @@
             </Property>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jtNombreGaranteFocusLost"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jtDniGarante">
           <Properties>
@@ -268,6 +275,9 @@
             </Property>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jtDniGaranteFocusLost"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jtDNI">
           <Properties>
@@ -275,6 +285,9 @@
               <Color blue="d9" green="d9" red="d9" type="rgb"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jtDNIFocusLost"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jtCUIT">
           <Properties>
@@ -283,6 +296,9 @@
             </Property>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jtCUITFocusLost"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jtTrabajo">
           <Properties>
@@ -291,6 +307,9 @@
             </Property>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jtTrabajoFocusLost"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="cbActivo">
           <Properties>

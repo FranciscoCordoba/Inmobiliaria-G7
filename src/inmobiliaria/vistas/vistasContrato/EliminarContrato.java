@@ -380,14 +380,14 @@ public class EliminarContrato extends javax.swing.JPanel {
 
     private void armarCabeceraTabla() {
         ArrayList<Object> columnas = new ArrayList<Object>();
-        columnas.add("iDPropiedad");
-        columnas.add("Propietario");
-        columnas.add("Inquilino");
-        columnas.add("Propiedad");
-        columnas.add("Monto");
-        columnas.add("Fecha Inicio");
-        columnas.add("Fecha Fin");
-        columnas.add("Contrato Activo");
+        columnas.add("Direccion ");
+        columnas.add("Altura");
+        columnas.add("Tipo de Inmueble");
+        columnas.add("Ambientes");
+        columnas.add("Zona");
+        columnas.add("Superficie");
+        columnas.add("Precio");
+        
         for (Object it : columnas) {
             modelo.addColumn(it);
         }

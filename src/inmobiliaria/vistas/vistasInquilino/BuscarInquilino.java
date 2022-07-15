@@ -12,13 +12,14 @@ public class BuscarInquilino extends javax.swing.JPanel {
     private InquilinoData inquilinoData;
     private Conexion con;
     private DefaultTableModel tablaModelo;
+    private int contador;
 
     public BuscarInquilino() {
-	initComponents();
-	con = new Conexion();
-	inquilinoData = new InquilinoData(con);
-	tablaModelo = new DefaultTableModel();
-	armarTabla();
+        initComponents();
+        con = new Conexion();
+        inquilinoData = new InquilinoData(con);
+        tablaModelo = new DefaultTableModel();
+        armarTabla();
     }
 
     @SuppressWarnings("unchecked")
@@ -46,6 +47,11 @@ public class BuscarInquilino extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jtInquilinosTabla);
 
         jtDniBuscar.setBackground(new java.awt.Color(217, 217, 217));
+        jtDniBuscar.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jtDniBuscarFocusLost(evt);
+            }
+        });
         jtDniBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtDniBuscarActionPerformed(evt);
@@ -108,51 +114,67 @@ public class BuscarInquilino extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jtDniBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtDniBuscarActionPerformed
-	// TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_jtDniBuscarActionPerformed
 
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
-	// TODO add your handling code here:
-	long dni = Long.parseLong(jtDniBuscar.getText());
+        if (contador != 1) {
+            JOptionPane.showMessageDialog(this, "Complete todos los campos correctamente");
+        } else {
+            long dni = Long.parseLong(jtDniBuscar.getText());
 
-	try {
+            try {
 
-	    Inquilino inquilino = inquilinoData.obtenerInquilinoPorDni(dni);
-	    tablaModelo.addRow(new Object[]{inquilino.getNombre(), inquilino.getApellido(), inquilino.getDni(), inquilino.getCuit(), inquilino.getLugarTrabajo(), inquilino.getNombreGarante(), inquilino.getDniGarante()});
+                Inquilino inquilino = inquilinoData.obtenerInquilinoPorDni(dni);
+                tablaModelo.addRow(new Object[]{inquilino.getNombre(), inquilino.getApellido(), inquilino.getDni(), inquilino.getCuit(), inquilino.getLugarTrabajo(), inquilino.getNombreGarante(), inquilino.getDniGarante()});
 
-	} catch (Exception e) {
-	    JOptionPane.showMessageDialog(this, "No se encontró ningún inquilino con ese DNI");
-	}
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "No se encontró ningún inquilino con ese DNI");
+            }
+        }
     }//GEN-LAST:event_BuscarActionPerformed
+
+    private void jtDniBuscarFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtDniBuscarFocusLost
+        String texto = jtDniBuscar.getText();
+        try {
+            if (!texto.isEmpty()) {
+                Double.parseDouble(texto);
+                contador++;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error, debe ingresar un número en este campo");
+            jtDniBuscar.requestFocus();
+        }
+    }//GEN-LAST:event_jtDniBuscarFocusLost
 
     private void armarTabla() {
 
-	ArrayList<Object> columnas = new ArrayList<Object>();
-	columnas.add("Nombre");
-	columnas.add("Apellido");
-	columnas.add("DNI");
-	columnas.add("CUIT");
-	columnas.add("Trabajo");
-	columnas.add("Garante");
-	columnas.add("DNI Garante");
+        ArrayList<Object> columnas = new ArrayList<Object>();
+        columnas.add("Nombre");
+        columnas.add("Apellido");
+        columnas.add("DNI");
+        columnas.add("CUIT");
+        columnas.add("Trabajo");
+        columnas.add("Garante");
+        columnas.add("DNI Garante");
 
-	for (Object it : columnas) {
-	    tablaModelo.addColumn(it);
-	}
-	jtInquilinosTabla.setModel(tablaModelo);
+        for (Object it : columnas) {
+            tablaModelo.addColumn(it);
+        }
+        jtInquilinosTabla.setModel(tablaModelo);
 
     }
 
     private void limpiarCampos() {
-	jtDniBuscar.setText("");
+        jtDniBuscar.setText("");
 
-	if (tablaModelo != null) {
+        if (tablaModelo != null) {
 
-	    int a = tablaModelo.getRowCount() - 1;
-	    for (int i = a; i >= 0; i--) {
-		tablaModelo.removeRow(i);
-	    }
-	}
+            int a = tablaModelo.getRowCount() - 1;
+            for (int i = a; i >= 0; i--) {
+                tablaModelo.removeRow(i);
+            }
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

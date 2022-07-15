@@ -12,6 +12,7 @@ public class EliminarInquilino extends javax.swing.JPanel {
     private InquilinoData inquilinoData;
     private Conexion con;
     private DefaultTableModel tablaModelo;
+    private int contador;
     
     public EliminarInquilino() {
 	initComponents();
@@ -39,7 +40,7 @@ public class EliminarInquilino extends javax.swing.JPanel {
         jLabel1.setText("DNI");
 
         Buscar.setBackground(new java.awt.Color(0, 63, 121));
-        Buscar.setText("Eliminar");
+        Buscar.setText("Buscar");
         Buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BuscarActionPerformed(evt);
@@ -60,6 +61,11 @@ public class EliminarInquilino extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jtInquilinosTablaEliminar);
 
         jtDniEliminar.setBackground(new java.awt.Color(217, 217, 217));
+        jtDniEliminar.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jtDniEliminarFocusLost(evt);
+            }
+        });
         jtDniEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtDniEliminarActionPerformed(evt);
@@ -136,9 +142,11 @@ public class EliminarInquilino extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
-        // TODO add your handling code here:
+         if (contador != 1) {
+            JOptionPane.showMessageDialog(this, "Complete todos los campos correctamente");
+        } else {
 	long dni = Long.parseLong(jtDniEliminar.getText());
-
+         
 	try {
 
 	    Inquilino inquilino = inquilinoData.obtenerInquilinoPorDni(dni);
@@ -147,6 +155,7 @@ public class EliminarInquilino extends javax.swing.JPanel {
 	} catch (Exception e) {
 	    JOptionPane.showMessageDialog(this, "No se encontró ningún inquilino con ese DNI");
 	}
+        }
     }//GEN-LAST:event_BuscarActionPerformed
 
     private void jtDniEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtDniEliminarActionPerformed
@@ -154,6 +163,7 @@ public class EliminarInquilino extends javax.swing.JPanel {
     }//GEN-LAST:event_jtDniEliminarActionPerformed
 
     private void jbtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnEliminarActionPerformed
+        
         int filaSeleccionada = jtInquilinosTablaEliminar.getSelectedRow();
 
         if (filaSeleccionada != -1) {
@@ -161,12 +171,25 @@ public class EliminarInquilino extends javax.swing.JPanel {
             Inquilino inquilino = inquilinoData.obtenerInquilinoPorDni(idInquilino);
             inquilinoData.bajaInquilo(inquilino.getIdInquilino());
         }
-
+         
     }//GEN-LAST:event_jbtnEliminarActionPerformed
 
     private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed
         limpiarCampos();
     }//GEN-LAST:event_jbLimpiarActionPerformed
+
+    private void jtDniEliminarFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtDniEliminarFocusLost
+        String texto = jtDniEliminar.getText();
+        try {
+            if (!texto.isEmpty()) {
+                Double.parseDouble(texto);
+                contador++;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error, debe ingresar un número en este campo");
+            jtDniEliminar.requestFocus();
+        }
+    }//GEN-LAST:event_jtDniEliminarFocusLost
 
     
     private void armarTabla() {

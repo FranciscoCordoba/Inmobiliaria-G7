@@ -7,6 +7,9 @@ package inmobiliaria.vistas.vistasPropiedades;
 
 import inmobiliaria.Data.Conexion;
 import inmobiliaria.Data.PropiedadData;
+import inmobiliaria.Modelo.Inmueble;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -16,15 +19,55 @@ import javax.swing.table.DefaultTableModel;
 public class EliminarPropiedad extends javax.swing.JPanel {
 
     private Conexion conexion;
-    private PropiedadData propiedadData;
+    private PropiedadData propData;
     private DefaultTableModel modelo;
+    private ArrayList<Inmueble> listaTabla;
     
     public EliminarPropiedad() {
 	initComponents();
         conexion = new Conexion();
-        propiedadData = new PropiedadData(conexion);
+        propData = new PropiedadData(conexion);
         
+        modelo = new DefaultTableModel();
+        cargarTabla();
+    }
+
+    private void cargarTabla(){
+        ArrayList<Object> columnas = new ArrayList<>();
         
+        columnas.add("Direccion");
+        columnas.add("Tipo");
+        columnas.add("Cant. Ambientes");
+        columnas.add("Superficie");
+        columnas.add("Precio Base");
+        columnas.add("Zona");
+        columnas.add("DNI Propietario");
+        
+        for(Object col: columnas){
+            modelo.addColumn(col);
+        }
+        
+        jtEliminar.setModel(modelo);
+    }
+    
+    private ArrayList<Inmueble> refrescarTabla(){
+        
+        int dni = Integer.parseInt(jtDni.getText());
+        
+        ArrayList<Inmueble> inmuebles = propData.buscarInmueblesXPropietarioDni(dni);
+        
+        for(Inmueble inm : inmuebles){
+            modelo.addRow(new Object[]{inm.getDireccion() + " " + inm.getAltura(), inm.getTipoDeInmueble(), inm.getCantAmbientes(), inm.getSuperficie(), inm.getPrecioBase(), inm.getZona(), inm.getPropietarioInmueble().getDni()});
+        }
+        
+        return inmuebles;
+    }
+    
+    private void limpiarTabla(){
+        int a = modelo.getRowCount()-1;
+        for(int i = a; i >= 0; i--){
+            modelo.removeRow(i);
+        }
     }
 
     /**
@@ -35,17 +78,17 @@ public class EliminarPropiedad extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        jtDni = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        Guardar1 = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtEliminar = new javax.swing.JTable();
-        Guardar2 = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
 
-        jTextField1.setBackground(new java.awt.Color(217, 217, 217));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jtDni.setBackground(new java.awt.Color(217, 217, 217));
+        jtDni.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                jtDniActionPerformed(evt);
             }
         });
 
@@ -53,11 +96,11 @@ public class EliminarPropiedad extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
         jLabel1.setText("DNI del propietario");
 
-        Guardar1.setBackground(new java.awt.Color(0, 63, 121));
-        Guardar1.setText("Eliminar");
-        Guardar1.addActionListener(new java.awt.event.ActionListener() {
+        btnEliminar.setBackground(new java.awt.Color(0, 63, 121));
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Guardar1ActionPerformed(evt);
+                btnEliminarActionPerformed(evt);
             }
         });
 
@@ -74,11 +117,11 @@ public class EliminarPropiedad extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(jtEliminar);
 
-        Guardar2.setBackground(new java.awt.Color(0, 63, 121));
-        Guardar2.setText("Buscar");
-        Guardar2.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscar.setBackground(new java.awt.Color(0, 63, 121));
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Guardar2ActionPerformed(evt);
+                btnBuscarActionPerformed(evt);
             }
         });
 
@@ -88,18 +131,18 @@ public class EliminarPropiedad extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(Guardar1)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(39, 39, 39)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnEliminar)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(89, 89, 89)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jtDni, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(Guardar2)))
+                        .addComponent(btnBuscar)))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -107,13 +150,13 @@ public class EliminarPropiedad extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(117, 117, 117)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
-                    .addComponent(Guardar2))
+                    .addComponent(btnBuscar))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
-                .addComponent(Guardar1)
+                .addComponent(btnEliminar)
                 .addContainerGap(52, Short.MAX_VALUE))
         );
 
@@ -129,26 +172,33 @@ public class EliminarPropiedad extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void jtDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtDniActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_jtDniActionPerformed
 
-    private void Guardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Guardar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Guardar1ActionPerformed
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        int filaSeleccionada = jtEliminar.getSelectedRow();
+        
+        if(filaSeleccionada != -1){
+            int idProp = listaTabla.get(filaSeleccionada).getIdInmueble();
+            propData.borrarInmuebleXId(idProp);
+            JOptionPane.showMessageDialog(this, "Propiedad eliminada");
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void Guardar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Guardar2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Guardar2ActionPerformed
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        limpiarTabla();
+        listaTabla = refrescarTabla();
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Guardar1;
-    private javax.swing.JButton Guardar2;
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jtDni;
     private javax.swing.JTable jtEliminar;
     // End of variables declaration//GEN-END:variables
 }

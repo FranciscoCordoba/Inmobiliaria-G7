@@ -311,7 +311,7 @@ public class PropiedadData {
         ArrayList<Inmueble> listaInm = new ArrayList<>();
         
         try {
-            String sql = "SELECT i.* FROM Inmueble i, Propietario p WHERE p.dni = ? AND p.idPropietario = i.propietarioInmueble;";
+            String sql = "SELECT i.* FROM Inmueble i, Propietario p WHERE p.dni = ? AND p.idPropietario = i.propietarioInmueble AND i.disponibilidad = 1;";
             
             PreparedStatement ps = con.prepareStatement(sql);
             

@@ -277,6 +277,7 @@ public class ContratoData {
                 contrato.setFechaFin(rs.getDate("fechaFin").toLocalDate());
                 contrato.setActivo(rs.getBoolean("activo"));
                 contrato.setMonto(rs.getDouble("monto"));
+                contrato.setPropietarioContrato(propietario.obtenerPropietarioPorId(rs.getInt("propietarioContrato")));
                 contratosInqui.add(contrato);
 
             }
@@ -294,7 +295,7 @@ public class ContratoData {
         ArrayList<Contrato> contratosPropi = new ArrayList<>();
 
         try {
-            String sql = "SELECT * FROM contrato WHERE inquilinoContrato = ?";
+            String sql = "SELECT * FROM contrato WHERE propietarioContrato = ?";
 
             PreparedStatement ps = con.prepareStatement(sql);
 
@@ -312,6 +313,7 @@ public class ContratoData {
                 contrato.setFechaFin(rs.getDate("fechaFin").toLocalDate());
                 contrato.setActivo(rs.getBoolean("activo"));
                 contrato.setMonto(rs.getDouble("monto"));
+                contrato.setPropietarioContrato(propietario.obtenerPropietarioPorId(rs.getInt("propietarioContrato")));
                 contratosPropi.add(contrato);
 
             }
@@ -322,5 +324,30 @@ public class ContratoData {
         }
 
         return contratosPropi;
+    }
+    
+    public Contrato obtenerContratoXInmuebleId(int id){
+        Contrato contrato=null;
+        try{
+            String sql="SELECT * FROM contrato WHERE propiedadContrato=? ";
+            PreparedStatement ps= con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs= ps.executeQuery();
+            while(rs.next()){
+                contrato=new Contrato();
+                contrato.setIdContrato(rs.getInt("idContrato"));
+                contrato.setFechaInicio(rs.getDate("fechaInicio").toLocalDate());
+                contrato.setFechaFin(rs.getDate("fechaFin").toLocalDate());
+                contrato.setActivo(rs.getBoolean("activo"));
+                contrato.setMonto(rs.getDouble("monto"));
+                contrato.setInquilinoContrato(inquilino.obtenerInquilinoXId(rs.getInt("inquilinoContrato")));
+                contrato.setPropietarioContrato(propietario.obtenerPropietarioPorId(rs.getInt("propietarioContrato")));
+                contrato.setPropiedadContrato(propiedad.buscarInmuebleXId(rs.getInt("propiedadContrato")));
+            }
+            ps.close();
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null,"Error al obtener contrato "+ ex);
+        }
+        return contrato;
     }
 }

@@ -9,6 +9,7 @@ import inmobiliaria.Modelo.Contrato;
 import inmobiliaria.Modelo.Inmueble;
 import inmobiliaria.Modelo.Inquilino;
 import inmobiliaria.Modelo.Propietario;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -291,27 +292,37 @@ public class EditarContrato extends javax.swing.JPanel {
     private void jbtnRenovarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnRenovarActionPerformed
 
         int filaSeleccionada = jtListaContrato.getSelectedRow();
-        Contrato contrato;
+        Contrato contrato = null;
         if (filaSeleccionada != -1) {
-            int idContrato = (int) modelo.getValueAt(filaSeleccionada, 0);
-            contrato = contratoData.obtenercontratoXId(idContrato);
-
+            int idInmueble = (int) modelo.getValueAt(filaSeleccionada, 0);
+            contrato = contratoData.obtenerContratoXInmuebleId(idInmueble);
+            
+            LocalDate fechaFin;
             SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MM-yyyy");
             String fechaFinFormat = formatoFecha.format(jDateNuevoVencimiento.getDate());
-            LocalDate fechaFin = LocalDate.parse(fechaFinFormat, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-
-            double nuevoMonto = Double.parseDouble(jtMonto.getText());
-
-            System.out.println(nuevoMonto);
+            
+            if (jDateNuevoVencimiento.getDate() == null) {
+                fechaFin = contrato.getFechaFin();
+            } else if (jDateNuevoVencimiento.getDate().before(Date.valueOf(contrato.getFechaInicio()))) {
+                fechaFin = contrato.getFechaFin();
+                JOptionPane.showMessageDialog(this, "Error, ha ingresado una fecha de finalizacion menor a la fecha de inicio");
+            } else {
+                fechaFin = LocalDate.parse(fechaFinFormat, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+            }
+            double nuevoMonto = contrato.getMonto();
+            if (!jtMonto.getText().isEmpty()) {
+                nuevoMonto = Double.parseDouble(jtMonto.getText());
+            }
 
             Inquilino inquilino = contrato.getInquilinoContrato();
+
             Propietario propietario = contrato.getPropietarioContrato();
             Inmueble propiedad = contrato.getPropiedadContrato();
 
-            Contrato nuevoContrato = new Contrato(contrato.getFechaInicio(), fechaFin, true, nuevoMonto, inquilino, propietario, propiedad);
+            Contrato nuevoContrato = new Contrato(contrato.getIdContrato(), contrato.getFechaInicio(), fechaFin, true, nuevoMonto, inquilino, propietario, propiedad);
 
             contratoData.renovarContrato(nuevoContrato);
-
+            JOptionPane.showMessageDialog(this, "Contrato renovado");
         }
     }//GEN-LAST:event_jbtnRenovarActionPerformed
 
@@ -343,8 +354,12 @@ public class EditarContrato extends javax.swing.JPanel {
         jbtnRenovar.setEnabled(true);
         jbtnLimpiar.setEnabled(true);
         jtfDniInq.setEnabled(false);
+        jtfDniInq.setText("");
+        jtfInquilino.setText("");
         jbtnBuscarInq.setEnabled(false);
         jtfDniPro.setEnabled(false);
+        jtfDniPro.setText("");
+        jtfPropietario.setText("");
         jbtnBuscarPro.setEnabled(false);
         jbtnContrato.setEnabled(true);
     }//GEN-LAST:event_vigentesActionPerformed
@@ -355,8 +370,12 @@ public class EditarContrato extends javax.swing.JPanel {
         jbtnRenovar.setEnabled(true);
         jbtnLimpiar.setEnabled(true);
         jtfDniInq.setEnabled(false);
+        jtfDniInq.setText("");
+        jtfInquilino.setText("");
         jbtnBuscarInq.setEnabled(false);
         jtfDniPro.setEnabled(false);
+        jtfDniPro.setText("");
+        jtfPropietario.setText("");
         jbtnBuscarPro.setEnabled(false);
         jbtnContrato.setEnabled(true);
 
@@ -453,7 +472,10 @@ public class EditarContrato extends javax.swing.JPanel {
         jtfDniPro.setText("");
         jtfInquilino.setText("");
         jtfPropietario.setText("");
-
+        jtMonto.setText("");
+        jtMonto.setEnabled(false);
+        jDateNuevoVencimiento.setDate(null);
+        jDateNuevoVencimiento.setEnabled(false);
         jbtnRenovar.setEnabled(false);
         jbtnRenovar.setEnabled(false);
         jbtnBuscarPro.setEnabled(true);

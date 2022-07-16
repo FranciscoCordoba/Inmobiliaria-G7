@@ -416,13 +416,13 @@ public class BuscarContrato extends javax.swing.JPanel {
 
     private void armarCabeceraTabla() {
         ArrayList<Object> columnas = new ArrayList<Object>();
-        columnas.add("Direccion ");
-        columnas.add("Altura");
-        columnas.add("Tipo de Inmueble");
-        columnas.add("Ambientes");
-        columnas.add("Zona");
-        columnas.add("Superficie");
-        columnas.add("Precio");
+        columnas.add("Id Inmueble ");
+        columnas.add("Propietario");
+        columnas.add("Inquilino");
+        columnas.add("Direccion");
+        columnas.add("Monto");
+        columnas.add("Fecha Inicio");
+        columnas.add("Fecha Final");
 
         for (Object it : columnas) {
             modelo.addColumn(it);

@@ -289,13 +289,12 @@ public class BuscarContrato extends javax.swing.JPanel {
     }//GEN-LAST:event_jbtnBuscarProActionPerformed
 
     private void jbtnContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnContratoActionPerformed
-        limpiarCampos();
-        if (jbtnBuscarInq.isEnabled()) {
+        borrarFilasTabla();
+        if (jbtnBuscarInq.isEnabled() == true) {
             long dniInq = Long.parseLong(jtfDniInq.getText());
             Inquilino inquilin = inquilinoData.obtenerInquilinoPorDni(dniInq);
 
             listacontratos = contratoData.contratosXInquilino(inquilin.getIdInquilino());
-
             for (Contrato cont : listacontratos) {
                 modelo.addRow(new Object[]{cont.getPropiedadContrato().getIdInmueble(), (cont.getPropietarioContrato().getApellido() + ", " + cont.getPropietarioContrato().getNombre()), (cont.getInquilinoContrato().getApellido() + ", " + cont.getInquilinoContrato().getNombre()), cont.getPropiedadContrato().getDireccion(), cont.getMonto(), cont.getFechaInicio(), cont.getFechaFin()});
             }
@@ -329,8 +328,12 @@ public class BuscarContrato extends javax.swing.JPanel {
         jbtnContrato.setEnabled(true);
         jbtnLimpiar.setEnabled(true);
         jtfDniInq.setEnabled(false);
+        jtfDniInq.setText("");
+        jtfInquilino.setText("");
         jbtnBuscarInq.setEnabled(false);
         jtfDniPro.setEnabled(false);
+        jtfDniPro.setText("");
+        jtfPropietario.setText("");
         jbtnBuscarPro.setEnabled(false);
 
     }//GEN-LAST:event_vigentesActionPerformed
@@ -341,8 +344,12 @@ public class BuscarContrato extends javax.swing.JPanel {
         jbtnContrato.setEnabled(true);
         jbtnLimpiar.setEnabled(true);
         jtfDniInq.setEnabled(false);
+        jtfDniInq.setText("");
+        jtfInquilino.setText("");
         jbtnBuscarInq.setEnabled(false);
         jtfDniPro.setEnabled(false);
+        jtfDniPro.setText("");
+        jtfPropietario.setText("");
         jbtnBuscarPro.setEnabled(false);
 
     }//GEN-LAST:event_noVigentesActionPerformed

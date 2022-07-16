@@ -84,8 +84,6 @@ public class ContratoData {
             ps.setDouble(3, contrato.getMonto());
 	    ps.setInt(4, contrato.getIdContrato());
 	    
-	    System.out.println(contrato.getMonto());
-	    
             if (ps.executeUpdate() != 0) {
                 renovar = true;
             }

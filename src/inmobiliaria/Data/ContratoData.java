@@ -402,7 +402,7 @@ public class ContratoData {
                 contrato.setInquilinoContrato(inquilino.obtenerInquilinoXId(rs.getInt("inquilinoContrato")));
                 contrato.setPropietarioContrato(propietario.obtenerPropietarioPorId(rs.getInt("propietarioContrato")));
                 contrato.setPropiedadContrato(propiedad.buscarInmuebleXId(rs.getInt("propiedadContrato")));
-                
+		lista.add(contrato);
             }
         } catch (SQLException ex) {
             

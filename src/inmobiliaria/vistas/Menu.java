@@ -1,4 +1,7 @@
 package inmobiliaria.vistas;
+import inmobiliaria.Data.Conexion;
+import inmobiliaria.Data.ContratoData;
+import inmobiliaria.Data.PropiedadData;
 import inmobiliaria.vistas.vistasContrato.ContratoMenu;
 import inmobiliaria.vistas.vistasInquilino.InquilinoMenu;
 import inmobiliaria.vistas.vistasPropiedades.PropiedadesMenu;
@@ -14,6 +17,10 @@ public class Menu extends javax.swing.JFrame { //comentario
     
     private Color darkBlue = new Color(13,20,26);
     private Color normalBlue = new Color(24,32,38);
+    
+    private ContratoData conData;
+    private PropiedadData propData;
+    private Conexion con;
 
     public Menu() {
         initComponents();
@@ -27,6 +34,13 @@ public class Menu extends javax.swing.JFrame { //comentario
 	
 	mainPanel.add(principal);
 	mainPanel.revalidate();
+        con = new Conexion();
+        propData = new PropiedadData(con);
+        conData = new ContratoData(con);
+        conData.actualizarContratos();
+        propData.altaDisponibilidad();
+        
+        
         
         
     }

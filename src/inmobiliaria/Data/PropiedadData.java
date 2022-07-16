@@ -384,4 +384,18 @@ public class PropiedadData {
         
         
     }
+    
+    public void altaDisponibilidad(){
+        
+        try {
+            String sql = "UPDATE inmueble SET disponibilidad = 1 WHERE idInmueble IN (SELECT propiedadContrato FROM contrato WHERE activo = 0)";
+            
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.executeUpdate();
+            
+        } catch (SQLException ex) {
+            
+            JOptionPane.showMessageDialog(null, "Error al actualizar inmuebles" + ex);
+        }
+    }
 }
